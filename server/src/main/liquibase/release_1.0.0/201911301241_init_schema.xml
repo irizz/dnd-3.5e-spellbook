@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201911301241_init_schema.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201911301241" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+            CREATE SCHEMA spellbook;
+
+            CREATE TABLE IF NOT EXISTS spellbook.spells (
+            id              UUID        NOT NULL    DEFAULT uuid_generate_v4(),
+            name            VARCHAR(60) NOT NULL,
+            level           SMALLINT    NOT NULL,
+            CONSTRAINT spells_pk PRIMARY KEY(id)
+            );
+
+            COMMENT ON TABLE spellbook.spells is 'All available spells';
+            COMMENT ON COLUMN spellbook.spells.id is 'Row id';
+            COMMENT ON COLUMN spellbook.spells.name is 'Spell name';
+            COMMENT ON COLUMN spellbook.spells.level is 'Spell level';
+
+            INSERT INTO spellbook.spells (id, name, level) VALUES ('03488cff-9935-4ed6-b0f9-a4b22a5e2430', 'Dancing Lights', 0);
+            INSERT INTO spellbook.spells (id, name, level) VALUES ('008426fe-3ff7-4609-b097-1b4f5d7f606c', 'Daze', 0);
+            INSERT INTO spellbook.spells (id, name, level) VALUES ('1ec07635-5e45-43f5-8151-7861e8a387a6', 'Detect Magic', 0);
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

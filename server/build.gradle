@@ -1,0 +1,119 @@
+buildscript {
+    ext.spring_boot_version = '2.1.0.RELEASE'
+    ext.liquibase_version = '2.0.1'
+    ext.postgresql_version = '42.2.5'
+    ext.jooq_plugin_version = '3.0.3'
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+        classpath "org.liquibase:liquibase-gradle-plugin:$liquibase_version"
+        classpath "nu.studer:gradle-jooq-plugin:$jooq_plugin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.liquibase.gradle'
+apply plugin: 'nu.studer.jooq'
+
+bootJar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile 'org.jooq:jooq'
+    compile 'org.springframework.boot:spring-boot-starter-jooq', {
+        exclude group: "org.jooq", module: "jooq"
+    }
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.1'
+
+
+    implementation "org.postgresql:postgresql:$postgresql_version"
+    implementation "org.liquibase:liquibase-core"
+
+    liquibaseRuntime "org.liquibase:liquibase-core"
+    liquibaseRuntime "org.postgresql:postgresql"
+    
+    jooqRuntime "org.postgresql:postgresql:$postgresql_version"
+
+    testCompile("junit:junit")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/liquibase','src/main/resources']
+        }
+    }
+}
+
+liquibase {
+    activities {
+        dev {
+            if (project.hasProperty("liquibaseContexts")) {
+                contexts liquibaseContexts
+            }
+            changeLogFile "${projectDir}/src/main/liquibase/root-changelog.xml"
+            url "${postgresUrl}"
+            username "${DBuser}"
+            password "${DBpassword}"
+        }
+    }
+    runList = project.ext.runList
+}
+
+jooq {
+    version = "3.11.5"
+    edition = "OSS"
+    spellbook(sourceSets.main) {
+        jdbc {
+            username = "${DBuser}"
+            password = "${DBpassword}"
+            driver   = "org.postgresql.Driver"
+            url      = "${postgresUrl}"
+        }
+
+        generator {
+            target {
+                packageName = "com.spellbook.jooq"
+                directory = 'src/main/java'
+            }
+            database {
+                name = "org.jooq.meta.postgres.PostgresDatabase"
+                inputSchema = "spellbook"
+            }
+            generate {
+                relations = true
+                deprecated = false
+                records = true
+                generatedAnnotation = true
+                fluentSetters = true
+                validationAnnotations = true
+                javaTimeTypes = true
+            }
+        }
+    }
+}
+
+build.dependsOn(generateSpellbookJooqSchemaSource)
+generateSpellbookJooqSchemaSource.dependsOn(update)
