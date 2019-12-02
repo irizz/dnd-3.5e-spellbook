@@ -1,0 +1,42 @@
+.filters {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &__text-input {
+    margin-right: 40px;
+  }
+}
+
+.spells {
+  width: 100%;
+
+  @media screen and (max-width: 540px) {
+    height: 40vh;
+  }
+
+  @media screen and (min-width: 540px) and (max-width: 1920px) {
+    height: 50vh;
+  }
+
+  @media screen and (min-width: 1920px) {
+    height: 70vh;
+  }
+
+  &__sidebar {
+    width: 20%;
+  }
+
+  &__spellcard {
+    width: 80%;
+    position: relative;
+    background-color: #eeebf1;
+
+    &_card {
+      width: 80%;
+      height: 60%;
+      margin: auto;
+      position: relative;
+      top: 2rem;
+    }
+  }
+}

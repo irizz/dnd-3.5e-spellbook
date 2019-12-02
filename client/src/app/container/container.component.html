@@ -1,0 +1,15 @@
+<mat-card class="container">
+  <mat-card-header class="container__header">
+    <mat-card-title class="container__header_title"
+      >D&D 3.5e Spellbook</mat-card-title
+    >
+  </mat-card-header>
+  <mat-card-content class="container__content">
+    <app-select-class
+      *ngIf="!service.isLoading && !service.isError && !service.areSpellsLoaded"
+    ></app-select-class>
+    <app-loading *ngIf="service.isLoading"></app-loading>
+    <app-error *ngIf="service.isError"></app-error>
+    <app-main *ngIf="service.areSpellsLoaded"></app-main>
+  </mat-card-content>
+</mat-card>

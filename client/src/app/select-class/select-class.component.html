@@ -1,0 +1,17 @@
+<mat-form-field class="select-class__form">
+  <mat-label>Pick character's class</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let charClass of charClasses" [value]="charClass">
+      {{ charClass }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<button
+  class="select-class__button"
+  mat-button
+  mat-raised-button
+  color="primary"
+  (click)="handleShowSpellsClick()"
+>
+  Show spells
+</button>
