@@ -1,8 +1,8 @@
 <mat-form-field class="select-class__form">
   <mat-label>Pick character's class</mat-label>
   <mat-select>
-    <mat-option *ngFor="let charClass of charClasses" [value]="charClass">
-      {{ charClass }}
+    <mat-option *ngFor="let charClass of charClasses" [value]="charClass.id">
+      {{ charClass.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>

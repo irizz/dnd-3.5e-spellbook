@@ -1,6 +1,19 @@
 <div class="nav">
-  <button mat-button (click)="handleGoToSelectClassClick()">
+  <button
+    class="nav__back-btn"
+    mat-button
+    (click)="handleGoToSelectClassClick()"
+  >
+    <i class="material-icons">keyboard_backspace</i>
     Go back
+  </button>
+  <button
+    class="nav__fav-btn"
+    mat-button
+    (click)="handleGoToSelectClassClick()"
+  >
+    Go to Favorites
+    <i class="material-icons">bookmark_border</i>
   </button>
 </div>
 <mat-divider></mat-divider>
@@ -18,9 +31,33 @@
   </mat-form-field>
 </div>
 <mat-drawer-container class="spells">
-  <mat-drawer class="spells__sidebar" mode="side" opened
-    >Drawer content</mat-drawer
-  >
+  <mat-drawer class="spells__sidebar" mode="side" opened>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <mat-tree-node
+        *matTreeNodeDef="let node; when: hasChild"
+        class="spells__sidebar_header"
+        matTreeNodePadding
+      >
+        <button
+          mat-icon-button
+          matTreeNodeToggle
+          [attr.aria-label]="'toggle ' + node.name"
+        >
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+          </mat-icon>
+        </button>
+        {{ node.name }}
+      </mat-tree-node>
+      <mat-tree-node
+        *matTreeNodeDef="let node"
+        class="spells__sidebar_child"
+        matTreeNodePadding
+      >
+        {{ node.name }}
+      </mat-tree-node>
+    </mat-tree>
+  </mat-drawer>
   <mat-drawer-content class="spells__spellcard">
     <mat-card class="spells__spellcard_card">Simple card</mat-card>
   </mat-drawer-content>

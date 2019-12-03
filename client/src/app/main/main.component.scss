@@ -1,3 +1,9 @@
+.nav {
+  &__fav-btn {
+    float: right;
+  }
+}
+
 .filters {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -24,6 +30,14 @@
 
   &__sidebar {
     width: 20%;
+
+    &_header {
+      padding: 0;
+    }
+
+    &_child.mat-tree-node {
+      margin-left: 10px;
+    }
   }
 
   &__spellcard {

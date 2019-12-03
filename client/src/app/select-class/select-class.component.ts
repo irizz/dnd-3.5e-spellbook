@@ -7,11 +7,12 @@ import { SharedService } from "../shared/shared.service";
   styleUrls: ["./select-class.component.scss"]
 })
 export class SelectClassComponent implements OnInit {
-  charClasses: Array<String> = ["Druid", "Ranger"];
-
   constructor(private service: SharedService) {}
 
-  ngOnInit() {}
+  charClasses = this.service.charClasses;
+
+  ngOnInit() {
+  }
 
   handleShowSpellsClick() {
     this.service.handleShowSpellsClick();
