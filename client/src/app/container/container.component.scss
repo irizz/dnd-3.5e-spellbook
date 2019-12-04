@@ -1,20 +1,23 @@
 .container {
   min-height: 20rem;
-  max-width: 60rem;
+  max-width: 80rem;
   margin: auto;
   padding: 0;
   position: absolute;
-  top: 2rem;
+  top: 0.5rem;
   left: 0;
-  bottom: 3rem;
+  bottom: 1rem;
   right: 0;
 
   &__header {
     padding: 10px 10px 0 10px;
     background-color: #d2d0d1;
+    color: #7a7b83;
 
-    &_title {
-      color: #7a7b83;
+    &_back-btn {
+      position: absolute;
+      top: 0.3rem;
+      right: 1rem;
     }
   }
 

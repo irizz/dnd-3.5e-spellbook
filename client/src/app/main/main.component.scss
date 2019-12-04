@@ -1,15 +1,20 @@
 .nav {
+  .filters {
+    display: inline-block;
+
+    &__select {
+      margin-left: 1rem;
+      margin-right: 20px;
+      width: 14rem;
+    }
+
+    &__text-input {
+      width: 14rem;
+    }
+  }
+
   &__fav-btn {
     float: right;
-  }
-}
-
-.filters {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-  &__select {
-    margin-right: 40px;
   }
 }
 
@@ -17,19 +22,19 @@
   width: 100%;
 
   @media screen and (max-width: 540px) {
-    height: 40vh;
-  }
-
-  @media screen and (min-width: 540px) and (max-width: 1920px) {
     height: 50vh;
   }
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 540px) and (max-width: 1920px) {
     height: 70vh;
   }
 
+  @media screen and (min-width: 1920px) {
+    height: 80vh;
+  }
+
   &__sidebar {
-    width: 25%;
+    width: 20%;
 
     .mat-tree-node {
       min-height: 0;
@@ -38,12 +43,12 @@
   }
 
   &__spellcard {
-    width: 75%;
+    width: 80%;
     position: relative;
     background-color: #e8e6e7;
 
     &_card {
-      width: 80%;
+      width: 90%;
       height: fit-content;
       margin: auto;
       position: relative;

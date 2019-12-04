@@ -137,10 +137,6 @@ export class MainComponent implements OnInit {
     this.spellsTreeSortedBySchool = this.transformToDataTree(sortedSpells);
   }
 
-  handleGoToSelectClassClick() {
-    this.service.handleGoToSelectClassClick();
-  }
-
   handleShowSpellCard(name: string) {
     this.currSpell = this.spells[
       this.spells.findIndex(item => item.name == name)
@@ -190,6 +186,7 @@ export class MainComponent implements OnInit {
   handleFavoritesToggleClick() {
     if (this.isFavoritesMode) {
       this.isFavoritesMode = !this.isFavoritesMode;
+      this.service.isFavoritesMode = this.isFavoritesMode;
       const otherSpells = this.allSpells.filter(
         item => !this.spells.includes(item)
       );
@@ -206,6 +203,7 @@ export class MainComponent implements OnInit {
       );
     } else {
       this.isFavoritesMode = !this.isFavoritesMode;
+      this.service.isFavoritesMode = this.isFavoritesMode;
       this.spells = this.spells
         .filter(item => item.isFavorite === true)
         .sort((a, b) => (a.name > b.name ? 1 : -1));

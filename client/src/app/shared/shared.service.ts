@@ -56,6 +56,7 @@ export class SharedService {
   public charClasses: CharClass[] = [];
   public charClass: string = "";
   public responseError: ResponseError = {};
+  public isFavoritesMode: boolean = false;
 
   fetchSpells(selectedClass): Observable<SpellsResponse> {
     return this.http.get<SpellsResponse>(

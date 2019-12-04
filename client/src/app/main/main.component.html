@@ -1,12 +1,25 @@
 <div class="nav">
-  <button
-    class="nav__back-btn"
-    mat-button
-    (click)="handleGoToSelectClassClick()"
-  >
-    <i class="material-icons">keyboard_backspace</i>
-    Select another class
-  </button>
+  <div class="filters">
+    <mat-form-field class="filters__select">
+      <mat-label>Sort by...</mat-label>
+      <mat-select
+        [(ngModel)]="sortBy"
+        (selectionChange)="handleChangeSorting()"
+      >
+        <mat-option *ngFor="let option of sortOptions" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="filters__text-input">
+      <input
+        matInput
+        placeholder="Enter spell's name..."
+        [(ngModel)]="searchString"
+        (change)="handleChangeCurrSpell()"
+      />
+    </mat-form-field>
+  </div>
   <button
     class="nav__fav-btn"
     mat-button
@@ -16,25 +29,6 @@
     {{ isFavoritesMode ? "Go to all class spells" : "Go to Favorites" }}
     <i *ngIf="!isFavoritesMode" class="material-icons">book</i>
   </button>
-</div>
-<mat-divider></mat-divider>
-<div class="filters">
-  <mat-form-field class="filters__select">
-    <mat-label>Sort by...</mat-label>
-    <mat-select [(ngModel)]="sortBy" (selectionChange)="handleChangeSorting()">
-      <mat-option *ngFor="let option of sortOptions" [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="filters__text-input">
-    <input
-      matInput
-      placeholder="Enter spell's name..."
-      [(ngModel)]="searchString"
-      (change)="handleChangeCurrSpell()"
-    />
-  </mat-form-field>
 </div>
 <mat-drawer-container class="spells">
   <mat-drawer class="spells__sidebar" mode="side" opened>

@@ -25,4 +25,8 @@ export class ContainerComponent implements OnInit {
       }
     );
   }
+
+  handleGoToSelectClassClick() {
+    this.service.handleGoToSelectClassClick();
+  }
 }
