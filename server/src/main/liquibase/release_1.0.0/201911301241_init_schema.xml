@@ -12,20 +12,85 @@
             CREATE SCHEMA spellbook;
 
             CREATE TABLE IF NOT EXISTS spellbook.spells (
-            id              UUID        NOT NULL    DEFAULT uuid_generate_v4(),
-            name            VARCHAR(60) NOT NULL,
-            level           SMALLINT    NOT NULL,
+            id                  UUID            NOT NULL    DEFAULT uuid_generate_v4(),
+            name                VARCHAR(60)     NOT NULL,
+            school              VARCHAR(255)    NOT NULL,
+            components          VARCHAR(60)     NOT NULL,
+            casting_time        VARCHAR(60)     NOT NULL,
+            range               VARCHAR(60)     NOT NULL,
+            area                VARCHAR(60)             ,
+            target              VARCHAR(60)             ,
+            effect              VARCHAR(60)             ,
+            duration            VARCHAR(60)             ,
+            saving_throw        VARCHAR(60)     NOT NULL,
+            spell_resistance    VARCHAR(60)     NOT NULL,
+            material_components VARCHAR(100)            ,
+            description         VARCHAR(1000)   NOT NULL,
+
             CONSTRAINT spells_pk PRIMARY KEY(id)
             );
 
-            COMMENT ON TABLE spellbook.spells is 'All available spells';
-            COMMENT ON COLUMN spellbook.spells.id is 'Row id';
-            COMMENT ON COLUMN spellbook.spells.name is 'Spell name';
-            COMMENT ON COLUMN spellbook.spells.level is 'Spell level';
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('de6222d7-3e21-4143-888d-6a75cc2da416', 'Dancing Lights', 'Evocation', 'V,S', '1 standard action', 'Medium (100 ft. + 10 ft./level)', null, null, 'Up to four lights, all within a 10- ft.-radius area', '1 minute (D)', 'No', 'No', null,
+            'Depending on the version selected, you create up to four lights that resemble lanterns or torches (and cast that amount of light), or up to four glowing spheres of light (which look like will-o’-wisps), or one faintly glowing, vaguely humanoid shape. The dancing lights must stay within a 10-foot-radius area in relation to each other but otherwise move as you desire (no concentration required): forward or back, up or down, straight or turning corners, or the like. The lights can move up to 100 feet per round. A light winks out if the distance between you and it exceeds the spell’s range.
+            Dancing lights can be made permanent with a permanency spell.');
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('488dd670-ff60-42c8-8d24-82d338d70851', 'Daze', 'Enchantment', 'V, S, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', null, 'One humanoid creature of 4 HD or less', null, '1 round', 'Will negates', 'Yes', null,
+            'This enchantment clouds the mind of a humanoid creature with 4 or fewer Hit Dice so that it takes no actions. Humanoids of 5 or more HD are not affected. A dazed subject is not stunned, so attackers get no special advantage against it.');
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', 'Detect Magic', 'Divination', 'V, S', '1 standard action', '60 ft.', 'Cone-shaped emanation', null, null, 'Concentration, up to 1 min./level (D)', 'No', 'No', 'A pinch of wool or similar substance.',
+            'You detect magical auras. The amount of information revealed depends on how long you study a particular area or subject.');
 
-            INSERT INTO spellbook.spells (id, name, level) VALUES ('03488cff-9935-4ed6-b0f9-a4b22a5e2430', 'Dancing Lights', 0);
-            INSERT INTO spellbook.spells (id, name, level) VALUES ('008426fe-3ff7-4609-b097-1b4f5d7f606c', 'Daze', 0);
-            INSERT INTO spellbook.spells (id, name, level) VALUES ('1ec07635-5e45-43f5-8151-7861e8a387a6', 'Detect Magic', 0);
+            CREATE TABLE IF NOT EXISTS spellbook.classes (
+            id              UUID        NOT NULL    DEFAULT uuid_generate_v4(),
+            name            VARCHAR(60) NOT NULL,
+            CONSTRAINT classes_pk PRIMARY KEY(id)
+            );
+
+            INSERT INTO spellbook.classes (id, name) VALUES ('03488cff-9935-4ed6-b0f9-a4b22a5e2430', 'Barbarian');
+            INSERT INTO spellbook.classes (id, name) VALUES ('008426fe-3ff7-4609-b097-1b4f5d7f606c', 'Bard');
+            INSERT INTO spellbook.classes (id, name) VALUES ('1ec07635-5e45-43f5-8151-7861e8a387a6', 'Cleric');
+            INSERT INTO spellbook.classes (id, name) VALUES ('4a663f67-8405-4624-99bc-f81b7895ab86', 'Druid');
+            INSERT INTO spellbook.classes (id, name) VALUES ('b92cf3c1-5e78-4123-a98a-83162a9490b3', 'Fighter');
+            INSERT INTO spellbook.classes (id, name) VALUES ('162b16bb-a622-41c3-8663-b71ff72a41ee', 'Monk');
+            INSERT INTO spellbook.classes (id, name) VALUES ('b94893a6-577c-472c-b573-6c35316dd2d2', 'Paladin');
+            INSERT INTO spellbook.classes (id, name) VALUES ('a4b91e77-742d-42d3-809d-22417495d11d', 'Ranger');
+            INSERT INTO spellbook.classes (id, name) VALUES ('08a3b5bf-3386-4d1a-99b0-b6e57b83d04c', 'Rogue');
+            INSERT INTO spellbook.classes (id, name) VALUES ('1743cb02-abb8-42d9-b651-860ff06e627a', 'Sorcerer');
+            INSERT INTO spellbook.classes (id, name) VALUES ('348effa3-bb33-4f9b-9726-c9e44beda456', 'Wizard');
+
+            CREATE TABLE IF NOT EXISTS spellbook.class_spell_availability (
+            id              UUID        NOT NULL    DEFAULT uuid_generate_v4(),
+            spell_id        UUID        NOT NULL,
+            class_id        UUID        NOT NULL,
+            level           INTEGER     NOT NULL,
+            CONSTRAINT class_spell_availability_pk PRIMARY KEY(id),
+            FOREIGN KEY (spell_id) REFERENCES spellbook.spells (id),
+            FOREIGN KEY (class_id) REFERENCES spellbook.classes (id)
+            );
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('de6222d7-3e21-4143-888d-6a75cc2da416', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('de6222d7-3e21-4143-888d-6a75cc2da416', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('de6222d7-3e21-4143-888d-6a75cc2da416', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('488dd670-ff60-42c8-8d24-82d338d70851', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('488dd670-ff60-42c8-8d24-82d338d70851', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('488dd670-ff60-42c8-8d24-82d338d70851', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', '4a663f67-8405-4624-99bc-f81b7895ab86', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', '1ec07635-5e45-43f5-8151-7861e8a387a6', 0);
 
         </sql>
     </changeSet>
