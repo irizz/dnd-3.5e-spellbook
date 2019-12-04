@@ -27,12 +27,20 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="filters__text-input">
-    <input matInput placeholder="Enter spell's name..." />
+    <input
+      matInput
+      placeholder="Enter spell's name..."
+      [(ngModel)]="searchString"
+      (change)="handleChangeCurrSpell()"
+    />
   </mat-form-field>
 </div>
 <mat-drawer-container class="spells">
   <mat-drawer class="spells__sidebar" mode="side" opened>
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree
+      [dataSource]="dataSource | spellsFilter: searchString"
+      [treeControl]="treeControl"
+    >
       <mat-tree-node
         *matTreeNodeDef="let node; when: hasChild"
         class="spells__sidebar_header"
@@ -53,7 +61,7 @@
         <button
           mat-button
           class="spells__sidebar_child"
-          [color]="node.name === currSpell.name ? 'primary' : '' "
+          [color]="node.name === currSpell.name ? 'primary' : ''"
           (click)="handleShowSpellCard(node.name)"
         >
           {{ node.name }}
@@ -73,7 +81,9 @@
       <p>
         <strong>Target:</strong> {{ currSpell.target ? currSpell.target : "-" }}
       </p>
-      <p><strong>Effect:</strong> {{ currSpell.effect ? currSpell.effect : "-" }}</p>
+      <p>
+        <strong>Effect:</strong> {{ currSpell.effect ? currSpell.effect : "-" }}
+      </p>
       <p><strong>Duration:</strong> {{ currSpell.duration }}</p>
       <p><strong>Saving throw:</strong> {{ currSpell.savingThrow }}</p>
       <p><strong>Spell resistance:</strong> {{ currSpell.spellResistance }}</p>

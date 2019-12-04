@@ -20,6 +20,7 @@ import { ErrorComponent } from "./error/error.component";
 import { LoadingComponent } from "./loading/loading.component";
 import { MainComponent } from "./main/main.component";
 import { SelectClassComponent } from "./select-class/select-class.component";
+import { SpellsFilterPipe } from "./shared/spells-filter.pipe";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SelectClassComponent } from "./select-class/select-class.component";
     ErrorComponent,
     LoadingComponent,
     MainComponent,
-    SelectClassComponent
+    SelectClassComponent,
+    SpellsFilterPipe
   ],
   imports: [
     BrowserAnimationsModule,

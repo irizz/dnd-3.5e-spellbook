@@ -25,6 +25,7 @@ export class MainComponent implements OnInit {
   private spells: Spell[] = [];
   private currSpell: Spell;
   private currSpellClasses: string = "";
+  private searchString: string = "";
   private sortBy: string = "level";
   private spellsTreeSortedByLevel = [];
   private spellsTreeSortedBySchool = [];
@@ -61,16 +62,20 @@ export class MainComponent implements OnInit {
 
     this.dataSource.data = this.spellsTreeSortedBySchool;
     this.currSpell = this.spells[0];
-    this.currSpellClasses = this.transformResponseClassesToString(this.currSpell.classes);
+    this.currSpellClasses = this.transformResponseClassesToString(
+      this.currSpell.classes
+    );
   }
 
   transformResponseClassesToString(classesArr: SpellCharClass[]) {
     let resultString = "";
-    for ( let i = 0; i < classesArr.length; i ++ ) {
-      if (i == (classesArr.length - 1)) {
-        resultString = resultString + `${classesArr[i].name} ${classesArr[i].level} lvl`
+    for (let i = 0; i < classesArr.length; i++) {
+      if (i == classesArr.length - 1) {
+        resultString =
+          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl`;
       } else {
-        resultString = resultString + `${classesArr[i].name} ${classesArr[i].level} lvl, `
+        resultString =
+          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl, `;
       }
     }
     return resultString;
@@ -127,8 +132,35 @@ export class MainComponent implements OnInit {
     this.service.handleGoToSelectClassClick();
   }
 
-  handleShowSpellCard(name) {
-    this.currSpell = this.spells[this.spells.findIndex(item => item.name == name)];
-    this.currSpellClasses = this.transformResponseClassesToString(this.currSpell.classes);
+  handleShowSpellCard(name: string) {
+    this.currSpell = this.spells[
+      this.spells.findIndex(item => item.name == name)
+    ];
+    this.currSpellClasses = this.transformResponseClassesToString(
+      this.currSpell.classes
+    );
+  }
+
+  handleChangeCurrSpell() {
+    if (!this.searchString) {
+      this.currSpell = this.spells[0];
+      this.currSpellClasses = this.transformResponseClassesToString(
+        this.currSpell.classes
+      );
+      return;
+    }
+
+    for (let i = 0; i < this.spells.length; i++) {
+      if (
+        this.spells[i].name
+          .toLowerCase()
+          .indexOf(this.searchString.toLowerCase()) !== -1
+      ) {
+        this.currSpell = this.spells[i];
+        this.currSpellClasses = this.transformResponseClassesToString(
+          this.currSpell.classes
+        );
+      }
+    }
   }
 }
