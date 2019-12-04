@@ -1,6 +1,10 @@
 <mat-card class="container">
   <mat-card-header class="container__header">
-    <mat-card-title class="container__header_title">D&D 3.5e Spellbook</mat-card-title>
+    <mat-card-title class="container__header_title">
+      {{"D&D 3.5e Spellbook"}}
+      {{ service.charClass ? "/" : "" }}
+      {{ service.charClass }}
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content class="container__content">
     <app-select-class

@@ -58,10 +58,12 @@ export class MainComponent implements OnInit {
   hasChild = (_: number, node: FlatNode) => node.expandable;
 
   ngOnInit() {
-    this.spells = this.service.spells.map(item => ({
-      ...item,
-      isFavorite: false
-    }));
+    this.spells = this.service.spells
+      .map(item => ({
+        ...item,
+        isFavorite: false
+      }))
+      .sort((a, b) => (a.name > b.name ? 1 : -1));
     this.allSpells = [...this.spells];
     this.charClass = this.service.charClass;
     this.sortSpellsByLevel();
@@ -193,7 +195,7 @@ export class MainComponent implements OnInit {
       );
       const all = this.spells.concat(otherSpells);
 
-      this.spells = all;
+      this.spells = all.sort((a, b) => (a.name > b.name ? 1 : -1));
       this.sortSpellsByLevel();
       this.sortSpellsBySchool();
 
@@ -204,7 +206,9 @@ export class MainComponent implements OnInit {
       );
     } else {
       this.isFavoritesMode = !this.isFavoritesMode;
-      this.spells = this.spells.filter(item => item.isFavorite === true);
+      this.spells = this.spells
+        .filter(item => item.isFavorite === true)
+        .sort((a, b) => (a.name > b.name ? 1 : -1));
       this.sortSpellsByLevel();
       this.sortSpellsBySchool();
 

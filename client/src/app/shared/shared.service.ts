@@ -54,12 +54,12 @@ export class SharedService {
   public areSpellsLoaded: boolean = false;
   public spells: Spell[] = [];
   public charClasses: CharClass[] = [];
-  public charClass: string = "Wizard";
+  public charClass: string = "";
   public responseError: ResponseError = {};
 
-  fetchSpells(): Observable<SpellsResponse> {
+  fetchSpells(selectedClass): Observable<SpellsResponse> {
     return this.http.get<SpellsResponse>(
-      "http://localhost:8080/api/v1/getSpellsList"
+      `http://localhost:8080/api/v1/getSpellsListByClass?classId=${selectedClass}`
     );
   }
 
@@ -69,14 +69,23 @@ export class SharedService {
     );
   }
 
-  handleShowSpellsClick() {
+  handleShowSpellsClick(selectedClass) {
     this.isLoading = true;
 
-    this.fetchSpells().subscribe(
+    this.fetchSpells(selectedClass).subscribe(
       data => {
         this.spells = data.spellsList;
-        this.isLoading = false;
-        this.areSpellsLoaded = true;
+        if (this.spells.length > 0) {
+          this.isLoading = false;
+          this.areSpellsLoaded = true;
+        } else {
+          this.isLoading = false;
+          this.isError = true;
+          this.responseError = {
+            statusText: "Oops",
+            message: "Sorry"
+          };
+        }
       },
       error => {
         this.isLoading = false;
@@ -91,5 +100,6 @@ export class SharedService {
 
   handleGoToSelectClassClick() {
     this.areSpellsLoaded = false;
+    this.charClass = "";
   }
 }

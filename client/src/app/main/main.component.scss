@@ -29,15 +29,16 @@
   }
 
   &__sidebar {
-    width: 20%;
+    width: 25%;
 
-    &_header {
-      padding: 0;
+    .mat-tree-node {
+      min-height: 0;
+      overflow: visible;
     }
   }
 
   &__spellcard {
-    width: 80%;
+    width: 75%;
     position: relative;
     background-color: #e8e6e7;
 

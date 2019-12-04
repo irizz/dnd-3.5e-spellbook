@@ -5,12 +5,12 @@
     (click)="handleGoToSelectClassClick()"
   >
     <i class="material-icons">keyboard_backspace</i>
-    Go back
+    Select another class
   </button>
   <button
     class="nav__fav-btn"
     mat-button
-    [disabled]="isFavoritesBtnDisabled"
+    [disabled]="isFavoritesBtnDisabled && !isFavoritesMode"
     (click)="handleFavoritesToggleClick()"
   >
     {{ isFavoritesMode ? "Go to all class spells" : "Go to Favorites" }}

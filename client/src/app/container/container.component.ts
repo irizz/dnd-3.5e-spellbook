@@ -8,11 +8,12 @@ import { SharedService } from "../shared/shared.service";
 })
 export class ContainerComponent implements OnInit {
   constructor(private service: SharedService) {}
+
   ngOnInit() {
     this.service.fetchClasses().subscribe(
       data => {
         this.service.isLoading = false;
-        this.service.charClasses = data.classesList;
+        this.service.charClasses = data.classesList.sort((a, b) => a.name > b.name ? 1 : -1);
       },
       error => {
         this.service.isLoading = false;
