@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   private currSpell: Spell;
   private currSpellClasses: string = "";
   private searchString: string = "";
-  private sortBy: string = "level";
+  private sortBy: string = "By level";
   private spellsTreeSortedByLevel = [];
   private spellsTreeSortedBySchool = [];
 
@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
     this.sortSpellsByLevel();
     this.sortSpellsBySchool();
 
-    this.dataSource.data = this.spellsTreeSortedBySchool;
+    this.dataSource.data = this.spellsTreeSortedByLevel;
     this.currSpell = this.spells[0];
     this.currSpellClasses = this.transformResponseClassesToString(
       this.currSpell.classes
@@ -161,6 +161,14 @@ export class MainComponent implements OnInit {
           this.currSpell.classes
         );
       }
+    }
+  }
+
+  handleChangeSorting() {
+    if (this.sortBy == "By level") {
+      this.dataSource.data = this.spellsTreeSortedByLevel;
+    } else if (this.sortBy == "By school") {
+      this.dataSource.data = this.spellsTreeSortedBySchool;
     }
   }
 }

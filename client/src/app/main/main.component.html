@@ -20,9 +20,12 @@
 <div class="filters">
   <mat-form-field class="filters__select">
     <mat-label>Sort by...</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let sortOption of sortOptions" [value]="sortOption">
-        {{ sortOption }}
+    <mat-select
+      [(ngModel)]="sortBy"
+      (selectionChange)="handleChangeSorting()"
+    >
+      <mat-option *ngFor="let option of sortOptions" [value]="option">
+        {{ option }}
       </mat-option>
     </mat-select>
   </mat-form-field>
