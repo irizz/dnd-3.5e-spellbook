@@ -18,9 +18,6 @@
 </div>
 <mat-divider></mat-divider>
 <div class="filters">
-  <mat-form-field class="filters__text-input">
-    <input matInput placeholder="Enter spell's name..." />
-  </mat-form-field>
   <mat-form-field class="filters__select">
     <mat-label>Sort by...</mat-label>
     <mat-select>
@@ -28,6 +25,9 @@
         {{ sortOption }}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+  <mat-form-field class="filters__text-input">
+    <input matInput placeholder="Enter spell's name..." />
   </mat-form-field>
 </div>
 <mat-drawer-container class="spells">
@@ -49,16 +49,39 @@
         </button>
         {{ node.name }}
       </mat-tree-node>
-      <mat-tree-node
-        *matTreeNodeDef="let node"
-        class="spells__sidebar_child"
-        matTreeNodePadding
-      >
-        {{ node.name }}
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <button
+          mat-button
+          class="spells__sidebar_child"
+          [color]="node.name === currSpell.name ? 'primary' : '' "
+          (click)="handleShowSpellCard(node.name)"
+        >
+          {{ node.name }}
+        </button>
       </mat-tree-node>
     </mat-tree>
   </mat-drawer>
   <mat-drawer-content class="spells__spellcard">
-    <mat-card class="spells__spellcard_card">Simple card</mat-card>
+    <mat-card class="spells__spellcard_card">
+      <p><strong>Name:</strong> {{ currSpell.name }}</p>
+      <p><strong>Classes:</strong> {{ currSpellClasses }}</p>
+      <p><strong>School:</strong> {{ currSpell.school }}</p>
+      <p><strong>Components:</strong> {{ currSpell.components }}</p>
+      <p><strong>Casting Time:</strong> {{ currSpell.castingTime }}</p>
+      <p><strong>Range:</strong> {{ currSpell.range }}</p>
+      <p><strong>Area:</strong> {{ currSpell.area ? currSpell.area : "-" }}</p>
+      <p>
+        <strong>Target:</strong> {{ currSpell.target ? currSpell.target : "-" }}
+      </p>
+      <p><strong>Effect:</strong> {{ currSpell.effect ? currSpell.effect : "-" }}</p>
+      <p><strong>Duration:</strong> {{ currSpell.duration }}</p>
+      <p><strong>Saving throw:</strong> {{ currSpell.savingThrow }}</p>
+      <p><strong>Spell resistance:</strong> {{ currSpell.spellResistance }}</p>
+      <p>
+        <strong>Material components:</strong>
+        {{ currSpell.materialComponents ? currSpell.materialComponents : "-" }}
+      </p>
+      <p><strong>Description:</strong> {{ currSpell.description }}</p>
+    </mat-card>
   </mat-drawer-content>
 </mat-drawer-container>

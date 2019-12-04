@@ -8,7 +8,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 
-  &__text-input {
+  &__select {
     margin-right: 40px;
   }
 }
@@ -37,20 +37,26 @@
 
     &_child.mat-tree-node {
       margin-left: 10px;
+      font-weight: 400;
     }
   }
 
   &__spellcard {
     width: 80%;
     position: relative;
-    background-color: #eeebf1;
+    background-color: #e8e6e7;
 
     &_card {
       width: 80%;
-      height: 60%;
+      height: fit-content;
       margin: auto;
       position: relative;
       top: 2rem;
+
+      & p {
+        padding: 0;
+        margin: 2px;
+      }
     }
   }
 }

@@ -58,13 +58,13 @@ export class SharedService {
 
   fetchSpells(): Observable<SpellsResponse> {
     return this.http.get<SpellsResponse>(
-      "http://192.168.1.6:8080/api/v1/getSpellsList"
+      "http://localhost:8080/api/v1/getSpellsList"
     );
   }
 
   fetchClasses(): Observable<ClassesResponse> {
     return this.http.get<ClassesResponse>(
-      "http://192.168.1.6:8080/api/v1/getClassesList"
+      "http://localhost:8080/api/v1/getClassesList"
     );
   }
 

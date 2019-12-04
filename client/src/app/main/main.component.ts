@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { FlatTreeControl } from "@angular/cdk/tree";
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener
 } from "@angular/material/tree";
-import { SharedService, Spell } from "../shared/shared.service";
+import { SharedService, Spell, SpellCharClass } from "../shared/shared.service";
 
 interface FlatNode {
   expandable: boolean;
@@ -20,9 +20,11 @@ interface FlatNode {
 export class MainComponent implements OnInit {
   constructor(private service: SharedService) {}
 
-  private sortOptions: Array<String> = ["By school", "By level"];
+  private sortOptions: Array<String> = ["By level", "By school"];
   private charClass: string = "";
   private spells: Spell[] = [];
+  private currSpell: Spell;
+  private currSpellClasses: string = "";
   private sortBy: string = "level";
   private spellsTreeSortedByLevel = [];
   private spellsTreeSortedBySchool = [];
@@ -58,6 +60,20 @@ export class MainComponent implements OnInit {
     this.sortSpellsBySchool();
 
     this.dataSource.data = this.spellsTreeSortedBySchool;
+    this.currSpell = this.spells[0];
+    this.currSpellClasses = this.transformResponseClassesToString(this.currSpell.classes);
+  }
+
+  transformResponseClassesToString(classesArr: SpellCharClass[]) {
+    let resultString = "";
+    for ( let i = 0; i < classesArr.length; i ++ ) {
+      if (i == (classesArr.length - 1)) {
+        resultString = resultString + `${classesArr[i].name} ${classesArr[i].level} lvl`
+      } else {
+        resultString = resultString + `${classesArr[i].name} ${classesArr[i].level} lvl, `
+      }
+    }
+    return resultString;
   }
 
   transformToDataTree(sortedSpells) {
@@ -109,5 +125,10 @@ export class MainComponent implements OnInit {
 
   handleGoToSelectClassClick() {
     this.service.handleGoToSelectClassClick();
+  }
+
+  handleShowSpellCard(name) {
+    this.currSpell = this.spells[this.spells.findIndex(item => item.name == name)];
+    this.currSpellClasses = this.transformResponseClassesToString(this.currSpell.classes);
   }
 }
