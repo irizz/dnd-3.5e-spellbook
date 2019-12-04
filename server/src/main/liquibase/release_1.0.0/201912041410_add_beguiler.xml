@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912041410_add_beguiler_spells.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912041410" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+
+            INSERT INTO spellbook.classes (id, name) VALUES ('ca79c55d-2383-451d-821b-b7f8f0717f08', 'Beguiler');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('de6222d7-3e21-4143-888d-6a75cc2da416', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('488dd670-ff60-42c8-8d24-82d338d70851', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('0ce105ec-fe41-402d-8243-9296224f1760', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>
