@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912041415_add_spells_0_and_1_level.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912041415" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('8f6982c9-df2b-4e4e-9687-3b425479e509', 'Ghost Sound', 'Illusion', 'V, S, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', '', 'Illusory sounds', '1 round/level (D)', 'Will disbelief (if interacted with)', 'No', 'Material Component', 'Ghost sound allows you to create a volume of sound that rises, recedes, approaches, or remains at a fixed place. You choose what type of sound ghost sound creates when casting it and cannot thereafter change the sound’s basic character.
+            The volume of sound created depends on your level. You can produce as much noise as four normal humans per caster level (maximum twenty humans). Thus, talking, singing, shouting, walking, marching, or running sounds can be created. The noise a ghost sound spell produces can be virtually any type of sound within the volume limit. A horde of rats running and squeaking is about the same volume as eight humans running and shouting. A roaring lion is equal to the noise from sixteen humans, while a roaring dire tiger is equal to the noise from twenty humans.
+            Ghost sound can enhance the effectiveness of a silent image spell.
+            Ghost sound can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8f6982c9-df2b-4e4e-9687-3b425479e509', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8f6982c9-df2b-4e4e-9687-3b425479e509', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8f6982c9-df2b-4e4e-9687-3b425479e509', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8f6982c9-df2b-4e4e-9687-3b425479e509', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e7066889-38e1-4d38-b6d9-1010fed50704', 'Message', 'Transmutation', 'V, S, F', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '', 'One creature/level', '', '10 min./level', 'No', 'No', '', 'You can whisper messages and receive whispered replies with little chance of being overheard. You point your finger at each creature you want to receive the message. When you whisper, the whispered message is audible to all targeted creatures within range. Magical silence, 1 foot of stone, 1 inch of common metal (or a thin sheet of lead), or 3 feet of wood or dirt blocks the spell. The message does not have to travel in a
+            straight line. It can circumvent a barrier if there is an open path between you and the subject, and the path’s entire length lies within the spell’s range. The creatures that receive the message can whisper a reply that you hear. The spell transmits sound, not meaning. It doesn’t transcend language barriers.
+            Note: To speak a message, you must mouth the words and whisper, possibly allowing observers the opportunity to read your lips.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e7066889-38e1-4d38-b6d9-1010fed50704', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e7066889-38e1-4d38-b6d9-1010fed50704', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e7066889-38e1-4d38-b6d9-1010fed50704', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e7066889-38e1-4d38-b6d9-1010fed50704', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('dda1bdef-fa63-40db-9164-a997ef59ecd4', 'Open/Close', 'Transmutation', 'V, S, F', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'Object weighing up to 30 lb. or portal that can be opened or closed', '', 'Instantaneous', 'Will negates (object)', 'Yes (object)', '', 'You can open or close (your choice) a door, chest, box, window, bag, pouch, bottle, barrel, or other container. If anything resists this activity (such as a bar on a door or a lock on a chest), the spell fails. In addition, the spell can only open and close things weighing 30 pounds or less. Thus, doors, chests, and similar objects sized for enormous creatures may be beyond this spell’s ability to affect.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dda1bdef-fa63-40db-9164-a997ef59ecd4', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dda1bdef-fa63-40db-9164-a997ef59ecd4', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dda1bdef-fa63-40db-9164-a997ef59ecd4', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dda1bdef-fa63-40db-9164-a997ef59ecd4', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', 'Read Magic', 'Divination', 'V, S, F', '1 standard action', 'Personal', '', 'You', '', '10 min./level', '', '', '', 'By means of read magic, you can decipher magical inscriptions on objects—books, scrolls, weapons, and the like—that would otherwise be unintelligible. This deciphering does not normally invoke the magic contained in the writing, although it may do so in the case of a cursed scroll. Furthermore, once the spell is cast and you have read the magical inscription, you are thereafter able to read that particular writing without recourse to the use of read magic. You can read at the rate of one page (250 words) per minute. The spell allows you to identify a glyph of warding with a DC 13 Spellcraft check, a greater glyph of warding with a DC 16 Spellcraft check, or any symbol spell with a Spellcraft check (DC 10 + spell level).
+            Read magic can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', '1ec07635-5e45-43f5-8151-7861e8a387a6', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', '4a663f67-8405-4624-99bc-f81b7895ab86', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', 'b94893a6-577c-472c-b573-6c35316dd2d2', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9b1c07d7-e657-43d3-a74a-251a4e4e03df', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('82626568-ad8e-413d-9ea2-4d9b598cbb9a', 'Charm Person', 'Enchantment', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One humanoid creature', '', '1 hour/level', 'Will negates', 'Yes', '', 'This charm makes a humanoid creature regard you as its trusted friend and ally (treat the target’s attitude as friendly). If the creature is currently being threatened or attacked by you or your allies, however, it receives a +5 bonus on its saving throw.
+            The spell does not enable you to control the charmed person as if it were an automaton, but it perceives your words and actions in the most favorable way. You can try to give the subject orders, but you must win an opposed Charisma check to convince it to do anything it wouldn’t ordinarily do. (Retries are not allowed.) An affected creature never obeys suicidal or obviously harmful orders, but it might be convinced that something very dangerous is worth doing. Any act by you or your apparent allies that threatens the charmed person breaks the spell. You must speak the person’s language to communicate your commands, or else be good at pantomiming.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('82626568-ad8e-413d-9ea2-4d9b598cbb9a', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('82626568-ad8e-413d-9ea2-4d9b598cbb9a', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('82626568-ad8e-413d-9ea2-4d9b598cbb9a', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('82626568-ad8e-413d-9ea2-4d9b598cbb9a', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('6227b8d5-1a4e-4499-9148-013aca45ab2c', 'Color Spray', 'Illusion', 'V, S, M', '1 standard action', '15 ft.', 'Cone-shaped burst', '', '', 'Instantaneous', 'Will negates', 'Yes', 'pinch each of powder or sand that is colored red, yellow, and blue.', 'A vivid cone of clashing colors springs forth from your hand, causing creatures to become stunned, perhaps also blinded, and possibly knocking them unconscious.
+            Each creature within the cone is affected according to its Hit Dice.
+            2 HD or less: The creature is unconscious, blinded, and stunned for 2d4 rounds, then blinded and stunned for 1d4 rounds, and then stunned for 1 round. (Only living creatures are knocked unconscious.)
+            3 or 4 HD: The creature is blinded and stunned for 1d4 rounds, then stunned for 1 round.
+            5 or more HD: The creature is stunned for 1 round.
+            Sightless creatures are not affected by color spray.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6227b8d5-1a4e-4499-9148-013aca45ab2c', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6227b8d5-1a4e-4499-9148-013aca45ab2c', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6227b8d5-1a4e-4499-9148-013aca45ab2c', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('ec368059-e61d-492a-921c-49eee48e192e', 'Comprehend Languages', 'Divination', 'V, S, M/DF', '1 standard action', 'Personal', '', 'You', '', '10 min./level', '', '', 'A pinch of soot and a few grains of salt.', 'You can understand the spoken words of creatures or read otherwise incomprehensible written messages. In either case, you must touch the creature or the writing. The ability to read does not necessarily impart insight into the material, merely its literal meaning. The spell enables you to understand or read an unknown language, not speak or write it.
+            Written material can be read at the rate of one page (250 words) per minute. Magical writing cannot be read, though the spell reveals that it is magical. This spell can be foiled by certain warding magic (such as the secret page and illusory script spells). It does not decipher codes or reveal messages concealed in otherwise normal text.
+            Comprehend languages can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ec368059-e61d-492a-921c-49eee48e192e', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ec368059-e61d-492a-921c-49eee48e192e', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ec368059-e61d-492a-921c-49eee48e192e', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ec368059-e61d-492a-921c-49eee48e192e', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ec368059-e61d-492a-921c-49eee48e192e', '1ec07635-5e45-43f5-8151-7861e8a387a6', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('ab492e5a-c9a2-4bf2-bf4a-41d7be986e2f', 'Detect Secret Doors', 'Divination', 'V, S', '1 standard action', '60 ft.', 'Cone-shaped emanation', '', '', 'Concentration, up to 1 min./level (D)', 'No', 'No', '', 'You can detect secret doors, compartments, caches, and so forth. Only passages, doors, or openings that have been specifically constructed to escape detection are detected by this spell. The amount of information revealed depends on how long you study a particular area or subject.
+            1st Round: Presence or absence of secret doors.
+            2nd Round: Number of secret doors and the location of each. If an aura is outside
+            1st Level Spells
+            3 of 19
+            Beguiler Spell Reference
+            your line of sight, then you discern its direction but not its exact location.
+            Each Additional Round: The mechanism or trigger for one particular secret portal closely examined by you. Each round, you can turn to detect secret doors in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ab492e5a-c9a2-4bf2-bf4a-41d7be986e2f', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ab492e5a-c9a2-4bf2-bf4a-41d7be986e2f', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ab492e5a-c9a2-4bf2-bf4a-41d7be986e2f', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ab492e5a-c9a2-4bf2-bf4a-41d7be986e2f', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('974b21f4-f438-4c8f-9474-3a14a04e4df5', 'Disguise Self', 'Illusion', 'V, S', '1 standard action', 'Personal', '', 'You', '', '10 min./level (D)', '', '', '', 'You make yourself—including clothing, armor, weapons, and equipment—look different. You can seem 1 foot shorter or taller, thin, fat, or in between. You cannot change your body type. Otherwise, the extent of the apparent change is up to you. You could add or obscure a minor feature or look like an entirely different person.
+            The spell does not provide the abilities or mannerisms of the chosen form, nor does it alter the perceived tactile (touch) or audible (sound) properties of you or your equipment.
+            If you use this spell to create a disguise, you get a +10 bonus on the Disguise check.
+            A creature that interacts with the glamer gets a Will save to recognize it as an illusion.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('974b21f4-f438-4c8f-9474-3a14a04e4df5', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('974b21f4-f438-4c8f-9474-3a14a04e4df5', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('974b21f4-f438-4c8f-9474-3a14a04e4df5', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('974b21f4-f438-4c8f-9474-3a14a04e4df5', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e23ae83b-d37d-4f0f-b254-a93bbd3261a9', 'Expeditious Retreat', 'Transmutation', 'V, S', '1 standard action', 'Personal', '', 'You', '', '1 min./level (D)', '', '', '', 'This spell increases your base land speed by 30 feet. (This adjustment is treated as an enhancement bonus.) There is no effect on other modes of movement, such as burrow, climb, fly, or swim. As with any effect that increases your speed, this spell affects your jumping distance (see the Jump skill).');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e23ae83b-d37d-4f0f-b254-a93bbd3261a9', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e23ae83b-d37d-4f0f-b254-a93bbd3261a9', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e23ae83b-d37d-4f0f-b254-a93bbd3261a9', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e23ae83b-d37d-4f0f-b254-a93bbd3261a9', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('24c269fa-6e9b-42fc-a02a-aaab94f3cfbd', 'Hypnotism', 'Enchantment', 'V, S', '1 round', 'Close (25 ft. + 5 ft./2 levels)', 'Several living creatures, no two of which may be more than 30 ft. apart', '', '', '2d4 rounds (D)', 'Will negates', 'Yes', '', 'Your gestures and droning incantation fascinate nearby creatures, causing them to stop and stare blankly at you. In addition, you can use their rapt attention to make your suggestions and requests seem more plausible. Roll 2d4 to see how many total Hit Dice of creatures you affect. Creatures with fewer HD are affected before creatures with more HD. Only creatures that can see or hear you are affected, but they do not need to understand you to be fascinated.
+            If you use this spell in combat, each target gains a +2 bonus on its saving throw. If the spell affects only a single creature not in combat at the time, the saving throw has a penalty of –2.
+            While the subject is fascinated by this spell, it reacts as though it were two steps more friendly in attitude. This allows you to make a single request of the affected creature (provided you can communicate with it). The request must be brief and reasonable. Even after the spell ends, the creature retains its new attitude toward you, but only with respect to that particular request.
+            A creature that fails its saving throw does not remember that you enspelled it.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('24c269fa-6e9b-42fc-a02a-aaab94f3cfbd', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('24c269fa-6e9b-42fc-a02a-aaab94f3cfbd', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('24c269fa-6e9b-42fc-a02a-aaab94f3cfbd', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('24c269fa-6e9b-42fc-a02a-aaab94f3cfbd', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('a827e10a-1235-4b25-960a-4e5bd225e00a', 'Mage Armor', 'Conjuration', 'V, S, F', '1 standard action', 'Touch', '', 'Creature touched', '', '1 hour/level (D)', 'Will negates (harmless)', 'No', '', 'An invisible but tangible field of force surrounds the subject of a mage armor spell, providing a +4 armor bonus to AC.
+            Unlike mundane armor, mage armor entails no armor check penalty, arcane spell failure chance, or speed reduction. Since mage armor is made of force, incorporeal creatures can’t bypass it the way they do normal armor.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a827e10a-1235-4b25-960a-4e5bd225e00a', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a827e10a-1235-4b25-960a-4e5bd225e00a', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a827e10a-1235-4b25-960a-4e5bd225e00a', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('44001874-cb6b-441a-94bb-736324a20990', 'Obscuring Mist', 'Conjuration', 'V, S', '1 standard action', '20 ft.', '', '', 'Cloud spreads in 20-ft. radius from you, 20 ft. high', '1 min./level', 'No', 'No', '', 'A misty vapor arises around you. It is stationary once created. The vapor obscures all sight, including darkvision, beyond 5 feet. A creature 5 feet away has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance, and the attacker cannot use sight to locate the target).
+            A moderate wind (11+ mph), such as from a gust of wind spell, disperses the fog in 4 rounds. A strong wind (21+ mph) disperses the fog in 1 round. A fireball, flame strike, or similar spell burns away the fog in the explosive or fiery spell’s area. A wall of fire burns away the fog in the area into which it deals damage.
+            This spell does not function underwater.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44001874-cb6b-441a-94bb-736324a20990', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44001874-cb6b-441a-94bb-736324a20990', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44001874-cb6b-441a-94bb-736324a20990', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44001874-cb6b-441a-94bb-736324a20990', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44001874-cb6b-441a-94bb-736324a20990', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('d10f30af-c612-474a-a7bf-8ff94395b45f', 'Rouse', 'Enchantment', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '10-ft.-radius burst', '', '', 'Instantaneous', 'No', 'No', '', 'With a loud snap of your fingers, you cause any sleeping creatures in the spell’s area to awaken.
+            This spell has no effect on creatures that are unconscious due to being reduced to negative hit points, or that have taken nonlethal damage in excess of their current hit points.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d10f30af-c612-474a-a7bf-8ff94395b45f', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d10f30af-c612-474a-a7bf-8ff94395b45f', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d10f30af-c612-474a-a7bf-8ff94395b45f', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('7a2f6dec-7bf9-4abb-8ee5-52f22da21d01', 'Silent Image', 'Illusion', 'V, S, F', '1 standard action', 'Long (400 ft. + 40 ft./level)', '', '', 'Visual figment that cannot extend beyond four 10-ft. cubes + one 10-ft. cube/level (S)', 'Concentration', 'Will disbelief (if interacted with)', 'No', '', 'This spell creates the visual illusion of an object, creature, or force, as visualized by you. The illusion does not create sound, smell, texture, or temperature. You can move the image within the limits of the size of the effect.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7a2f6dec-7bf9-4abb-8ee5-52f22da21d01', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7a2f6dec-7bf9-4abb-8ee5-52f22da21d01', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7a2f6dec-7bf9-4abb-8ee5-52f22da21d01', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7a2f6dec-7bf9-4abb-8ee5-52f22da21d01', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('7289a5d7-32a6-4b22-9d30-fcd61f000800', 'Sleep', 'Enchantment', 'V, S, M', '1 round', 'Medium (100 ft. + 10 ft./level)', '10-ft.-radius burst', 'Living creatures', '', '1 min./level', 'Will negates', 'Yes', 'A pinch of fine sand, rose petals, or a live cricket.', 'A sleep spell causes a magical slumber to come upon 4 Hit Dice of creatures. Creatures with the fewest HD are affected first.
+            Among creatures with equal HD, those who are closest to the spell’s point of origin are affected first. Hit Dice that are not sufficient to affect a creature are wasted.
+            Sleeping creatures are helpless. Slapping or wounding awakens an affected creature, but normal noise does not. Awakening a creature is a standard action (an application of the aid another action).
+            Sleep does not target unconscious creatures, constructs, or undead creatures.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7289a5d7-32a6-4b22-9d30-fcd61f000800', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7289a5d7-32a6-4b22-9d30-fcd61f000800', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7289a5d7-32a6-4b22-9d30-fcd61f000800', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('7289a5d7-32a6-4b22-9d30-fcd61f000800', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('44f1d27b-71ca-402b-a1c1-dfdc651f9dfc', 'Undetectable Alignment', 'Abjuration', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One creature or object', '', '24 hours', 'Will negates (object)', 'Yes (object)', '', 'An undetectable alignment spell conceals the alignment of an object or a creature from all forms of divination.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44f1d27b-71ca-402b-a1c1-dfdc651f9dfc', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44f1d27b-71ca-402b-a1c1-dfdc651f9dfc', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44f1d27b-71ca-402b-a1c1-dfdc651f9dfc', '1ec07635-5e45-43f5-8151-7861e8a387a6', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('44f1d27b-71ca-402b-a1c1-dfdc651f9dfc', 'b94893a6-577c-472c-b573-6c35316dd2d2', 2);
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

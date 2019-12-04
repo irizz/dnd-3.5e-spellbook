@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912041411_change_fields_size.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912041411" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN components TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN casting_time TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN range TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN area TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN target TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN effect TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN duration TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN saving_throw TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN spell_resistance TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN material_components TYPE VARCHAR(1000);
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN description TYPE VARCHAR(3000);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

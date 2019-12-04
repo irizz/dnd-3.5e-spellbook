@@ -4,4 +4,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <include file="201911301241_init_schema.xml" relativeToChangelogFile="true"/>
     <include file="201912041410_add_beguiler.xml" relativeToChangelogFile="true"/>
+    <include file="201912041411_change_fields_size.xml" relativeToChangelogFile="true"/>
+    <include file="201912041415_add_spells_0_and_1_level.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
