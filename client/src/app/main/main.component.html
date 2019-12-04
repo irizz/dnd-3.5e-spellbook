@@ -10,20 +10,18 @@
   <button
     class="nav__fav-btn"
     mat-button
-    (click)="handleGoToSelectClassClick()"
+    [disabled]="isFavoritesBtnDisabled"
+    (click)="handleFavoritesToggleClick()"
   >
-    Go to Favorites
-    <i class="material-icons">bookmark_border</i>
+    {{ isFavoritesMode ? "Go to all class spells" : "Go to Favorites" }}
+    <i *ngIf="!isFavoritesMode" class="material-icons">book</i>
   </button>
 </div>
 <mat-divider></mat-divider>
 <div class="filters">
   <mat-form-field class="filters__select">
     <mat-label>Sort by...</mat-label>
-    <mat-select
-      [(ngModel)]="sortBy"
-      (selectionChange)="handleChangeSorting()"
-    >
+    <mat-select [(ngModel)]="sortBy" (selectionChange)="handleChangeSorting()">
       <mat-option *ngFor="let option of sortOptions" [value]="option">
         {{ option }}
       </mat-option>
@@ -74,6 +72,14 @@
   </mat-drawer>
   <mat-drawer-content class="spells__spellcard">
     <mat-card class="spells__spellcard_card">
+      <button *ngIf="!currSpell.isFavorite" mat-icon-button color="primary">
+        <i class="material-icons" (click)="toggleIsFavorite()"
+          >bookmark_border</i
+        >
+      </button>
+      <button *ngIf="currSpell.isFavorite" mat-icon-button color="primary">
+        <i class="material-icons" (click)="toggleIsFavorite()">bookmark</i>
+      </button>
       <p><strong>Name:</strong> {{ currSpell.name }}</p>
       <p><strong>Classes:</strong> {{ currSpellClasses }}</p>
       <p><strong>School:</strong> {{ currSpell.school }}</p>

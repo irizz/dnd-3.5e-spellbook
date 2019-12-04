@@ -29,6 +29,7 @@ export interface Spell {
   materialComponents?: string;
   description: string;
   classes: SpellCharClass[];
+  isFavorite?: boolean;
 }
 
 interface SpellsResponse {

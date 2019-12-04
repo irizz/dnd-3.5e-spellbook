@@ -48,6 +48,10 @@
       position: relative;
       top: 2rem;
 
+      & button {
+        float: right;
+      }
+
       & p {
         padding: 0;
         margin: 2px;

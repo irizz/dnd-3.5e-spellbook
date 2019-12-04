@@ -23,10 +23,13 @@ export class MainComponent implements OnInit {
   private sortOptions: Array<String> = ["By level", "By school"];
   private charClass: string = "";
   private spells: Spell[] = [];
+  private allSpells: Spell[] = [];
   private currSpell: Spell;
   private currSpellClasses: string = "";
   private searchString: string = "";
   private sortBy: string = "By level";
+  private isFavoritesMode: boolean = false;
+  private isFavoritesBtnDisabled: boolean = true;
   private spellsTreeSortedByLevel = [];
   private spellsTreeSortedBySchool = [];
 
@@ -55,7 +58,11 @@ export class MainComponent implements OnInit {
   hasChild = (_: number, node: FlatNode) => node.expandable;
 
   ngOnInit() {
-    this.spells = this.service.spells;
+    this.spells = this.service.spells.map(item => ({
+      ...item,
+      isFavorite: false
+    }));
+    this.allSpells = [...this.spells];
     this.charClass = this.service.charClass;
     this.sortSpellsByLevel();
     this.sortSpellsBySchool();
@@ -169,6 +176,43 @@ export class MainComponent implements OnInit {
       this.dataSource.data = this.spellsTreeSortedByLevel;
     } else if (this.sortBy == "By school") {
       this.dataSource.data = this.spellsTreeSortedBySchool;
+    }
+  }
+
+  toggleIsFavorite() {
+    this.currSpell.isFavorite = !this.currSpell.isFavorite;
+    const areThereFavSpells = this.spells.some(item => item.isFavorite == true);
+    this.isFavoritesBtnDisabled = !areThereFavSpells;
+  }
+
+  handleFavoritesToggleClick() {
+    if (this.isFavoritesMode) {
+      this.isFavoritesMode = !this.isFavoritesMode;
+      const otherSpells = this.allSpells.filter(
+        item => !this.spells.includes(item)
+      );
+      const all = this.spells.concat(otherSpells);
+
+      this.spells = all;
+      this.sortSpellsByLevel();
+      this.sortSpellsBySchool();
+
+      this.dataSource.data = this.spellsTreeSortedByLevel;
+      this.currSpell = this.spells[0];
+      this.currSpellClasses = this.transformResponseClassesToString(
+        this.currSpell.classes
+      );
+    } else {
+      this.isFavoritesMode = !this.isFavoritesMode;
+      this.spells = this.spells.filter(item => item.isFavorite === true);
+      this.sortSpellsByLevel();
+      this.sortSpellsBySchool();
+
+      this.dataSource.data = this.spellsTreeSortedByLevel;
+      this.currSpell = this.spells[0];
+      this.currSpellClasses = this.transformResponseClassesToString(
+        this.currSpell.classes
+      );
     }
   }
 }
