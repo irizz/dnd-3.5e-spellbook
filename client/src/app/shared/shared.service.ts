@@ -83,8 +83,7 @@ export class SharedService {
           this.isLoading = false;
           this.isError = true;
           this.responseError = {
-            statusText: "Oops",
-            message: "Sorry"
+            message: `Spells for ${this.charClass} were not uploaded yet`
           };
         }
       },

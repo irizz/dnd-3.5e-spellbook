@@ -14,4 +14,8 @@ export class ErrorComponent implements OnInit {
   ngOnInit() {
     this.responseError = this.service.responseError;
   }
+
+  refreshPage() {
+    document.location.reload(true);
+  }
 }

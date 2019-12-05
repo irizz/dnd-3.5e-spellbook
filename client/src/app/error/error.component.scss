@@ -1,0 +1,17 @@
+.error {
+  margin-top: 3rem;
+
+  &__icon i.material-icons {
+    display: block;
+    float: left;
+    padding: 30px 70px 70px 70px;
+    font-size: 72px !important;
+  }
+
+  &__info {
+    &_btn {
+      margin-top: 20px;
+      width: 30vh;
+    }
+  }
+}
