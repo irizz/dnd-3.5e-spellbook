@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpErrorResponse } from "@angular/common/http";
 import { SharedService } from "../shared/shared.service";
+import { CharClassesResponse } from "../shared/interfaces";
+import { sortingFunc } from "../shared/utils";
 
 @Component({
   selector: "app-container",
@@ -11,14 +14,14 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() {
     this.service.fetchClasses().subscribe(
-      data => {
+      (data: CharClassesResponse) => {
         this.service.isLoading = false;
-        this.service.charClasses = data.classesList.sort((a, b) => a.name > b.name ? 1 : -1);
+        this.service.charClassesList = data.classesList.sort(sortingFunc);
       },
-      error => {
+      (error: HttpErrorResponse) => {
         this.service.isLoading = false;
         this.service.isError = true;
-        this.service.responseError = {
+        this.service.errorToDisplay = {
           statusText: error.statusText,
           message: error.message
         };

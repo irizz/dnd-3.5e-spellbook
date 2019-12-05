@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SharedService } from "../shared/shared.service";
+import { ErrorToDisplay } from "../shared/interfaces";
 
 @Component({
   selector: "app-error",
@@ -9,10 +10,10 @@ import { SharedService } from "../shared/shared.service";
 export class ErrorComponent implements OnInit {
   constructor(private service: SharedService) {}
 
-  responseError = {};
+  errorToDisplay: ErrorToDisplay = {};
 
   ngOnInit() {
-    this.responseError = this.service.responseError;
+    this.errorToDisplay = this.service.errorToDisplay;
   }
 
   refreshPage() {

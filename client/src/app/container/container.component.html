@@ -2,10 +2,9 @@
   <mat-card-header class="container__header">
     <mat-card-title class="container__header_title">
       {{ "D&D 3.5e Spellbook" }}
-      {{ service.charClass ? "/" : "" }}
-      {{ service.charClass }}
+      {{ service.charClassName ? "/ " + service.charClassName : "" }}
       {{
-        service.charClass
+        service.charClassName
           ? service.isFavoritesMode
             ? "/ Favorites"
             : "/ All spells"
@@ -13,10 +12,10 @@
       }}
     </mat-card-title>
     <button
-      *ngIf="service.charClass"
-      class="container__header_back-btn"
       mat-button
+      class="container__header_back-btn"
       (click)="handleGoToSelectClassClick()"
+      *ngIf="service.charClassName"
     >
       Select another class
       <i class="material-icons">exit_to_app</i>

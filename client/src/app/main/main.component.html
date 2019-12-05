@@ -2,74 +2,46 @@
   <div class="filters">
     <mat-form-field class="filters__select">
       <mat-label>Sort by...</mat-label>
-      <mat-select
-        [(ngModel)]="sortBy"
-        (selectionChange)="handleChangeSorting()"
-      >
+      <mat-select [(ngModel)]="sortBy" (selectionChange)="changeSorting()">
         <mat-option *ngFor="let option of sortOptions" [value]="option">
           {{ option }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="filters__text-input">
-      <input
-        matInput
-        placeholder="Enter spell's name..."
-        [(ngModel)]="searchString"
-        (change)="handleChangeCurrSpell()"
-      />
+      <input matInput placeholder="Enter spell's name..." [(ngModel)]="searchString"
+        (change)="handleChangeCurrSpell()" />
     </mat-form-field>
   </div>
-  <button
-    class="nav__fav-btn"
-    mat-button
-    [disabled]="isFavoritesBtnDisabled && !isFavoritesMode"
-    (click)="handleFavoritesToggleClick()"
-  >
+  <button class="nav__fav-btn" mat-button [disabled]="isFavoritesBtnDisabled && !isFavoritesMode"
+    (click)="handleFavoritesToggleClick()">
     {{ isFavoritesMode ? "Go to all class spells" : "Go to Favorites" }}
     <i *ngIf="!isFavoritesMode" class="material-icons">book</i>
   </button>
 </div>
 <mat-drawer-container class="spells">
   <mat-drawer class="spells__sidebar" mode="side" opened>
-    <mat-tree
-      [dataSource]="dataSource | spellsFilter: searchString"
-      [treeControl]="treeControl"
-    >
-      <mat-tree-node
-        *matTreeNodeDef="let node; when: hasChild"
-        class="spells__sidebar_header"
-        matTreeNodePadding
-      >
-        <button
-          mat-icon-button
-          matTreeNodeToggle
-          [attr.aria-label]="'toggle ' + node.name"
-        >
+    <mat-tree [dataSource]="tree.dataSource" [treeControl]="tree.treeControl">
+      <mat-tree-node *matTreeNodeDef="let node; when: tree.hasChild" class="spells__sidebar_header" matTreeNodePadding>
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.name">
           <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+            {{ tree.treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
           </mat-icon>
         </button>
         {{ node.name }}
       </mat-tree-node>
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-        <button
-          mat-button
-          class="spells__sidebar_child"
-          [color]="node.name === currSpell.name ? 'primary' : ''"
-          (click)="handleShowSpellCard(node.name)"
-        >
+        <a mat-button class="spells__sidebar_child" [color]="node.name === currSpell.name ? 'primary' : ''"
+          (click)="handleShowSpellCard(node.name)">
           {{ node.name }}
-        </button>
+      </a>
       </mat-tree-node>
     </mat-tree>
   </mat-drawer>
   <mat-drawer-content class="spells__spellcard">
     <mat-card class="spells__spellcard_card">
       <button *ngIf="!currSpell.isFavorite" mat-icon-button color="primary">
-        <i class="material-icons" (click)="toggleIsFavorite()"
-          >bookmark_border</i
-        >
+        <i class="material-icons" (click)="toggleIsFavorite()">bookmark_border</i>
       </button>
       <button *ngIf="currSpell.isFavorite" mat-icon-button color="primary">
         <i class="material-icons" (click)="toggleIsFavorite()">bookmark</i>
@@ -80,19 +52,19 @@
       <p><strong>Components:</strong> {{ currSpell.components }}</p>
       <p><strong>Casting Time:</strong> {{ currSpell.castingTime }}</p>
       <p><strong>Range:</strong> {{ currSpell.range }}</p>
-      <p><strong>Area:</strong> {{ currSpell.area ? currSpell.area : "-" }}</p>
+      <p><strong>Area:</strong> {{ currSpell.area }}</p>
       <p>
-        <strong>Target:</strong> {{ currSpell.target ? currSpell.target : "-" }}
+        <strong>Target:</strong> {{ currSpell.target }}
       </p>
       <p>
-        <strong>Effect:</strong> {{ currSpell.effect ? currSpell.effect : "-" }}
+        <strong>Effect:</strong> {{ currSpell.effect }}
       </p>
       <p><strong>Duration:</strong> {{ currSpell.duration }}</p>
       <p><strong>Saving throw:</strong> {{ currSpell.savingThrow }}</p>
       <p><strong>Spell resistance:</strong> {{ currSpell.spellResistance }}</p>
       <p>
         <strong>Material components:</strong>
-        {{ currSpell.materialComponents ? currSpell.materialComponents : "-" }}
+        {{ currSpell.materialComponents }}
       </p>
       <p><strong>Description:</strong> {{ currSpell.description }}</p>
     </mat-card>

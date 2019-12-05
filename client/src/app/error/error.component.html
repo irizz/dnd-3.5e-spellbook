@@ -3,8 +3,10 @@
 </div>
 <div class="error__info">
   <h2>Something went wrong :(</h2>
-  <p *ngIf="responseError.statusText"><strong>Status text: </strong>{{ responseError.statusText }}</p>
-  <p><strong>Message: </strong>{{ responseError.message }}</p>
+  <p *ngIf="errorToDisplay.statusText">
+    <strong>Status text: </strong>{{ errorToDisplay.statusText }}
+  </p>
+  <p><strong>Message: </strong>{{ errorToDisplay.message }}</p>
   <p>Please, try again or contact us.</p>
   <button
     mat-button

@@ -1,18 +1,18 @@
 <mat-form-field class="select-class__form">
   <mat-label>Pick character's class...</mat-label>
-  <mat-select [(ngModel)]="selectedClass">
-    <mat-option *ngFor="let charClass of charClasses" [value]="charClass.id">
+  <mat-select [(ngModel)]="selectedClassId">
+    <mat-option *ngFor="let charClass of charClassesList" [value]="charClass.id">
       {{ charClass.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 <button
-  class="select-class__button"
   mat-button
   mat-raised-button
   color="primary"
-  [disabled]="!selectedClass"
+  class="select-class__button"
   (click)="handleShowSpellsClick()"
+  [disabled]="!selectedClassId"
 >
   Show spells
 </button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SharedService } from "../shared/shared.service";
+import { CharClass } from "../shared/interfaces";
 
 @Component({
   selector: "app-select-class",
@@ -9,15 +10,15 @@ import { SharedService } from "../shared/shared.service";
 export class SelectClassComponent implements OnInit {
   constructor(private service: SharedService) {}
 
-  selectedClass: string;
-  charClasses = this.service.charClasses;
+  charClassesList: CharClass[] = this.service.charClassesList;
+  selectedClassId: string;
 
   ngOnInit() {}
 
   handleShowSpellsClick() {
-    this.service.handleShowSpellsClick(this.selectedClass);
-    this.service.charClass = this.service.charClasses.find(
-      item => item.id === this.selectedClass
+    this.service.handleShowSpellsClick(this.selectedClassId);
+    this.service.charClassName = this.service.charClassesList.find(
+      item => item.id === this.selectedClassId
     ).name;
   }
 }

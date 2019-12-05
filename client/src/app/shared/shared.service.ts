@@ -1,105 +1,71 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-
-export interface SpellCharClass {
-  name: string;
-  level: string;
-}
-
-interface CharClass {
-  id: string;
-  name: string;
-  level?: string;
-}
-
-export interface Spell {
-  id: string;
-  name: string;
-  school: string;
-  components?: string;
-  castingTime?: string;
-  range?: string;
-  area?: string;
-  target?: string;
-  effect?: string;
-  duration?: string;
-  savingThrow?: string;
-  spellResistance?: string;
-  materialComponents?: string;
-  description: string;
-  classes: SpellCharClass[];
-  isFavorite?: boolean;
-}
-
-interface SpellsResponse {
-  spellsList: Spell[];
-}
-
-interface ResponseError {
-  statusText?: string;
-  message?: string;
-}
-
-interface ClassesResponse {
-  classesList: CharClass[];
-}
+import {
+  CharClass,
+  CharClassesResponse,
+  Spell,
+  SpellsResponse,
+  ErrorToDisplay
+} from "./interfaces";
+import { API_URL, HTTP_OPTIONS } from "./constants";
 
 @Injectable({ providedIn: "root" })
 export class SharedService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  public isLoading: boolean = true;
-  public isError: boolean = false;
+  // variables responsible for components rendering
   public areSpellsLoaded: boolean = false;
-  public spells: Spell[] = [];
-  public charClasses: CharClass[] = [];
-  public charClass: string = "";
-  public responseError: ResponseError = {};
+  public isError: boolean = false;
+  public isLoading: boolean = true;
+  // variables for storing response data
+  public charClassesList: CharClass[] = [];
+  public spellsList: Spell[] = [];
+  // other
+  public charClassName: string = "";
+  public errorToDisplay: ErrorToDisplay = {};
   public isFavoritesMode: boolean = false;
 
-  fetchSpells(selectedClass): Observable<SpellsResponse> {
+  fetchClasses(): Observable<CharClassesResponse> {
+    return this.http.get<CharClassesResponse>(`${API_URL}/getClassesList`, HTTP_OPTIONS);
+  }
+
+  fetchSpells(selectedClassId: string): Observable<SpellsResponse> {
     return this.http.get<SpellsResponse>(
-      `http://localhost:8080/api/v1/getSpellsListByClass?classId=${selectedClass}`
+      `${API_URL}/getSpellsListByClass?classId=${selectedClassId}`,
+      HTTP_OPTIONS
     );
   }
 
-  fetchClasses(): Observable<ClassesResponse> {
-    return this.http.get<ClassesResponse>(
-      "http://localhost:8080/api/v1/getClassesList"
-    );
-  }
-
-  handleShowSpellsClick(selectedClass) {
+  handleShowSpellsClick(selectedClassId: string) {
     this.isLoading = true;
-
-    this.fetchSpells(selectedClass).subscribe(
-      data => {
-        this.spells = data.spellsList;
-        if (this.spells.length > 0) {
+    this.fetchSpells(selectedClassId).subscribe(
+      (data: SpellsResponse) => {
+        this.spellsList = data.spellsList;
+        if (this.spellsList.length > 0) {
           this.isLoading = false;
           this.areSpellsLoaded = true;
         } else {
+          this.errorToDisplay = {
+            message: `Spells for ${this.charClassName} were not uploaded yet`
+          };
           this.isLoading = false;
           this.isError = true;
-          this.responseError = {
-            message: `Spells for ${this.charClass} were not uploaded yet`
-          };
         }
       },
-      error => {
-        this.isLoading = false;
-        this.isError = true;
-        this.responseError = {
+      (error: HttpErrorResponse) => {
+        this.errorToDisplay = {
           statusText: error.statusText,
           message: error.message
         };
+        this.isLoading = false;
+        this.isError = true;
       }
     );
   }
 
   handleGoToSelectClassClick() {
     this.areSpellsLoaded = false;
-    this.charClass = "";
+    this.charClassName = "";
   }
 }

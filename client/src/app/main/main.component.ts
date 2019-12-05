@@ -1,16 +1,9 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { FlatTreeControl } from "@angular/cdk/tree";
-import {
-  MatTreeFlatDataSource,
-  MatTreeFlattener
-} from "@angular/material/tree";
-import { SharedService, Spell, SpellCharClass } from "../shared/shared.service";
-
-interface FlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+import { Component, OnInit } from "@angular/core";
+import { SORTING_OPTIONS } from "../shared/constants";
+import { DataTree, TreeDataParentNode } from "../shared/data-tree.service";
+import { SortedSpells, Spell, SpellCharClass } from "../shared/interfaces";
+import { SharedService } from "../shared/shared.service";
+import { sortingFunc } from "../shared/utils";
 
 @Component({
   selector: "app-main",
@@ -18,88 +11,102 @@ interface FlatNode {
   styleUrls: ["./main.component.scss"]
 })
 export class MainComponent implements OnInit {
-  constructor(private service: SharedService) {}
+  constructor(private service: SharedService, private tree: DataTree) {}
 
-  private sortOptions: Array<String> = ["By level", "By school"];
   private charClass: string = "";
-  private spells: Spell[] = [];
-  private allSpells: Spell[] = [];
   private currSpell: Spell;
   private currSpellClasses: string = "";
-  private searchString: string = "";
-  private sortBy: string = "By level";
-  private isFavoritesMode: boolean = false;
   private isFavoritesBtnDisabled: boolean = true;
-  private spellsTreeSortedByLevel = [];
-  private spellsTreeSortedBySchool = [];
-
-  // Variables required for Material data tree
-  private _transformer = (node, level) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level
-    };
-  };
-  private treeControl = new FlatTreeControl<FlatNode>(
-    node => node.level,
-    node => node.expandable
-  );
-  private treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    node => node.level,
-    node => node.expandable,
-    node => node.children
-  );
-  private dataSource = new MatTreeFlatDataSource(
-    this.treeControl,
-    this.treeFlattener
-  );
-  hasChild = (_: number, node: FlatNode) => node.expandable;
+  private isFavoritesMode: boolean = false;
+  private searchString: string = "";
+  private sortBy: string = SORTING_OPTIONS.BY_LEVEL;
+  private sortOptions: Array<String> = Object.values(SORTING_OPTIONS);
+  private spells: Spell[] = [];
+  private spellsCopy: Spell[] = [];
+  private spellsTreeSortedByLevel: TreeDataParentNode[] = [];
+  private spellsTreeSortedBySchool: TreeDataParentNode[] = [];
 
   ngOnInit() {
-    this.spells = this.service.spells
+    this.spells = this.service.spellsList
       .map(item => ({
         ...item,
         isFavorite: false
       }))
-      .sort((a, b) => (a.name > b.name ? 1 : -1));
-    this.allSpells = [...this.spells];
-    this.charClass = this.service.charClass;
-    this.sortSpellsByLevel();
-    this.sortSpellsBySchool();
+      .sort(sortingFunc);
+    this.spellsCopy = [...this.spells];
+    this.charClass = this.service.charClassName;
+    this.changeSorting();
+    this.setCurrSpellToDefault();
+  }
 
-    this.dataSource.data = this.spellsTreeSortedByLevel;
-    this.currSpell = this.spells[0];
+  changeSorting() {
+    if (this.sortBy == SORTING_OPTIONS.BY_LEVEL) {
+      this.sortSpellsByLevel();
+      this.tree.dataSource.data = this.spellsTreeSortedByLevel.sort(
+        sortingFunc
+      );
+    } else if (this.sortBy == SORTING_OPTIONS.BY_SCHOOL) {
+      this.sortSpellsBySchool();
+      this.tree.dataSource.data = this.spellsTreeSortedBySchool.sort(
+        sortingFunc
+      );
+    }
+  }
+
+  handleChangeCurrSpell() {
+    if (!this.searchString) {
+      this.setCurrSpellToDefault();
+      return;
+    }
+    for (let i = 0; i < this.spells.length; i++) {
+      if (
+        this.spells[i].name
+          .toLowerCase()
+          .indexOf(this.searchString.toLowerCase()) !== -1
+      ) {
+        this.currSpell = this.spells[i];
+        this.currSpellClasses = this.transformResponseClassesToString(
+          this.currSpell.classes
+        );
+      }
+    }
+  }
+
+  handleFavoritesToggleClick() {
+    this.isFavoritesMode = !this.isFavoritesMode;
+    this.service.isFavoritesMode = this.isFavoritesMode;
+
+    if (this.isFavoritesMode) {
+      this.spells = this.spells
+        .filter(item => item.isFavorite === true)
+        .sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.changeSorting();
+      this.setCurrSpellToDefault();
+    } else {
+      const restSpells = this.spellsCopy.filter(
+        item => !this.spells.includes(item)
+      );
+      const mergedSpells = this.spells.concat(restSpells);
+      this.spells = mergedSpells.sort(sortingFunc);
+      this.changeSorting();
+      this.setCurrSpellToDefault();
+    }
+  }
+
+  handleShowSpellCard(name: string) {
+    this.currSpell = this.spells[
+      this.spells.findIndex(item => item.name == name)
+    ];
     this.currSpellClasses = this.transformResponseClassesToString(
       this.currSpell.classes
     );
   }
 
-  transformResponseClassesToString(classesArr: SpellCharClass[]) {
-    let resultString = "";
-    for (let i = 0; i < classesArr.length; i++) {
-      if (i == classesArr.length - 1) {
-        resultString =
-          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl`;
-      } else {
-        resultString =
-          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl, `;
-      }
-    }
-    return resultString;
-  }
-
-  transformToDataTree(sortedSpells) {
-    let sortedSpellsKeys = Object.keys(sortedSpells);
-    let TREE_DATA = [];
-    for (let i = 0; i < sortedSpellsKeys.length; i++) {
-      TREE_DATA.push({
-        name: sortedSpellsKeys[i],
-        children: [...sortedSpells[sortedSpellsKeys[i]]]
-      });
-    }
-    return TREE_DATA;
+  setCurrSpellToDefault() {
+    this.currSpell = this.spells.sort(sortingFunc)[0];
+    this.currSpellClasses = this.transformResponseClassesToString(
+      this.currSpell.classes
+    );
   }
 
   sortSpellsByLevel() {
@@ -137,84 +144,37 @@ export class MainComponent implements OnInit {
     this.spellsTreeSortedBySchool = this.transformToDataTree(sortedSpells);
   }
 
-  handleShowSpellCard(name: string) {
-    this.currSpell = this.spells[
-      this.spells.findIndex(item => item.name == name)
-    ];
-    this.currSpellClasses = this.transformResponseClassesToString(
-      this.currSpell.classes
-    );
-  }
-
-  handleChangeCurrSpell() {
-    if (!this.searchString) {
-      this.currSpell = this.spells[0];
-      this.currSpellClasses = this.transformResponseClassesToString(
-        this.currSpell.classes
-      );
-      return;
-    }
-
-    for (let i = 0; i < this.spells.length; i++) {
-      if (
-        this.spells[i].name
-          .toLowerCase()
-          .indexOf(this.searchString.toLowerCase()) !== -1
-      ) {
-        this.currSpell = this.spells[i];
-        this.currSpellClasses = this.transformResponseClassesToString(
-          this.currSpell.classes
-        );
-      }
-    }
-  }
-
-  handleChangeSorting() {
-    if (this.sortBy == "By level") {
-      this.dataSource.data = this.spellsTreeSortedByLevel;
-    } else if (this.sortBy == "By school") {
-      this.dataSource.data = this.spellsTreeSortedBySchool;
-    }
-  }
-
   toggleIsFavorite() {
     this.currSpell.isFavorite = !this.currSpell.isFavorite;
-    const areThereFavSpells = this.spells.some(item => item.isFavorite == true);
-    this.isFavoritesBtnDisabled = !areThereFavSpells;
+    const isThereFavoriteSpell = this.spells.some(
+      item => item.isFavorite == true
+    );
+    this.isFavoritesBtnDisabled = !isThereFavoriteSpell;
   }
 
-  handleFavoritesToggleClick() {
-    if (this.isFavoritesMode) {
-      this.isFavoritesMode = !this.isFavoritesMode;
-      this.service.isFavoritesMode = this.isFavoritesMode;
-      const otherSpells = this.allSpells.filter(
-        item => !this.spells.includes(item)
-      );
-      const all = this.spells.concat(otherSpells);
-
-      this.spells = all.sort((a, b) => (a.name > b.name ? 1 : -1));
-      this.sortSpellsByLevel();
-      this.sortSpellsBySchool();
-
-      this.dataSource.data = this.spellsTreeSortedByLevel;
-      this.currSpell = this.spells[0];
-      this.currSpellClasses = this.transformResponseClassesToString(
-        this.currSpell.classes
-      );
-    } else {
-      this.isFavoritesMode = !this.isFavoritesMode;
-      this.service.isFavoritesMode = this.isFavoritesMode;
-      this.spells = this.spells
-        .filter(item => item.isFavorite === true)
-        .sort((a, b) => (a.name > b.name ? 1 : -1));
-      this.sortSpellsByLevel();
-      this.sortSpellsBySchool();
-
-      this.dataSource.data = this.spellsTreeSortedByLevel;
-      this.currSpell = this.spells[0];
-      this.currSpellClasses = this.transformResponseClassesToString(
-        this.currSpell.classes
-      );
+  transformResponseClassesToString(classesArr: SpellCharClass[]): string {
+    let resultString = "";
+    for (let i = 0; i < classesArr.length; i++) {
+      if (i == classesArr.length - 1) {
+        resultString =
+          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl`;
+      } else {
+        resultString =
+          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl, `;
+      }
     }
+    return resultString;
+  }
+
+  transformToDataTree(sortedSpells: SortedSpells): TreeDataParentNode[] {
+    let sortedSpellsKeys = Object.keys(sortedSpells);
+    let TREE_DATA = [];
+    for (let i = 0; i < sortedSpellsKeys.length; i++) {
+      TREE_DATA.push({
+        name: sortedSpellsKeys[i],
+        children: [...sortedSpells[sortedSpellsKeys[i]]]
+      });
+    }
+    return TREE_DATA;
   }
 }
