@@ -8,4 +8,5 @@
     <include file="201912041415_add_spells_0_and_1_level.xml" relativeToChangelogFile="true"/>
     <include file="201912041653_add_spells_2_level.xml" relativeToChangelogFile="true"/>
     <include file="201912051244_add_spells_3_level.xml" relativeToChangelogFile="true"/>
+    <include file="201912051559_add_spells_4_level.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
