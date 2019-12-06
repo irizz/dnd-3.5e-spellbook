@@ -13,4 +13,4 @@
 **/*.iml
 **/build/
 **/.gradle
-**/src/main/java/
+**/src/main/java/com/spellbook/jooq

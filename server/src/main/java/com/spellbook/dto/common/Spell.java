@@ -1,34 +1,60 @@
 package com.spellbook.dto.common;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import java.util.List;
 import java.util.UUID;
 
+@Data
+@NoArgsConstructor
+@Accessors(fluent = true)
 public class Spell {
 
+    @JsonProperty
     private UUID id;
+
+    @JsonProperty
     private String name;
-    private Integer level;
 
-    public UUID getId() {
-        return id;
-    }
+    @JsonProperty
+    private String school;
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    @JsonProperty
+    private String components;
 
-    public String getName() {
-        return name;
-    }
+    @JsonProperty
+    private String castingTime;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @JsonProperty
+    private String range;
 
-    public Integer getLevel() {
-        return level;
-    }
+    @JsonProperty
+    private String area;
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+    @JsonProperty
+    private String target;
+
+    @JsonProperty
+    private String effect;
+
+    @JsonProperty
+    private String duration;
+
+    @JsonProperty
+    private String savingThrow;
+
+    @JsonProperty
+    private String spellResistance;
+
+    @JsonProperty
+    private String materialComponents;
+
+    @JsonProperty
+    private String description;
+
+    @JsonProperty
+    private List<Class> classes;
 }

@@ -1,0 +1,77 @@
+.nav {
+  .filters {
+    display: inline-block;
+
+    &__select {
+      margin-left: 1rem;
+      margin-right: 20px;
+      width: 14rem;
+    }
+
+    &__text-input {
+      width: 14rem;
+    }
+  }
+
+  &__fav-btn {
+    float: right;
+  }
+}
+
+.spells {
+  width: 100%;
+
+  @media screen and (max-width: 540px) {
+    height: 50vh;
+  }
+
+  @media screen and (min-width: 540px) and (max-width: 1920px) {
+    height: 70vh;
+  }
+
+  @media screen and (min-width: 1920px) {
+    height: 80vh;
+  }
+
+  &__sidebar {
+    width: 20%;
+
+    .mat-tree-node {
+      min-height: 0;
+      overflow: visible;
+
+      .mat-button {
+        padding: 0 4px 0 4px;
+        width: 90%;
+        line-height: 26px;
+        text-align: left;
+      }
+    }
+  }
+
+  &__spellcard {
+    width: 80%;
+    position: relative;
+    background-color: #e8e6e7;
+
+    &_card {
+      width: 90%;
+      height: fit-content;
+      margin: auto;
+      margin-bottom: 70px;
+      position: relative;
+      top: 2rem;
+      white-space: pre-line;
+      text-align: justify;
+
+      & button {
+        float: right;
+      }
+
+      & p {
+        padding: 0;
+        margin: 2px;
+      }
+    }
+  }
+}
