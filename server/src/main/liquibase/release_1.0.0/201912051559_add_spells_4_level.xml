@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912051559_add_spells_4_level.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912051559" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('c876243a-419f-4124-83f5-eed37e573198', 'Charm Monster', 'Enchantment', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One living creature', '', 'One day/level', 'Will negates', 'Yes', '', 'This spell functions like charm person, except that the effect is not restricted by creature type or size.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c876243a-419f-4124-83f5-eed37e573198', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c876243a-419f-4124-83f5-eed37e573198', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c876243a-419f-4124-83f5-eed37e573198', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c876243a-419f-4124-83f5-eed37e573198', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e152196d-1e5d-41bb-9afe-09673a93e155', 'Confusion', 'Enchantment', 'V, S, M/DF', '1 standard action', 'Medium (100 ft. + 10 ft./level)', 'All creatures in a 15-ft. radius burst', '', '', '1 round/level', 'Will negates', 'Yes', '', 'This spell causes the targets to become confused, making them unable to independently determine what they will do.
+            Roll on the following table at the beginning of each subject’s turn each round to see what the subject does in that round.
+            A confused character who can’t carry out the indicated action does nothing but babble incoherently. Attackers are not at any special advantage when attacking a confused character. Any confused character who is attacked automatically attacks its attackers on its next turn, as long as it is still confused when its turn comes. Note that a confused character will not make attacks of opportunity against any creature that it is not already devoted to attacking (either because of its most recent action or because it has just been attacked).
+
+            01–10% -  Attack caster with melee or ranged weapons (or close with caster if attack is not possible).
+            11–20% - Act normally.
+            21–50% - Do nothing but babble incoherently.
+            51–70% - Flee away from caster at top possible speed.
+            71–100% - Attack nearest creature (for this purpose, a familiar counts as part of the subject’s self).');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e152196d-1e5d-41bb-9afe-09673a93e155', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e152196d-1e5d-41bb-9afe-09673a93e155', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e152196d-1e5d-41bb-9afe-09673a93e155', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e152196d-1e5d-41bb-9afe-09673a93e155', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('3b3260ae-62c0-4b62-a718-5a6f321a38c3', 'Crushing Despair', 'Enchantment', 'V, S, M', '1 standard action', '30 ft', '', 'Cone-shaped burst', '', '1 min./level', 'Will negates', 'Yes', 'A vial of tears.', 'An invisible cone of despair causes great sadness in the subjects. Each affected creature takes a –2 penalty on attack rolls, saving throws, ability checks, skill checks, and weapon damage rolls.
+            Crushing despair counters and dispels good hope.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b3260ae-62c0-4b62-a718-5a6f321a38c3', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b3260ae-62c0-4b62-a718-5a6f321a38c3', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b3260ae-62c0-4b62-a718-5a6f321a38c3', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b3260ae-62c0-4b62-a718-5a6f321a38c3', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('ca0aebf1-602f-4147-a3a4-8041d033a305', 'Freedom of Movement', 'Abjuration', 'V, S, M, DF', '1 standard action', 'Personal or touch', '', 'You or creature touched', '', '10 min./level', 'Will negates (harmless)', 'Yes (harmless)', 'A leather thong, bound around the arm or a similar appendage.', 'This spell enables you or a creature you touch to move and attack normally for the duration of the spell, even under the influence of magic that usually impedes movement, such as paralysis, solid fog, slow, and web. The subject automatically succeeds on any grapple check made to resist a grapple attempt, as well as on grapple checks or Escape Artist checks made to escape a grapple or a pin.
+            The spell also allows the subject to move and attack normally while underwater, even with slashing weapons such as axes and swords or with bludgeoning weapons such as flails, hammers, and maces, provided that the weapon is wielded in the hand rather than hurled. The freedom of movement spell does not, however, allow water breathing.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ca0aebf1-602f-4147-a3a4-8041d033a305', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ca0aebf1-602f-4147-a3a4-8041d033a305', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ca0aebf1-602f-4147-a3a4-8041d033a305', '1ec07635-5e45-43f5-8151-7861e8a387a6', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ca0aebf1-602f-4147-a3a4-8041d033a305', '4a663f67-8405-4624-99bc-f81b7895ab86', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ca0aebf1-602f-4147-a3a4-8041d033a305', 'a4b91e77-742d-42d3-809d-22417495d11d', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('cf438401-871c-4952-be63-186337cb1cd6', 'Invisibility, Greater', 'Illusion', 'V, S', '1 standard action', 'Personal or touch', '', 'You or creature touched', '', '1 round/level (D)', 'Will negates (harmless)', '', '', 'This spell functions like invisibility, except that it doesn’t end if the subject attacks.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('cf438401-871c-4952-be63-186337cb1cd6', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('cf438401-871c-4952-be63-186337cb1cd6', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('cf438401-871c-4952-be63-186337cb1cd6', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('cf438401-871c-4952-be63-186337cb1cd6', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('777a9b97-5a52-45e1-a70b-7a4bb6ecea43', 'Mirror Image, Greater', 'Illusion', 'V, S', '1 immediate action', 'Personal', '', 'You', '', '1 minute/level (D)', '', '', '', 'Several illusory duplicates of you pop into being.
+            This spell functions like mirror image, except that an additional image is created in each round after the first, up to a maximum of eight concurrent images. If all images are destroyed, the spell ends.
+            This spell also differs from mirror image in that you can cast this spell even when it’s not your turn.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('777a9b97-5a52-45e1-a70b-7a4bb6ecea43', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('777a9b97-5a52-45e1-a70b-7a4bb6ecea43', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('777a9b97-5a52-45e1-a70b-7a4bb6ecea43', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('777a9b97-5a52-45e1-a70b-7a4bb6ecea43', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('401afdc8-4548-4319-bda5-0a8881f7ac05', 'Locate Creature', 'Divination', 'V, S, M', '1 standard action', 'Long (400 ft. + 40 ft./level)', 'Circle, centered on you, with a radius of 400 ft. + 40 ft./level', '', '', '10 min./level', 'No', 'No', 'A bit of fur from a bloodhound.', 'This spell functions like locate object, except this spell locates a known or familiar creature.
+            You slowly turn and sense when you are facing in the direction of the creature to be located, provided it is within range. You also know in which direction the creature is moving, if any.
+            The spell can locate a creature of a specific kind or a specific creature known to you. It cannot find a creature of a certain type. To find a kind of creature, you must have seen such a creature up close (within 30 feet) at least once.
+            Running water blocks the spell. It cannot detect objects. It can be fooled by mislead, nondetection, and polymorph spells.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('401afdc8-4548-4319-bda5-0a8881f7ac05', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('401afdc8-4548-4319-bda5-0a8881f7ac05', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('401afdc8-4548-4319-bda5-0a8881f7ac05', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('401afdc8-4548-4319-bda5-0a8881f7ac05', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('9dec0522-0520-4c8c-ad84-72daea02b772', 'Whelm, Mass', 'Enchantment', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One living creature/level', '', 'Instantaneous', 'Will negates', 'Yes', '', 'With a sweep of your arm, creatures reel as an invisible surge of magical power invades their minds.
+            This spell functions like whelm, except that it affects multiple targets and it deals 1d6 points of nonlethal damage per caster level to each subject, to a maximum of 10d6 at 10th level.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9dec0522-0520-4c8c-ad84-72daea02b772', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9dec0522-0520-4c8c-ad84-72daea02b772', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9dec0522-0520-4c8c-ad84-72daea02b772', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e26285fd-5a0f-42db-a3dd-81f28d31d862', 'Phantom Battle', 'Illusion', 'V, S', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '20-ft.-radius spread', '', '', '1 round/level', 'Will negates', 'Yes', '', 'You create an illusory horde of snarling ogres, fierce orcs, and proud knights in armor, all locked in battle. Creatures in the area move cautiously as they are caught up in the phantom melee.
+            This spell creates the illusion of a fierce battle. Your enemies move cautiously and pass up the opportunity to strike their foes, since the roar and confusion of the battle distracts them.
+            All creatures within the area of the spell that fail their saving throws cannot make attacks of opportunity. In addition, all creatures within the area are considered flanked. A creature ignores these effects when it leaves the spell’s area. If a creature reenters the spell’s area after leaving it, the creature can attempt another save to resist the spell if its initial save failed. A creature that enters the area for the first time after the spell is cast must also make a saving throw to resist the effect.
+            A phantom battle spell produces noise appropriate to a mob of creatures locked in battle. Anyone in the battle can plainly see that the conjured fighters are no threat, since they strike solely at other phantom warriors, but the din, tumult, and confusion make it difficult to focus on the true foes at hand. A creature that succeeds on its save can still see the spectral outline of the illusion, but is able to block out the distraction and fight as normal.
+            When you cast this spell, you can choose for it not to affect a number of allies you designate less than or equal to your caster level.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e26285fd-5a0f-42db-a3dd-81f28d31d862', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e26285fd-5a0f-42db-a3dd-81f28d31d862', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e26285fd-5a0f-42db-a3dd-81f28d31d862', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e26285fd-5a0f-42db-a3dd-81f28d31d862', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('8a93207a-c1ea-4c0c-9f0a-dfc3cbc66e0c', 'Rainbow Pattern', 'Illusion', 'V (Brd only), S, M, F', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '', '', 'Colorful lights with a 20-ft.-radius spread', 'Concentration +1 round/ level (D)', 'Will negates', 'Yes', 'A piece of phosphor', 'A glowing, rainbow-hued pattern of interweaving colors fascinates those within it. Rainbow pattern fascinates a maximum of 24 Hit Dice of creatures. Creatures with the fewest HD are affected first. Among creatures with equal HD, those who are closest to the spell’s point of origin are affected first. An affected creature that fails its saves is fascinated by the pattern.
+            With a simple gesture (a free action), you can make the rainbow pattern move up to 30 feet per round (moving its effective point of origin). All fascinated creatures follow the moving rainbow of light, trying to get or remain within the effect. Fascinated creatures who are restrained and removed from the pattern still try to follow it. If the pattern leads its subjects into a dangerous area each fascinated creature gets a second save. If the view of the lights is completely blocked creatures who can’t see them are no longer affected.
+            The spell does not affect sightless creatures.
+            Verbal Component: A wizard or sorcerer need not utter a sound to cast this spell, but a bard must sing, play music, or recite a rhyme as a verbal component.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8a93207a-c1ea-4c0c-9f0a-dfc3cbc66e0c', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8a93207a-c1ea-4c0c-9f0a-dfc3cbc66e0c', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8a93207a-c1ea-4c0c-9f0a-dfc3cbc66e0c', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8a93207a-c1ea-4c0c-9f0a-dfc3cbc66e0c', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('d29b05fa-bae3-452e-ad64-17234c5daf09', 'Solid Fog', 'Conjuration', 'V, S, M', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '', '', 'Fog spreads in 20-ft. radius, 20 ft. high', '1 min./level', 'No', 'No', 'A pinch of dried, powdered peas combined with powdered animal hoof.', 'This spell functions like fog cloud, but in addition to obscuring sight, the solid fog is so thick that any creature attempting to move through it progresses at a speed of 5 feet, regardless of its normal speed, and it takes a –2 penalty on all melee attack and melee damage rolls. The vapors prevent effective ranged weapon attacks (except for magic rays and the like). A creature or object that falls into solid fog is slowed, so that each 10 feet of vapor that it passes through reduces falling damage by 1d6. A creature can’t take a 5-foot step while in solid fog.
+            However, unlike normal fog, only a severe wind (31+ mph) disperses these vapors, and it does so in 1 round.
+            Solid fog can be made permanent with a permanency spell. A permanent solid fog dispersed by wind reforms in 10 minutes.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d29b05fa-bae3-452e-ad64-17234c5daf09', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d29b05fa-bae3-452e-ad64-17234c5daf09', '1743cb02-abb8-42d9-b651-860ff06e627a', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d29b05fa-bae3-452e-ad64-17234c5daf09', '348effa3-bb33-4f9b-9726-c9e44beda456', 4);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

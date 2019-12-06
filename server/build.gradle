@@ -27,7 +27,7 @@ apply plugin: 'nu.studer.jooq'
 
 bootJar {
     baseName = rootProject.name
-    version =  '0.1.0'
+    version =  '0.6.6'
 }
 
 repositories {
@@ -39,10 +39,14 @@ targetCompatibility = 1.8
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+
     compile 'org.jooq:jooq'
     compile 'org.springframework.boot:spring-boot-starter-jooq', {
         exclude group: "org.jooq", module: "jooq"
     }
+
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.1'
     
     compileOnly 'org.projectlombok:lombok:1.18.10'

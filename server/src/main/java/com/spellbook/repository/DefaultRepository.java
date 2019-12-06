@@ -16,15 +16,15 @@ import java.util.UUID;
 public abstract class DefaultRepository<C, R extends UpdatableRecord<R>> {
 
     @Autowired
-    protected DSLContext dslContext;
+    DSLContext dslContext;
 
     public DSLContext getContext() {
         return this.dslContext;
     }
 
-//    public R convertPojoToRecord(Object pojo) {
-//        return this.dslContext.newRecord(getDaoTable(), pojo);
-//    }
+    public R convertPojoToRecord(Object pojo) {
+        return this.dslContext.newRecord(getDaoTable(), pojo);
+    }
 
     public List<C> findByIdsIntoPojos(List<UUID> idList) throws MappingException {
         if (CollectionUtils.isEmpty(idList)) {

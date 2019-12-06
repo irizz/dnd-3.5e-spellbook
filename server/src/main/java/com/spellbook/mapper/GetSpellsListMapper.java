@@ -3,10 +3,10 @@ package com.spellbook.mapper;
 import com.spellbook.dto.common.Class;
 import com.spellbook.dto.common.Spell;
 import com.spellbook.dto.getSpellList.GetSpellsListResponse;
-import com.spellbook.jooq.tables.pojos.Classes;
 import com.spellbook.jooq.tables.pojos.Spells;
-import com.spellbook.repository.SpellClassAvailabilityRepository;
+import com.spellbook.repository.ClassesRepository;
 import lombok.AllArgsConstructor;
+import org.jooq.Record;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,11 +14,14 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static com.spellbook.jooq.tables.ClassSpellAvailability.CLASS_SPELL_AVAILABILITY;
+import static com.spellbook.jooq.tables.Classes.CLASSES;
+
 @Component
 @AllArgsConstructor
 class GetSpellsListMapper {
 
-    private final SpellClassAvailabilityRepository spellClassAvailabilityRepository;
+    private final ClassesRepository classesRepository;
 
     GetSpellsListResponse map(List<Spells> spellsList) {
         List<Spell> spellList = new ArrayList<>();
@@ -43,13 +46,12 @@ class GetSpellsListMapper {
     }
 
     private List<Class> mapClasses(UUID id) {
-        List<Classes> classes = spellClassAvailabilityRepository.getClassesBySpellId(id);
-        return classes.stream()
+        List<Record> classesRecords = classesRepository.getClassesBySpellId(id);
+        return classesRecords.stream()
                 .map(x -> new Class()
-                        .id(x.getId())
-                        .name(x.getName())
-                        //TODO delete hardcode
-                        .level(0))
+                        .id(x.get(CLASSES.ID))
+                        .name(x.get(CLASSES.NAME))
+                        .level(x.get(CLASS_SPELL_AVAILABILITY.LEVEL)))
                 .collect(Collectors.toList());
     }
 }

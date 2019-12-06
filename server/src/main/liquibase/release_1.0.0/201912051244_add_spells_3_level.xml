@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912051244_add_spells_3_level.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912051244" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            ALTER TABLE IF EXISTS spellbook.spells ALTER COLUMN description TYPE VARCHAR(5000);
+
+            DELETE from spellbook.class_spell_availability WHERE spell_id = 'a4610a6b-7241-486c-a752-652ed5729e31';
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a4610a6b-7241-486c-a752-652ed5729e31', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a4610a6b-7241-486c-a752-652ed5729e31', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a4610a6b-7241-486c-a752-652ed5729e31', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a4610a6b-7241-486c-a752-652ed5729e31', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e4b85636-a993-4de9-9362-cbe2ae8c4130', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e4b85636-a993-4de9-9362-cbe2ae8c4130', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e4b85636-a993-4de9-9362-cbe2ae8c4130', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+
+            DELETE from spellbook.class_spell_availability WHERE spell_id = 'c107ead3-a6d2-4698-858c-df53dfb13f84';
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c107ead3-a6d2-4698-858c-df53dfb13f84', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c107ead3-a6d2-4698-858c-df53dfb13f84', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c107ead3-a6d2-4698-858c-df53dfb13f84', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('c107ead3-a6d2-4698-858c-df53dfb13f84', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('89710c40-79bb-4b60-aa86-0c29b90990a7', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('1deb2025-99c5-4391-b610-306732ac9cf0', 'Arcane Sight', 'Divination', 'V, S', '1 standard action', 'Personal', '', 'You', '', '1 min./level (D)', '', '', '', 'This spell makes your eyes glow blue and allows you to see magical auras within 120 feet of you. The effect is similar to that of a detect magic spell, but arcane sight does not require concentration and discerns aura location and power more quickly.
+            You know the location and power of all magical auras within your sight. An aura’s power depends on a spell’s functioning level or an item’s caster level, as noted in the description of the detect magic spell. If the items or creatures bearing the auras are in line of sight, you can make Spellcraft skill checks to determine the school of magic involved in each. (Make one check per aura; DC 15 + spell level, or 15 + one-half caster level for a nonspell effect.)
+            If you concentrate on a specific creature within 120 feet of you as a standard action, you can determine whether it has any spellcasting or spell-like abilities, whether these are arcane or divine (spell-like abilities register as arcane), and the strength of the most powerful spell or spell-like ability the creature currently has available for use.
+            Arcane sight can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1deb2025-99c5-4391-b610-306732ac9cf0', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1deb2025-99c5-4391-b610-306732ac9cf0', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1deb2025-99c5-4391-b610-306732ac9cf0', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('878a1d59-29cb-41b8-9a7f-95c74f4f3847', 'Clairaudience/Clairvoyance', 'Divination', 'V, S, F/DF', '10 minutes', 'Long (400 ft. + 40 ft./level)', '', '', 'Magical sensor', '1 min./level (D)', 'No', 'No', '', 'Clairaudience/clairvoyance creates an invisible magical sensor at a specific location that enables you to hear or see (your choice) almost as if you were there. You don’t need line of sight or line of effect, but the locale must be known—a place familiar to you or an obvious one. Once you have selected the locale, the sensor doesn’t move, but you can rotate it in all directions to view the area as desired. Unlike other scrying spells, this spell does not allow magically or supernaturally enhanced senses to work through it. If the chosen locale is magically dark, you see nothing. If it is naturally pitch black, you can see in a 10- foot radius around the center of the spell’s effect. Clairaudience/clairvoyance functions only on the plane of existence you are currently occupying.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('878a1d59-29cb-41b8-9a7f-95c74f4f3847', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('878a1d59-29cb-41b8-9a7f-95c74f4f3847', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('878a1d59-29cb-41b8-9a7f-95c74f4f3847', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('878a1d59-29cb-41b8-9a7f-95c74f4f3847', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('16e11f80-d0aa-4866-be70-2206737bb97c', 'Crown of Veils', 'Illusion', 'V, S, F', '1 standard action', 'Touch', '', 'Creature touched', '', '1 hour/level (D) or until discharged', 'Will negates (harmless)', 'Yes (harmless)', '', 'A shimmering halo of energy surrounds the target’s head like a crown. It flashes a spectrum of colors before fading away.
+            This spell creates a magic crown infused with illusion magic. The spell’s recipient gains a +2 competence bonus on Disguise and Hide checks.
+            As an immediate action, the creature wearing the crown of veils can discharge its magic to gain a +8 competence bonus on a single Disguise or Hide check. The spell ends after the wearer uses the crown in this manner.
+            The crown occupies space on the body as a headband, hat, or helm. If the crown is removed, the spell immediately ends.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('16e11f80-d0aa-4866-be70-2206737bb97c', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('16e11f80-d0aa-4866-be70-2206737bb97c', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('16e11f80-d0aa-4866-be70-2206737bb97c', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('16e11f80-d0aa-4866-be70-2206737bb97c', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('dfe9bd50-cc19-4461-baab-5e414eed7886', 'Deep Slumber', 'Enchantment', 'V, S, M', '1 round', 'Close (25 ft. + 5 ft./2 levels)', 'One or more living creatures within a 10-ft.-radius burst', '', '', '1 min./level', 'Will negates', 'Yes', '', 'This spell functions like sleep, except that it affects 10 HD of creatures.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe9bd50-cc19-4461-baab-5e414eed7886', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe9bd50-cc19-4461-baab-5e414eed7886', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe9bd50-cc19-4461-baab-5e414eed7886', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe9bd50-cc19-4461-baab-5e414eed7886', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', 'Dispel Magic', 'Abjuration', 'V, S', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '20-ft.-radius burst', 'One spellcaster, creature, or object', '', 'Instantaneous', 'No', 'No ', '', 'You can use dispel magic to end ongoing spells that have been cast on a creature or object, to temporarily suppress the magical abilities of a magic item, to end ongoing spells (or at least their effects) within an area, or to counter another spellcaster’s spell. A dispelled spell ends as if its duration had expired. Some spells, as detailed in their descriptions, can’t be defeated by dispel magic. Dispel magic can dispel (but not counter) spell-like effects just as it does spells.
+            Note: The effect of a spell with an instantaneous duration can’t be dispelled, because the magical effect is already over before the dispel magic can take effect.
+            You choose to use dispel magic in one of three ways: a targeted dispel, an area dispel, or a counterspell:
+            Targeted Dispel: One object, creature, or spell is the target of the dispel magic spell. You make a dispel check (1d20 + your caster level, maximum +10) against the spell or against each ongoing spell currently in effect on the object or creature.
+            The DC for this dispel check is 11 + the spell’s caster level. If you succeed on a particular check, that spell is dispelled; if you fail, that spell remains in effect.
+            If you target an object or creature that is the effect of an ongoing spell (such as a monster summoned by monster summoning), you make a dispel check to end the spell that conjured the object or creature.
+            If the object that you target is a magic item, you make a dispel check against the item’s caster level. If you succeed, all the item’s magical properties are suppressed for 1d4 rounds, after which the item recovers on its own. A suppressed item becomes nonmagical for the duration of the effect. An interdimensional interface (such as a bag of holding) is temporarily closed. A magic item’s physical properties are unchanged: A suppressed magic sword is still a sword (a masterwork sword, in fact). Artifacts and deities are unaffected by mortal magic such as this.
+            You automatically succeed on your dispel check against any spell that you cast yourself.
+            Area Dispel: When dispel magic is used in this way, the spell affects everything within a 20-foot radius.
+            For each creature within the area that is the subject of one or more spells, you make a dispel check against the spell with the highest caster level. If that check fails, you make dispel checks against progressively weaker spells until you dispel one spell (which discharges the dispel magic spell so far as that target is concerned) or until you fail all your checks. The creature’s magic items are not affected.
+            For each object within the area that is the target of one or more spells, you make dispel checks as with creatures. Magic items are not affected by an area dispel.
+            For each ongoing area or effect spell whose point of origin is within the area of the dispel magic spell, you can make a dispel check to dispel the spell.
+            For each ongoing spell whose area overlaps that of the dispel magic spell, you can make a dispel check to end the effect, but only within the overlapping area.
+            If an object or creature that is the effect of an ongoing spell (such as a monster summoned by monster summoning) is in the area, you can make a dispel check to end the spell that conjured that object or creature (returning it whence it came) in addition to attempting to dispel spells targeting the creature or object.
+            You may choose to automatically succeed on dispel checks against any spell that you have cast.
+            Counterspell: When dispel magic is used in this way, the spell targets a spellcaster and is cast as a counterspell. Unlike a true counterspell, however, dispel magic may not work; you must make a dispel check to counter the other spellcaster’s spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', '1ec07635-5e45-43f5-8151-7861e8a387a6', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', '4a663f67-8405-4624-99bc-f81b7895ab86', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('054caf37-36f6-406b-b841-631bf0d459ec', 'b94893a6-577c-472c-b573-6c35316dd2d2', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('ba41a24e-9c44-4837-b514-3b3dc17de0a3', 'Displacement', 'Illusion', 'V, M', '1 standard action', 'Touch', '', 'Creature touched', '', '1 round/level (D)', 'Will negates (harmless)', 'Yes (harmless)', 'A small strip of leather twisted into a loop.', 'The subject of this spell appears to be about 2 feet away from its true location. The creature benefits from a 50% miss chance as if it had total concealment. However, unlike actual total concealment, displacement does not prevent enemies from targeting the creature normally. True seeing reveals its true location.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ba41a24e-9c44-4837-b514-3b3dc17de0a3', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ba41a24e-9c44-4837-b514-3b3dc17de0a3', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ba41a24e-9c44-4837-b514-3b3dc17de0a3', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('ba41a24e-9c44-4837-b514-3b3dc17de0a3', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('699495c2-6cc8-4f89-b4e1-db8e5cccfb70', 'Glibness', 'Transmutation', 'S', '1 standard action', 'Personal', '', 'You', '', '10 min./level (D)', '', '', '', 'Your speech becomes fluent and more believable. You gain a +30 bonus on Bluff checks made to convince another of the truth of your words. (This bonus doesn’t apply to other uses of the Bluff skill, such as feinting in combat, creating a diversion to hide, or communicating a hidden message via innuendo.)
+            If a magical effect is used against you that would detect your lies or force you to speak the truth the user of the effect must succeed on a caster level check (1d20 + caster level) against a DC of 15 + your caster level to succeed. Failure means the effect does not detect your lies or force you to speak only the truth.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('699495c2-6cc8-4f89-b4e1-db8e5cccfb70', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('699495c2-6cc8-4f89-b4e1-db8e5cccfb70', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('73c8369e-60a7-4198-9810-c023348997f9', 'Halt', 'Transmutation', 'V', '1 immediate action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One creature', '', '1 round', 'Will negates', 'Yes', '', 'You utter the word “Halt!” and, in that instant, the creature’s feet stick to the floor.
+            The subject creature’s feet (or whatever pass for its feet) become momentarily stuck to the floor. The creature must stop moving, and cannot move farther in its current turn. This spell has no effect on creatures that are not touching the ground (such as flying creatures), and the subject can still use a standard action (if it has one available in this round) to move by means of teleportation magic.
+            You can cast this spell even when it’s not your turn; however, you must cast it before your opponent finishes its movement on its current turn to gain the benefit.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('73c8369e-60a7-4198-9810-c023348997f9', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('73c8369e-60a7-4198-9810-c023348997f9', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('73c8369e-60a7-4198-9810-c023348997f9', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('73c8369e-60a7-4198-9810-c023348997f9', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('9a9f1049-f448-462b-8d3d-ed1578b51c57', 'Haste', 'Transmutation', 'V, S, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One creature/level, no two of which can be more than 30 ft. apart', '', '1 round/level', 'Fortitude negates (harmless)', 'Yes (harmless)', 'A shaving of licorice root.', 'The transmuted creatures move and act more quickly than normal. This extra speed has several effects.
+            When making a full attack action, a hasted creature may make one extra attack with any weapon he is holding. The attack is made using the creature’s full base attack bonus, plus any modifiers appropriate to the situation. (This effect is not cumulative with similar effects, such as that provided by a weapon of speed, nor does it actually grant an extra action, so you can’t use it to cast a second spell or otherwise take an extra action in the round.)
+            A hasted creature gains a +1 bonus on attack rolls and a +1 dodge bonus to AC and Reflex saves. Any condition that makes you lose your Dexterity bonus to Armor Class (if any) also makes you lose dodge bonuses.
+            All of the hasted creature’s modes of movement (including land movement, burrow, climb, fly, and swim) increase by 30 feet, to a maximum of twice the subject’s normal speed using that form of movement. This increase counts as an enhancement bonus, and it affects the creature’s jumping distance as normal for increased speed.
+            Multiple haste effects don’t stack. Haste dispels and counters slow.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9a9f1049-f448-462b-8d3d-ed1578b51c57', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9a9f1049-f448-462b-8d3d-ed1578b51c57', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9a9f1049-f448-462b-8d3d-ed1578b51c57', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9a9f1049-f448-462b-8d3d-ed1578b51c57', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('40d1560d-c06c-4990-876b-085c811eab89', 'Hesitate', 'Enchantment', 'V, S', '1 immediate action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One living creature', '', '1 round/level (D)', 'Will negates', 'Yes', '', 'In the eyes of your enemy, you seem large, powerful, and indomitable.
+            You fill a subject with doubts and misgivings, making it believe it is inferior to you. On a failed, save the subject can take no action other than a move action on its current turn. Hesitate confers no special bonuses for attackers attempting to hit the subject; the subject still defends itself. If you attack the affected creature, the spell ends immediately.
+            Each round, as a swift action at the start of its turn, the subject can attempt a new saving throw to end the effect. If the save succeeds, the subject can then act normally.
+            You can cast this spell even when it’s not your turn; however, you must cast it at the start of your opponent’s turn to gain the benefit.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('40d1560d-c06c-4990-876b-085c811eab89', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('40d1560d-c06c-4990-876b-085c811eab89', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('40d1560d-c06c-4990-876b-085c811eab89', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('40d1560d-c06c-4990-876b-085c811eab89', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('40d1560d-c06c-4990-876b-085c811eab89', '1ec07635-5e45-43f5-8151-7861e8a387a6', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('6471a722-919c-4105-b4ea-a5d1cd5eb30e', 'Hold Person', 'Enchantment', 'V, S, F/DF', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '', 'One humanoid creature', '', '1 round/level (D)', 'Will negates', 'Yes', '', 'The subject becomes paralyzed and freezes in place. It is aware and breathes normally but cannot take any actions, even speech.
+            Each round on its turn, the subject may attempt a new saving throw to end the effect. (This is a full-round action that does not provoke attacks of opportunity.)
+            A winged creature who is paralyzed cannot flap its wings and falls. A swimmer can’t swim and may drown.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6471a722-919c-4105-b4ea-a5d1cd5eb30e', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6471a722-919c-4105-b4ea-a5d1cd5eb30e', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6471a722-919c-4105-b4ea-a5d1cd5eb30e', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6471a722-919c-4105-b4ea-a5d1cd5eb30e', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6471a722-919c-4105-b4ea-a5d1cd5eb30e', '1ec07635-5e45-43f5-8151-7861e8a387a6', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('b491a815-1ad6-4e14-862e-a14d9dac12b5', 'Inevitable Defeat', 'Enchantment', 'V, S', '1 standard action', 'Touch', '', 'One creature', '', '1 round/level', 'Will negates', 'Yes', '', 'You touch the creature with your hand, and it teeters on the edge of unconsciousness.
+            You draw a cloud over the subject’s mind, dealing 3d6 points of nonlethal damage. No saving throw is allowed against this effect. Each round on its turn, the subject must succeed on a Will save or take another 3d6 points of nonlethal damage. If the saving throw is successful, the damage for that round is negated and the spell ends.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b491a815-1ad6-4e14-862e-a14d9dac12b5', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b491a815-1ad6-4e14-862e-a14d9dac12b5', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b491a815-1ad6-4e14-862e-a14d9dac12b5', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b491a815-1ad6-4e14-862e-a14d9dac12b5', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('211067f7-d92e-4177-8b10-122bdd63c011', 'Invisibility Sphere', 'Illusion', 'V, S, M', '1 standard action', 'Personal or touch', '10-ft.-radius emanation around the creature or object touched', '', '', '1 min./level (D)', 'Will negates', 'Yes', '', 'This spell functions like invisibility, except that this spell confers invisibility upon all creatures within 10 feet of the recipient. The center of the effect is mobile with the recipient.
+            Those affected by this spell can see each other and themselves as if unaffected by the spell. Any affected creature moving out of the area becomes visible, but creatures moving into the area after the spell is cast do not become invisible. Affected creatures (other than the recipient) who attack negate the invisibility only for themselves. If the spell recipient attacks, the invisibility sphere ends.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('211067f7-d92e-4177-8b10-122bdd63c011', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('211067f7-d92e-4177-8b10-122bdd63c011', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('211067f7-d92e-4177-8b10-122bdd63c011', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('211067f7-d92e-4177-8b10-122bdd63c011', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('d13de389-cd0b-426a-ade2-b7c967aee47b', 'Legion of Sentinels', 'Illusion', 'V, S, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '10-ft.-radius emanation centered on a point in space', '', '', '1 round/level', 'No', 'No', 'A pewter sword-fighter miniature figure.', 'A phalanx of spectral swordfighters appears. Their blades are drawn, and they stand ready to strike.
+            A ghostly, incorporeal swordfighter appears in each square covered by this spell’s area. A swordfighter can share a space with another creature or object. Each swordfighter threatens the squares adjacent to it and can make one attack of opportunity per round. The swordfighters do not hinder movement, block terrain, or block line of effect. They can flank an opponent with each other and with yours allies.
+            Each swordfighter has hit points equal to twice your caster level and an Armor Class of 25. It makes saving throws with a bonus equal to your caster level.
+            The swordsmen’s attacks are at a bonus equal to your caster level, they threaten critical hits on a 19 or 20, and they deal 1d8 points of slashing damage with a +1 bonus per three caster levels (max +5). They only make attacks of opportunity, and their weapon damage is slashing and is affected by damage reduction.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d13de389-cd0b-426a-ade2-b7c967aee47b', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d13de389-cd0b-426a-ade2-b7c967aee47b', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d13de389-cd0b-426a-ade2-b7c967aee47b', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('5f1dcfa3-4f77-483a-8d7f-5041ae58e61c', 'Major Image', 'Illusion', 'V, S, M', '1 standard action', 'Long (400 ft. + 40 ft./level)', '', '', 'Visual figment that cannot extend beyond four 10-ft. cubes + one 10-ft. cube/level (S)', 'Concentration + 3 rounds', 'Will disbelief (if interacted with)', 'No', '', 'This spell functions like silent image, except that sound, smell, and thermal illusions are included in the spell effect. While concentrating, you can move the image within the range.
+            The image disappears when struck by an opponent unless you cause the illusion to react appropriately.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('5f1dcfa3-4f77-483a-8d7f-5041ae58e61c', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('5f1dcfa3-4f77-483a-8d7f-5041ae58e61c', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('5f1dcfa3-4f77-483a-8d7f-5041ae58e61c', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('5f1dcfa3-4f77-483a-8d7f-5041ae58e61c', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('d7e2cd31-2447-47ac-9ba3-0b5e3d600ccf', 'Nondetection', 'Abjuration', 'V, S, M', '1 standard action', 'Touch', '', 'Creature or object touched', '', '1 hour/level', 'Will negates (harmless, object)', 'Yes (harmless, object)', 'A pinch of diamond dust worth 50 gp.', 'The warded creature or object becomes difficult to detect by divination spells such as clairaudience/clairvoyance, locate object, and detect spells. Nondetection also prevents location by such magic items as crystal balls. If a divination is attempted against the warded creature or item, the caster of the divination must succeed on a caster level check (1d20 + caster level) against a DC of 11 + the caster level of the spellcaster who cast nondetection. If you cast nondetection on yourself or on an item currently in your possession, the DC is 15 + your caster level.
+            If cast on a creature, nondetection wards the creature’s gear as well as the creature itself.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d7e2cd31-2447-47ac-9ba3-0b5e3d600ccf', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d7e2cd31-2447-47ac-9ba3-0b5e3d600ccf', 'a4b91e77-742d-42d3-809d-22417495d11d', 4);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d7e2cd31-2447-47ac-9ba3-0b5e3d600ccf', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d7e2cd31-2447-47ac-9ba3-0b5e3d600ccf', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('dfe15bce-9dcd-465b-bd91-682967b633d9', 'Slow', 'Transmutation', 'V, S, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One creature/level, no two of which can be more than 30 ft. apart', '', '1 round/level', 'Will negates', 'Yes', 'A drop of molasses.', 'An affected creature moves and attacks at a drastically slowed rate. A slowed creature can take only a single move action or standard action each turn, but not both (nor may it take full-round actions). Additionally, it takes a –1 penalty on attack rolls, AC, and Reflex saves. A slowed creature moves at half its normal speed (round down to the next 5-foot increment), which affects the creature’s jumping distance as normal for decreased speed.
+            Multiple slow effects don’t stack. Slow counters and dispels haste.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe15bce-9dcd-465b-bd91-682967b633d9', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe15bce-9dcd-465b-bd91-682967b633d9', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe15bce-9dcd-465b-bd91-682967b633d9', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('dfe15bce-9dcd-465b-bd91-682967b633d9', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('9091ed70-1132-4825-9e2a-f7891f83422f', 'Suggestion', 'Enchantment', 'V, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One living creature', '', '1 hour/level or until completed', 'Will negates', 'Yes', 'A snake’s tongue and either a bit of honeycomb or a drop of sweet oil.', 'You influence the actions of the target creature by suggesting a course of activity (limited to a sentence or two). The suggestion must be worded in such a manner as to make the activity sound reasonable. Asking the creature to do some obviously harmful act automatically negates the effect of the spell.
+            The suggested course of activity can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do. You can instead specify conditions that will trigger a special activity during the duration. If the condition is not met before the spell duration expires, the activity is not performed.
+            A very reasonable suggestion causes the save to be made with a penalty (such as –1 or –2).');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9091ed70-1132-4825-9e2a-f7891f83422f', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9091ed70-1132-4825-9e2a-f7891f83422f', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9091ed70-1132-4825-9e2a-f7891f83422f', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('9091ed70-1132-4825-9e2a-f7891f83422f', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('60fb9db7-9e85-4588-b6eb-a08f64099bef', 'Vertigo Field', 'Illusion', 'V, S', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '20-ft.-radius spread', '', '', '1 round/level', 'Fortitude partial', 'Yes', '', 'You create a field of swirling patterns of color, light, and motion. Creatures in the area stagger as the barrage of sensations overloads their senses and leaves them overcome with vertigo.
+            This spell creates a field of illusory magic that hampers the movement and senses of any creature that enters it. The area within the field counts as difficult terrain. Attacks made through or from inside the field have a 20% miss chance. A creature that begins its turn inside the field must make a Fortitude save or become nauseated for 1 round. Once a cr5eature fails this save, it does not need to make another save against this effect.
+            When you cast this spell, you can choose for this nauseating effect not to apply to a number of allies you designate less than or equal to your caster level. Those allies still treat the vertigo field as difficult terrain and have the 20% miss chance on attacks.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('60fb9db7-9e85-4588-b6eb-a08f64099bef', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('60fb9db7-9e85-4588-b6eb-a08f64099bef', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('60fb9db7-9e85-4588-b6eb-a08f64099bef', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e44ac622-8cc4-4e38-ba73-99d821889d0e', 'Zone of Silence', 'Illusion', 'V, S', '1 round', 'Personal', '5-ft.-radius emanation centered on you', '', '', '1 hour/level (D)', '', '', '', 'By casting zone of silence, you manipulate sound waves in your immediate vicinity so that you and those within the spell’s area can converse normally, yet no one outside can hear your voices or any other noises from within, including language-dependent or sonic spell effects. This effect is centered on you and moves with you. Anyone who enters the zone immediately becomes subject to its effects, but those who leave are no longer affected. Note, however, that a successful Spot check to read lips can still reveal what’s said inside a zone of silence.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e44ac622-8cc4-4e38-ba73-99d821889d0e', 'ca79c55d-2383-451d-821b-b7f8f0717f08', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e44ac622-8cc4-4e38-ba73-99d821889d0e', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
