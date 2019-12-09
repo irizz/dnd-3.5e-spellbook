@@ -1,7 +1,7 @@
 <div class="nav">
   <div class="filters">
     <mat-form-field class="filters__select">
-      <mat-label>Sort by...</mat-label>
+      <mat-label>Sort...</mat-label>
       <mat-select [(ngModel)]="sortBy" (selectionChange)="changeSorting()">
         <mat-option *ngFor="let option of sortOptions" [value]="option">
           {{ option }}

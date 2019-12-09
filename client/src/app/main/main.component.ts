@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
     this.spellsCopy = [...this.spells];
     this.charClass = this.service.charClassName;
     this.changeSorting();
-    this.setCurrSpellToDefault();
+    this.setCurrSpell(0);
   }
 
   changeSorting() {
@@ -61,19 +61,34 @@ export class MainComponent implements OnInit {
 
   handleChangeCurrSpell() {
     if (!this.searchString) {
-      this.setCurrSpellToDefault();
+      this.setCurrSpell(0);
       return;
     }
+
+    let spellEqualsSearchString = false;
+    let spellStartsWithSearchString = false;
     for (let i = 0; i < this.spells.length; i++) {
       if (
+        this.spells[i].name.toLowerCase() == this.searchString.toLowerCase()
+      ) {
+        this.setCurrSpell(i);
+        spellEqualsSearchString = true;
+      } else if (
+        this.spells[i].name
+          .toLowerCase()
+          .indexOf(this.searchString.toLowerCase()) === 0
+        && !spellEqualsSearchString
+      ) {
+        this.setCurrSpell(i);
+        spellStartsWithSearchString = true;
+      } else if (
         this.spells[i].name
           .toLowerCase()
           .indexOf(this.searchString.toLowerCase()) !== -1
+        && !spellEqualsSearchString
+        && !spellStartsWithSearchString
       ) {
-        this.currSpell = this.spells[i];
-        this.currSpellClasses = this.transformResponseClassesToString(
-          this.currSpell.classes
-        );
+        this.setCurrSpell(i);
       }
     }
   }
@@ -87,7 +102,7 @@ export class MainComponent implements OnInit {
         .filter(item => item.isFavorite === true)
         .sort((a, b) => (a.name > b.name ? 1 : -1));
       this.changeSorting();
-      this.setCurrSpellToDefault();
+      this.setCurrSpell(0);
     } else {
       const restSpells = this.spellsCopy.filter(
         item => !this.spells.includes(item)
@@ -95,7 +110,7 @@ export class MainComponent implements OnInit {
       const mergedSpells = this.spells.concat(restSpells);
       this.spells = mergedSpells.sort(sortingFunc);
       this.changeSorting();
-      this.setCurrSpellToDefault();
+      this.setCurrSpell(0);
     }
   }
 
@@ -113,8 +128,8 @@ export class MainComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
-  setCurrSpellToDefault() {
-    this.currSpell = this.spells.sort(sortingFunc)[0];
+  setCurrSpell(idx: number) {
+    this.currSpell = this.spells[idx];
     this.currSpellClasses = this.transformResponseClassesToString(
       this.currSpell.classes
     );
