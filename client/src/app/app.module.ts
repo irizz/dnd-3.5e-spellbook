@@ -6,6 +6,7 @@ import { NgModule } from "@angular/core";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
@@ -21,10 +22,12 @@ import { LoadingComponent } from "./loading/loading.component";
 import { MainComponent } from "./main/main.component";
 import { SelectClassComponent } from "./select-class/select-class.component";
 import { SpellsFilterPipe } from "./shared/spells-filter.pipe";
+import { ComponentsInfoComponent } from "./components-info/components-info.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    ComponentsInfoComponent,
     ContainerComponent,
     ErrorComponent,
     LoadingComponent,
@@ -39,6 +42,7 @@ import { SpellsFilterPipe } from "./shared/spells-filter.pipe";
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatDividerModule,
     MatIconModule,
     MatInputModule,
@@ -48,6 +52,7 @@ import { SpellsFilterPipe } from "./shared/spells-filter.pipe";
     MatTreeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ComponentsInfoComponent]
 })
 export class AppModule {}

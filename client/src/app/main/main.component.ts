@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { ComponentsInfoComponent } from "../components-info/components-info.component";
 import { SORTING_OPTIONS } from "../shared/constants";
 import { DataTree, TreeDataParentNode } from "../shared/data-tree.service";
 import { SortedSpells, Spell, SpellCharClass } from "../shared/interfaces";
@@ -11,7 +13,11 @@ import { sortingFunc } from "../shared/utils";
   styleUrls: ["./main.component.scss"]
 })
 export class MainComponent implements OnInit {
-  constructor(private service: SharedService, private tree: DataTree) {}
+  constructor(
+    private service: SharedService,
+    private tree: DataTree,
+    public dialog: MatDialog
+  ) {}
 
   private charClass: string = "";
   private currSpell: Spell;
@@ -100,6 +106,11 @@ export class MainComponent implements OnInit {
     this.currSpellClasses = this.transformResponseClassesToString(
       this.currSpell.classes
     );
+  }
+
+  openComponentsInfo() {
+    const dialogRef = this.dialog.open(ComponentsInfoComponent);
+    dialogRef.afterClosed().subscribe();
   }
 
   setCurrSpellToDefault() {
