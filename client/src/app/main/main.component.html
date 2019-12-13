@@ -64,12 +64,12 @@
   </mat-drawer>
   <mat-drawer-content class="spells__spellcard">
     <mat-card class="spells__spellcard_card">
-      <button *ngIf="!currSpell.isFavorite" mat-icon-button color="primary">
+      <button *ngIf="!currSpell.isFavorite" mat-icon-button color="accent">
         <i class="material-icons" (click)="toggleIsFavorite()"
           >bookmark_border</i
         >
       </button>
-      <button *ngIf="currSpell.isFavorite" mat-icon-button color="primary">
+      <button *ngIf="currSpell.isFavorite" mat-icon-button color="accent">
         <i class="material-icons" (click)="toggleIsFavorite()">bookmark</i>
       </button>
       <p><strong>Name:</strong> {{ currSpell.name }}</p>
