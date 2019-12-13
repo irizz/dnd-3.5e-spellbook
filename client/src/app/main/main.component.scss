@@ -5,7 +5,18 @@
     &__select {
       margin-left: 1rem;
       margin-right: 20px;
-      width: 14rem;
+      @media screen and (max-width: 540px) {
+        width: 80%;
+        margin-right: 0;
+      }
+    
+      @media screen and (min-width: 540px) and (max-width: 1920px) {
+        width: 35%;
+      }
+    
+      @media screen and (min-width: 1920px) {
+        width: 14rem;
+      }
     }
 
     &__text-input {

@@ -23,5 +23,12 @@
 
   &__content {
     padding: 20px;
+
+    &_select-class {
+      display: block;
+      position: absolute;
+      top: 35%;
+      left: 30%;
+    }
   }
 }

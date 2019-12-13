@@ -23,6 +23,7 @@
   </mat-card-header>
   <mat-card-content class="container__content">
     <app-select-class
+      class="container__content_select-class"
       *ngIf="!service.isLoading && !service.isError && !service.areSpellsLoaded"
     ></app-select-class>
     <app-loading *ngIf="service.isLoading"></app-loading>
