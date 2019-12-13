@@ -17,9 +17,6 @@
       />
     </mat-form-field>
   </div>
-  <button mat-flat-button class="nav__save-btn" color="primary">
-    <i class="material-icons">save</i>
-  </button>
   <button
     mat-button
     class="nav__fav-btn"
@@ -27,6 +24,7 @@
     (click)="handleFavoritesToggleClick()"
   >
     {{ isFavoritesMode ? "Go to all class spells" : "Go to Favorites" }}
+    <i *ngIf="!isFavoritesMode" class="material-icons">book</i>
   </button>
 </div>
 <mat-drawer-container class="spells">

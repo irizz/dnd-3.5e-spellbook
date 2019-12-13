@@ -1,0 +1,34 @@
+<h1 mat-dialog-title class="title">Login</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field class="form__login">
+      <input matInput placeholder="Login" [formControl]="loginFormControl" />
+      <mat-error *ngIf="loginFormControl.hasError('required')">
+        Login is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form__password">
+      <input
+        matInput
+        placeholder="Password"
+        [formControl]="passwordFormControl"
+      />
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions class="actions">
+  <button
+    mat-flat-button
+    [disabled]="
+      loginFormControl.hasError('required') ||
+      passwordFormControl.hasError('required')
+    "
+    color="primary"
+  >
+    Login
+  </button>
+  <button mat-flat-button (click)="onExitClick()">Cancel</button>
+</div>
