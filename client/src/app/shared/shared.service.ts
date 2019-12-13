@@ -67,6 +67,7 @@ export class SharedService {
   handleGoToSelectClassClick() {
     this.areSpellsLoaded = false;
     this.isError = false;
+    this.isFavoritesMode = false;
     this.charClassName = "";
   }
 }

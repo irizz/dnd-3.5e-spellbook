@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
@@ -23,6 +23,8 @@ import { MainComponent } from "./main/main.component";
 import { SelectClassComponent } from "./select-class/select-class.component";
 import { SpellsFilterPipe } from "./shared/spells-filter.pipe";
 import { ComponentsInfoComponent } from "./components-info/components-info.component";
+import { LoginFormComponent } from "./login-form/login-form.component";
+import { SignupFormComponent } from "./signup-form/signup-form.component";
 
 @NgModule({
   declarations: [
@@ -33,12 +35,15 @@ import { ComponentsInfoComponent } from "./components-info/components-info.compo
     LoadingComponent,
     MainComponent,
     SelectClassComponent,
-    SpellsFilterPipe
+    SpellsFilterPipe,
+    LoginFormComponent,
+    SignupFormComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
@@ -53,6 +58,10 @@ import { ComponentsInfoComponent } from "./components-info/components-info.compo
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ComponentsInfoComponent]
+  entryComponents: [
+    ComponentsInfoComponent,
+    LoginFormComponent,
+    SignupFormComponent
+  ]
 })
 export class AppModule {}
