@@ -33,15 +33,15 @@
   width: 100%;
 
   @media screen and (max-width: 540px) {
-    height: 50vh;
+    height: 35vh;
   }
 
   @media screen and (min-width: 540px) and (max-width: 1920px) {
-    height: 70vh;
+    height: 60vh;
   }
 
   @media screen and (min-width: 1920px) {
-    height: 80vh;
+    height: 77vh;
   }
 
   &__sidebar {
