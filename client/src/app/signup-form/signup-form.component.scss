@@ -5,17 +5,27 @@
 
 .form {
   &__login,
-  &__password {
+  &__password,
+  &__confirm-password {
     display: block;
     width: 100%;
   }
 
-  &__login {
+  &__login,
+  &__password {
     margin-bottom: 1rem;
   }
 
-  &__password {
+  &__confirm-password {
     margin-bottom: 1.5rem;
+  }
+
+  &__error {
+    background-color: #fbe9e7;
+    border: 1px solid #ffab91;
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 14px;
   }
 }
 

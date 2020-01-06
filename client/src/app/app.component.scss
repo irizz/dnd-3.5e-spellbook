@@ -15,4 +15,13 @@
     right: 20rem;
   }
   color: #9fb1b1;
+
+  &__username {
+    font-size: 14px;
+  }
+
+  &__logout-btn {
+    margin-right: 1.5rem;
+    padding: 0;
+  }
 }

@@ -12,7 +12,26 @@ import { sortingFunc } from "../shared/utils";
 export class ContainerComponent implements OnInit {
   constructor(private service: SharedService) {}
 
+  getCookie(name: string) {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)"
+      )
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+
   ngOnInit() {
+    this.service.checkSession().subscribe(
+      () => {
+        const username = this.getCookie("username");
+        this.service.username = username;
+        this.service.isLoggedIn = true;
+      },
+      error => console.log(error.name)
+    );
     this.service.fetchClasses().subscribe(
       (data: CharClassesResponse) => {
         this.service.isLoading = false;

@@ -2,30 +2,38 @@
 <div mat-dialog-content>
   <form>
     <mat-form-field class="form__login">
-      <input matInput placeholder="Login" [formControl]="loginFormControl" />
-      <mat-error *ngIf="loginFormControl.hasError('required')">
+      <input
+        matInput
+        placeholder="Login"
+        [formControl]="login"
+        (keyup.enter)="onLoginBtnClick()"
+      />
+      <mat-error *ngIf="login.hasError('required')">
         Login is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="form__password">
       <input
         matInput
+        type="password"
         placeholder="Password"
-        [formControl]="passwordFormControl"
+        [formControl]="password"
+        (keyup.enter)="onLoginBtnClick()"
       />
-      <mat-error *ngIf="passwordFormControl.hasError('required')">
+      <mat-error *ngIf="password.hasError('required')">
         Password is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+    <mat-error *ngIf="errorMessage !== ''" class="form__error">
+      {{ errorMessage }}
+    </mat-error>
   </form>
 </div>
 <div mat-dialog-actions class="actions">
   <button
     mat-flat-button
-    [disabled]="
-      loginFormControl.hasError('required') ||
-      passwordFormControl.hasError('required')
-    "
+    (click)="onLoginBtnClick()"
+    [disabled]="login.hasError('required') || password.hasError('required')"
     color="primary"
   >
     Login
