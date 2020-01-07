@@ -2,13 +2,8 @@
 <div mat-dialog-content>
   <form>
     <mat-form-field class="form__login">
-      <input
-        matInput
-        placeholder="Login"
-        [formControl]="login"
-        (keyup.enter)="onLoginBtnClick()"
-      />
-      <mat-error *ngIf="login.hasError('required')">
+      <input matInput placeholder="Login" [formControl]="login" />
+      <mat-error *ngIf="isLoginHasError()">
         Login is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -18,13 +13,12 @@
         type="password"
         placeholder="Password"
         [formControl]="password"
-        (keyup.enter)="onLoginBtnClick()"
       />
-      <mat-error *ngIf="password.hasError('required')">
+      <mat-error *ngIf="isPasswordHasError()">
         Password is <strong>required</strong>
       </mat-error>
     </mat-form-field>
-    <mat-error *ngIf="errorMessage !== ''" class="form__error">
+    <mat-error *ngIf="!isErrorMessageEmpty()" class="form__error">
       {{ errorMessage }}
     </mat-error>
   </form>
@@ -32,11 +26,11 @@
 <div mat-dialog-actions class="actions">
   <button
     mat-flat-button
-    (click)="onLoginBtnClick()"
-    [disabled]="login.hasError('required') || password.hasError('required')"
+    (click)="onLoginClick()"
+    [disabled]="isLoginButtonDisabled()"
     color="primary"
   >
     Login
   </button>
-  <button mat-flat-button (click)="onExitClick()">Cancel</button>
+  <button mat-flat-button (click)="onCancelClick()">Cancel</button>
 </div>

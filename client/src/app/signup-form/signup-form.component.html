@@ -7,7 +7,6 @@
         placeholder="Username"
         [formControl]="login"
         (click)="clearError()"
-        (keyup.enter)="onSignupClick()"
       />
       <mat-error *ngIf="login.hasError('required')">
         Username is <strong>required</strong>
@@ -29,7 +28,6 @@
         type="password"
         placeholder="Password"
         [formControl]="password"
-        (keyup.enter)="onSignupClick()"
       />
       <mat-error *ngIf="password.hasError('required')">
         Password is <strong>required</strong>
@@ -41,7 +39,6 @@
         type="password"
         placeholder="Confirm Password"
         [formControl]="confirmPassword"
-        (keyup.enter)="onSignupClick()"
       />
     </mat-form-field>
     <mat-error *ngIf="isPasswordNotConfirmed()" class="form__error">

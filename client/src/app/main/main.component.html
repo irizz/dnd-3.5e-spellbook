@@ -2,7 +2,7 @@
   <div class="filters">
     <mat-form-field class="filters__select">
       <mat-label>Sort...</mat-label>
-      <mat-select [(ngModel)]="sortBy" (selectionChange)="changeSorting()">
+      <mat-select [(ngModel)]="sortBy" (selectionChange)="setSorting()">
         <mat-option *ngFor="let option of sortOptions" [value]="option">
           {{ option }}
         </mat-option>
@@ -13,7 +13,7 @@
         matInput
         placeholder="Enter spell's name..."
         [(ngModel)]="searchString"
-        (change)="handleChangeCurrSpell()"
+        (change)="handleFindSpell()"
       />
     </mat-form-field>
   </div>
@@ -21,7 +21,7 @@
     mat-button
     class="nav__fav-btn"
     [disabled]="isFavoritesBtnDisabled && !isFavoritesMode"
-    (click)="handleFavoritesToggleClick()"
+    (click)="toggleFavoritesMode()"
   >
     {{ isFavoritesMode ? "Go to all class spells" : "Go to Favorites" }}
     <i *ngIf="!isFavoritesMode" class="material-icons">book</i>
@@ -55,7 +55,7 @@
           mat-button
           class="spells__sidebar_child"
           [color]="node.name === currSpell.name ? 'primary' : ''"
-          (click)="handleShowSpellCard(node.name)"
+          (click)="handleSpellNameClick(node.name)"
         >
           {{ node.name }}
         </a>
@@ -66,7 +66,7 @@
     <mat-card class="spells__spellcard_card">
       <button
         *ngIf="!currSpell.isFavorite"
-        (click)="toggleIsFavorite()"
+        (click)="toggleIsCurrSpellFavorite()"
         mat-icon-button
         color="accent"
       >
@@ -74,7 +74,7 @@
       </button>
       <button
         *ngIf="currSpell.isFavorite"
-        (click)="toggleIsFavorite()"
+        (click)="toggleIsCurrSpellFavorite()"
         mat-icon-button
         color="accent"
       >
@@ -87,7 +87,7 @@
         <strong>Components:</strong> {{ currSpell.components }}
         <i
           class="material-icons spells__spellcard_card_help-icon"
-          (click)="openComponentsInfo()"
+          (click)="openComponentsInfoModal()"
           >help</i
         >
       </p>

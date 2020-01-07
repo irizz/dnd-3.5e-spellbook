@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
+import { CookieService } from "./shared/services/cookie.service";
+import { DataService } from "./shared/services/data.service";
+import { ServerService } from "./shared/services/server.service";
+import { ViewService } from "./shared/services/view.service";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { SignupFormComponent } from "./signup-form/signup-form.component";
-import { SharedService } from "./shared/shared.service";
-import { API_URL } from "./shared/constants";
 
 @Component({
   selector: "app-root",
@@ -14,8 +15,10 @@ import { API_URL } from "./shared/constants";
 export class AppComponent {
   constructor(
     public dialog: MatDialog,
-    private http: HttpClient,
-    private service: SharedService
+    private cookies: CookieService,
+    private data: DataService,
+    private server: ServerService,
+    private view: ViewService
   ) {}
 
   appTitle = "D&D 3.5e Spellbook";
@@ -25,31 +28,21 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe();
   }
 
-  deleteCookie(name: string) {
-    this.service.setCookie(name, "", {
-      'max-age': -1
-    })
-  }
-
-  handleLogoutClick() {
-    this.sendLogoutRequest().subscribe(
-      () => {
-        this.service.isLoggedIn = false;
-        this.service.username = "";
-        this.deleteCookie("username");
-      },
-      error => {
-        alert(`There was some error: ${error.message}`);
-      }
-    );
-  }
-
   handleSignupClick() {
     const dialogRef = this.dialog.open(SignupFormComponent, { width: "20%" });
     dialogRef.afterClosed().subscribe();
   }
 
-  sendLogoutRequest() {
-    return this.http.get(`${API_URL}/logout`, { withCredentials: true });
+  handleLogoutClick() {
+    this.server.sendLogoutRequest().subscribe(
+      () => {
+        this.view.hideLogin();
+        this.data.clearUsername();
+        this.cookies.deleteCookie("username");
+      },
+      error => {
+        alert(`There was some error during logout: ${error.message}`);
+      }
+    );
   }
 }

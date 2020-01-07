@@ -1,17 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { CookieService } from "../shared/services/cookie.service";
+import { DataService } from "../shared/services/data.service";
+import { ServerService } from "../shared/services/server.service";
+import { ViewService } from "../shared/services/view.service";
 import {
-  API_URL,
   MIN_LOGIN_LENGTH,
   MIN_PASSWORD_LENGTH,
   MAX_LOGIN_LENGTH,
   MAX_PASSWORD_LENGTH,
   LOGIN_PATTERN,
   PASSWORD_PATTERN
-} from "../shared/constants";
-import { SharedService } from "../shared/shared.service";
+} from "./signup-form-constants";
 
 @Component({
   selector: "app-signup-form",
@@ -21,8 +22,10 @@ import { SharedService } from "../shared/shared.service";
 export class SignupFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SignupFormComponent>,
-    private http: HttpClient,
-    private service: SharedService
+    private cookies: CookieService,
+    private data: DataService,
+    private server: ServerService,
+    private view: ViewService
   ) {}
 
   ngOnInit() {}
@@ -61,15 +64,11 @@ export class SignupFormComponent implements OnInit {
   }
 
   isSignupBtnDisabled(): boolean {
-    if (
+    return (
       this.login.errors !== null ||
       this.password.errors !== null ||
       this.isPasswordNotConfirmed()
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    );
   }
 
   onExitClick(): void {
@@ -79,16 +78,20 @@ export class SignupFormComponent implements OnInit {
   onSignupClick() {
     const login = this.login.value;
     const password = this.password.value;
-    this.sendSignupRequest(login, password).subscribe(
+
+    this.server.sendSignupRequest(login, password).subscribe(
       () => {
-        this.service.sendLoginRequest(login, password).subscribe(
+        // [NOTE] Autologin after successfull signup request
+        this.server.sendLoginRequest(login, password).subscribe(
           () => {
-            this.service.username = login;
-            this.service.isLoggedIn = true;
-            this.service.setCookie("username", login);
+            this.data.setUsername(login);
+            this.cookies.setCookie("username", login);
+            this.view.showLogin();
             this.closeModal();
           },
-          error => console.error(error)
+          error => {
+            this.errorMessage = error.message;
+          }
         );
       },
       error => {
@@ -99,12 +102,5 @@ export class SignupFormComponent implements OnInit {
         }
       }
     );
-  }
-
-  sendSignupRequest(login: string, password: string) {
-    return this.http.post(`${API_URL}/registration`, {
-      login,
-      password
-    });
   }
 }

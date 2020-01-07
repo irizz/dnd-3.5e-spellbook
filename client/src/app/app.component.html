@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="!service.isLoggedIn" class="auth">
+  <div *ngIf="!view.isLoggedIn" class="auth">
     <a mat-button (click)="handleLoginClick()">
       Login
     </a>
@@ -10,12 +10,11 @@
       Sign Up
     </a>
   </div>
-  <div *ngIf="service.isLoggedIn" class="auth">
-    <span class="auth__username"> Welcome, {{ service.username }} </span>
+  <div *ngIf="view.isLoggedIn" class="auth">
+    <span class="auth__username"> Welcome, {{ data.username }} </span>
     <a
       mat-button
       class="auth__logout-btn"
-      *ngIf="service.isLoggedIn"
       (click)="handleLogoutClick()"
     >
       ( Logout )

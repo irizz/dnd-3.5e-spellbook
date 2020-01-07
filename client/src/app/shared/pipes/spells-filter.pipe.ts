@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { DataTree, TreeDataParentNode } from "./data-tree.service";
-import { sortingFunc } from "./utils";
+import { DataTree, TreeDataParentNode } from "../services/data-tree.service";
+import { sortingFunc } from "../utils";
 
 @Pipe({
   name: "spellsFilter"

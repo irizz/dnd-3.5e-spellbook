@@ -21,7 +21,7 @@ import { ErrorComponent } from "./error/error.component";
 import { LoadingComponent } from "./loading/loading.component";
 import { MainComponent } from "./main/main.component";
 import { SelectClassComponent } from "./select-class/select-class.component";
-import { SpellsFilterPipe } from "./shared/spells-filter.pipe";
+import { SpellsFilterPipe } from "./shared/pipes/spells-filter.pipe";
 import { ComponentsInfoComponent } from "./components-info/components-info.component";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { SignupFormComponent } from "./signup-form/signup-form.component";
