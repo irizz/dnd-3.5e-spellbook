@@ -1,7 +1,7 @@
 package com.spellbook.service;
 
-import com.spellbook.dto.getSpellList.GetClassesListResponse;
-import com.spellbook.dto.getSpellList.GetSpellsListResponse;
+import com.spellbook.dto.GetClassesListResponse;
+import com.spellbook.dto.GetSpellsListResponse;
 import com.spellbook.mapper.Mapper;
 import com.spellbook.repository.ClassesRepository;
 import com.spellbook.repository.SpellsRepository;
@@ -12,8 +12,6 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-//TODO find out why there is warning and delete annotation
-@SuppressWarnings("unchecked")
 public class SpellbookService {
 
     private final SpellsRepository spellsRepository;
@@ -26,6 +24,11 @@ public class SpellbookService {
 
     public GetSpellsListResponse getSpellsListByClass(UUID classId) {
         return mapper.mapSpellsList(spellsRepository.findSpellsListByClass(classId));
+    }
+
+    public GetSpellsListResponse getFavoriteSpellsList() {
+        //TODO create filter by user
+        return mapper.mapSpellsList(spellsRepository.findAll());
     }
 
     public GetClassesListResponse getClassesList() {

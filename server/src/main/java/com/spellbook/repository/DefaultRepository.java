@@ -4,7 +4,6 @@ import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Table;
 import org.jooq.UpdatableRecord;
-import org.jooq.exception.MappingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -16,17 +15,23 @@ import java.util.UUID;
 public abstract class DefaultRepository<C, R extends UpdatableRecord<R>> {
 
     @Autowired
-    DSLContext dslContext;
+    private DSLContext dslContext;
 
-    public DSLContext getContext() {
+    protected abstract Table<R> getDaoTable();
+
+    protected abstract Field<UUID> getIdField();
+
+    protected abstract Class<C> getPogoClass();
+
+    protected DSLContext getContext() {
         return this.dslContext;
     }
 
-    public R convertPojoToRecord(Object pojo) {
+    protected R convertPojoToRecord(Object pojo) {
         return this.dslContext.newRecord(getDaoTable(), pojo);
     }
 
-    public List<C> findByIdsIntoPojos(List<UUID> idList) throws MappingException {
+    public List<C> findByIdsIntoPojos(List<UUID> idList) {
         if (CollectionUtils.isEmpty(idList)) {
             throw new IllegalArgumentException("Ids list must be set!");
         }
@@ -36,15 +41,15 @@ public abstract class DefaultRepository<C, R extends UpdatableRecord<R>> {
                 .into(getPogoClass());
     }
 
-    public List<C> findAll() throws MappingException {
+    public List<C> findAll() {
         return dslContext.selectFrom(getDaoTable())
                 .fetch()
                 .into(getPogoClass());
     }
 
-    protected abstract Table<R> getDaoTable();
-
-    protected abstract Field<UUID> getIdField();
-
-    protected abstract Class<C> getPogoClass();
+    public void save(Object pojo) {
+        dslContext.insertInto(getDaoTable())
+                .set(convertPojoToRecord(pojo))
+                .execute();
+    }
 }
