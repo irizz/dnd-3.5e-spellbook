@@ -13,6 +13,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTreeModule } from "@angular/material/tree";
 
 import { AppComponent } from "./app.component";
@@ -54,6 +55,7 @@ import { SignupFormComponent } from "./signup-form/signup-form.component";
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatTreeModule
   ],
   providers: [],

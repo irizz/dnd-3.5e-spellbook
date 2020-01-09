@@ -7,6 +7,7 @@ export class DataService {
   public spellsList: Spell[] = [];
   public username: string = "";
   public charClassName: string = "";
+  public isAgreedToCookies = false;
 
   clearData() {
     this.charClassName = "";

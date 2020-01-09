@@ -1,11 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { CookieService } from "../shared/services/cookie.service";
 import { ServerService } from "../shared/services/server.service";
 import { ViewService } from "../shared/services/view.service";
 import { CharClassesResponse } from "../shared/interfaces";
 import { sortingFunc } from "../shared/utils";
-import { DataService } from '../shared/services/data.service';
+import { DataService } from "../shared/services/data.service";
+import {
+  COOKIES_CONSENT,
+  COOKIES_CONSENT_ACTION_TEXT
+} from "../shared/constants";
 
 @Component({
   selector: "app-container",
@@ -14,6 +19,7 @@ import { DataService } from '../shared/services/data.service';
 })
 export class ContainerComponent implements OnInit {
   constructor(
+    private snackBar: MatSnackBar,
     private cookies: CookieService,
     private data: DataService,
     private server: ServerService,
@@ -25,9 +31,12 @@ export class ContainerComponent implements OnInit {
       () => {
         const username = this.cookies.getCookie("username");
         this.data.username = username;
+        this.data.isAgreedToCookies = true;
         this.view.isLoggedIn = true;
       },
-      error => console.log(error.name)
+      () => {
+        this.showCookiesConsent();
+      }
     );
     this.server.fetchClasses().subscribe(
       (data: CharClassesResponse) => {
@@ -48,5 +57,15 @@ export class ContainerComponent implements OnInit {
   handleGoToSelectClassClick() {
     this.view.clearView();
     this.data.clearData();
+  }
+
+  showCookiesConsent() {
+    const snackBarRef = this.snackBar.open(
+      COOKIES_CONSENT,
+      COOKIES_CONSENT_ACTION_TEXT
+    );
+    snackBarRef.onAction().subscribe(() => {
+      this.data.isAgreedToCookies = true;
+    });
   }
 }
