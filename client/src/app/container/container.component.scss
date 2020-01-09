@@ -1,5 +1,6 @@
 .container {
   margin: auto;
+  width: 95%;
   padding: 0;
   min-height: 20rem;
   max-width: 80rem;
@@ -11,7 +12,8 @@
 
   &__header {
     padding: 10px 10px 0 10px;
-    color: #4db6ac;
+    color: #757575;
+    border-radius: 4px 4px 0 0;
 
     &_back-btn {
       position: absolute;

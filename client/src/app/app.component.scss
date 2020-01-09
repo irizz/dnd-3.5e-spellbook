@@ -1,5 +1,7 @@
 .auth {
-  padding: 0;
+  font-size: 14px;
+  color: #bdbdbd;
+  padding: 10px;
   margin: 0;
   position: absolute;
   top: 1rem;
@@ -8,20 +10,21 @@
   }
 
   @media screen and (min-width: 540px) and (max-width: 1920px) {
-    right: .5rem;
+    right: 3rem;
   }
 
   @media screen and (min-width: 1920px) {
     right: 20rem;
   }
-  color: #9fb1b1;
 
-  &__username {
-    font-size: 14px;
+  a {
+    margin: 0 5px;
+    font-weight: 500;
   }
 
-  &__logout-btn {
-    margin-right: 1.5rem;
-    padding: 0;
+  a:hover {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    color: #757575;
   }
 }

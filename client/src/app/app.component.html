@@ -1,26 +1,21 @@
 <div>
   <div *ngIf="!auth.isLoggedIn && auth.isAgreedToCookies" class="auth">
-    <a
-      mat-button
-      (click)="handleLoginClick()"
-    >
+    <a (click)="handleLoginClick()">
       Login
     </a>
     <span>
       |
     </span>
-    <a
-      mat-button
-      (click)="handleSignupClick()"
-    >
+    <a (click)="handleSignupClick()">
       Sign Up
     </a>
   </div>
   <div *ngIf="auth.isLoggedIn" class="auth">
-    <span class="auth__username"> Welcome, {{ auth.username }} </span>
-    <a mat-button class="auth__logout-btn" (click)="handleLogoutClick()">
-      ( Logout )
+    <span> Welcome, {{ auth.username }} (</span>
+    <a (click)="handleLogoutClick()">
+      Logout
     </a>
+    <span>)</span>
   </div>
   <app-container></app-container>
 </div>
