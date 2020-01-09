@@ -2,10 +2,10 @@
   <mat-card-header class="container__header">
     <mat-card-title class="container__header_title">
       {{ "D&D 3.5e Spellbook" }}
-      {{ service.charClassName ? "/ " + service.charClassName : "" }}
+      {{ data.charClassName ? "/ " + data.charClassName : "" }}
       {{
-        service.charClassName
-          ? service.isFavoritesMode
+        data.charClassName
+          ? view.isFavoritesMode
             ? "/ Favorites"
             : "/ All spells"
           : ""
@@ -15,19 +15,19 @@
       mat-button
       class="container__header_back-btn"
       (click)="handleGoToSelectClassClick()"
-      *ngIf="service.charClassName"
+      *ngIf="data.charClassName"
     >
-      Return
+      Select another class
       <i class="material-icons">keyboard_return</i>
     </button>
   </mat-card-header>
   <mat-card-content class="container__content">
     <app-select-class
       class="container__content_select-class"
-      *ngIf="!service.isLoading && !service.isError && !service.areSpellsLoaded"
+      *ngIf="!view.isLoading && !view.isError && !view.areSpellsLoaded"
     ></app-select-class>
-    <app-loading *ngIf="service.isLoading"></app-loading>
-    <app-error *ngIf="service.isError"></app-error>
-    <app-main *ngIf="service.areSpellsLoaded"></app-main>
+    <app-loading *ngIf="view.isLoading"></app-loading>
+    <app-error *ngIf="view.isError"></app-error>
+    <app-main *ngIf="view.areSpellsLoaded"></app-main>
   </mat-card-content>
 </mat-card>

@@ -1,12 +1,24 @@
-<div class="auth">
-  <a mat-button (click)="handleLoginClick()">
-    Login
-  </a>
-  <span>
-    |
-  </span>
-  <a mat-button (click)="handleSignupClick()">
-    Sign Up
-  </a>
+<div>
+  <div *ngIf="!view.isLoggedIn" class="auth">
+    <a mat-button (click)="handleLoginClick()">
+      Login
+    </a>
+    <span>
+      |
+    </span>
+    <a mat-button (click)="handleSignupClick()">
+      Sign Up
+    </a>
+  </div>
+  <div *ngIf="view.isLoggedIn" class="auth">
+    <span class="auth__username"> Welcome, {{ data.username }} </span>
+    <a
+      mat-button
+      class="auth__logout-btn"
+      (click)="handleLogoutClick()"
+    >
+      ( Logout )
+    </a>
+  </div>
+  <app-container></app-container>
 </div>
-<app-container></app-container>

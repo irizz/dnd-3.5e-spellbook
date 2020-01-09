@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SharedService } from "../shared/shared.service";
+import { ViewService } from "../shared/services/view.service";
 import { ErrorToDisplay } from "../shared/interfaces";
 
 @Component({
@@ -8,12 +8,12 @@ import { ErrorToDisplay } from "../shared/interfaces";
   styleUrls: ["./error.component.scss"]
 })
 export class ErrorComponent implements OnInit {
-  constructor(private service: SharedService) {}
+  constructor(private view: ViewService) {}
 
   errorToDisplay: ErrorToDisplay = {};
 
   ngOnInit() {
-    this.errorToDisplay = this.service.errorToDisplay;
+    this.errorToDisplay = this.view.errorToDisplay;
   }
 
   refreshPage() {
