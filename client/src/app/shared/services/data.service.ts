@@ -5,6 +5,7 @@ import { CharClass, Spell } from "../interfaces";
 export class DataService {
   public charClassesList: CharClass[] = [];
   public spellsList: Spell[] = [];
+  public favoriteSpells: Spell[] = [];
   public charClassName: string = "";
 
   clearData() {

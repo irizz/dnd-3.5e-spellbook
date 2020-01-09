@@ -20,21 +20,30 @@ export class ServerService {
 
   fetchFavoriteSpellsList(classId: string) {
     return this.http.get<SpellsResponse>(
-      `${API_URL}/getFavoriteSpellsList?classId=${classId}`
+      `${API_URL}/getFavoriteSpellsList?classId=${classId}`,
+      { withCredentials: true }
     );
   }
 
   sendAddFavoriteSpellRequest(spellId: string, classId: string) {
-    return this.http.post(`${API_URL}/addFavoriteSpell`, {
-      id: spellId,
-      classId: classId
-    });
+    return this.http.post(
+      `${API_URL}/addFavoriteSpell`,
+      {
+        id: spellId,
+        classId: classId
+      },
+      { withCredentials: true }
+    );
   }
 
   sendRemoveFavoriteSpellRequest(spellId: string, classId: string) {
-    return this.http.post(`${API_URL}/removeFavoriteSpell`, {
-      id: spellId,
-      classId: classId
-    });
+    return this.http.post(
+      `${API_URL}/removeFavoriteSpell`,
+      {
+        id: spellId,
+        classId: classId
+      },
+      { withCredentials: true }
+    );
   }
 }

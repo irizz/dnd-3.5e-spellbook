@@ -3,11 +3,13 @@ import { MatDialog } from "@angular/material/dialog";
 import { SORTING_OPTIONS } from "../shared/constants";
 import { Spell } from "../shared/interfaces";
 import { sortingFunc } from "../shared/utils";
+import { AuthService } from "../shared/services/auth.service";
 import { DataService } from "../shared/services/data.service";
 import {
   DataTree,
   TreeDataParentNode
 } from "../shared/services/data-tree.service";
+import { ServerService } from "../shared/services/server.service";
 import { ViewService } from "../shared/services/view.service";
 import { ComponentsInfoComponent } from "../components-info/components-info.component";
 import {
@@ -23,8 +25,10 @@ import {
 export class MainComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
+    private auth: AuthService,
     private data: DataService,
     private tree: DataTree,
+    private server: ServerService,
     private view: ViewService
   ) {}
 
@@ -43,14 +47,35 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.spells = this.data.spellsList
-      .map(item => ({
-        ...item,
-        isFavorite: false
-      }))
+      .map(item => {
+        if (
+          this.data.favoriteSpells.findIndex(
+            favorite => item.id == favorite.id
+          ) !== -1
+        ) {
+          return {
+            ...item,
+            isFavorite: true
+          };
+        } else {
+          return {
+            ...item,
+            isFavorite: false
+          };
+        }
+      })
       .sort(sortingFunc);
     this.spellsCopy = [...this.spells];
     this.charClass = this.data.charClassName;
     this.setDefaultCurrSpellAndSorting();
+    this.checkIsThereFavoriteSpell();
+  }
+
+  checkIsThereFavoriteSpell() {
+    const isThereFavoriteSpell = this.spells.some(
+      item => item.isFavorite == true
+    );
+    this.isFavoritesBtnDisabled = !isThereFavoriteSpell;
   }
 
   openComponentsInfoModal() {
@@ -111,10 +136,22 @@ export class MainComponent implements OnInit {
 
   toggleIsCurrSpellFavorite() {
     this.currSpell.isFavorite = !this.currSpell.isFavorite;
-    const isThereFavoriteSpell = this.spells.some(
-      item => item.isFavorite == true
-    );
-    this.isFavoritesBtnDisabled = !isThereFavoriteSpell;
+    this.checkIsThereFavoriteSpell();
+
+    if (this.auth.isLoggedIn) {
+      const classId = this.data.charClassesList.find(
+        charClass => charClass.name == this.data.charClassName
+      )["id"];
+      if (this.currSpell.isFavorite) {
+        this.server
+          .sendAddFavoriteSpellRequest(this.currSpell.id, classId)
+          .subscribe();
+      } else {
+        this.server
+          .sendRemoveFavoriteSpellRequest(this.currSpell.id, classId)
+          .subscribe();
+      }
+    }
   }
 
   toggleFavoritesMode() {

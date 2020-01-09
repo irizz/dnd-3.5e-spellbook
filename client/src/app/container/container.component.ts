@@ -42,16 +42,15 @@ export class ContainerComponent implements OnInit {
     );
     this.server.fetchClasses().subscribe(
       (data: CharClassesResponse) => {
-        this.view.isLoading = false;
+        this.view.stopLoader();
         this.data.charClassesList = data.classesList.sort(sortingFunc);
       },
       (error: HttpErrorResponse) => {
-        this.view.isLoading = false;
-        this.view.isError = true;
-        this.view.errorToDisplay = {
+        this.view.stopLoader();
+        this.view.showError({
           statusText: error.statusText,
           message: error.message
-        };
+        });
       }
     );
   }
