@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { AuthService } from '../shared/services/auth.service';
 import { CookieService } from "../shared/services/cookie.service";
-import { DataService } from "../shared/services/data.service";
 import { ServerService } from "../shared/services/server.service";
-import { ViewService } from "../shared/services/view.service";
 
 @Component({
   selector: "app-login-form",
@@ -14,10 +13,9 @@ import { ViewService } from "../shared/services/view.service";
 export class LoginFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<LoginFormComponent>,
+    private auth: AuthService,
     private cookies: CookieService,
-    private data: DataService,
     private server: ServerService,
-    private view: ViewService
   ) {}
 
   ngOnInit() {}
@@ -54,11 +52,11 @@ export class LoginFormComponent implements OnInit {
     const login = this.login.value;
     const password = this.password.value;
 
-    this.server.sendLoginRequest(login, password).subscribe(
+    this.auth.sendLoginRequest(login, password).subscribe(
       () => {
-        this.data.setUsername(login);
         this.cookies.setCookie("username", login);
-        this.view.showLogin();
+        this.auth.setUsername(login);
+        this.auth.showLogin();
         this.closeModal();
       },
       error => {

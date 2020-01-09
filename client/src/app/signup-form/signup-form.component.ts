@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { AuthService } from '../shared/services/auth.service';
 import { CookieService } from "../shared/services/cookie.service";
-import { DataService } from "../shared/services/data.service";
-import { ServerService } from "../shared/services/server.service";
-import { ViewService } from "../shared/services/view.service";
 import {
   MIN_LOGIN_LENGTH,
   MIN_PASSWORD_LENGTH,
@@ -22,10 +20,8 @@ import {
 export class SignupFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SignupFormComponent>,
+    private auth: AuthService,
     private cookies: CookieService,
-    private data: DataService,
-    private server: ServerService,
-    private view: ViewService
   ) {}
 
   ngOnInit() {}
@@ -79,14 +75,14 @@ export class SignupFormComponent implements OnInit {
     const login = this.login.value;
     const password = this.password.value;
 
-    this.server.sendSignupRequest(login, password).subscribe(
+    this.auth.sendSignupRequest(login, password).subscribe(
       () => {
         // [NOTE] Autologin after successfull signup request
-        this.server.sendLoginRequest(login, password).subscribe(
+        this.auth.sendLoginRequest(login, password).subscribe(
           () => {
-            this.data.setUsername(login);
             this.cookies.setCookie("username", login);
-            this.view.showLogin();
+            this.auth.setUsername(login);
+            this.auth.showLogin();
             this.closeModal();
           },
           error => {

@@ -2,12 +2,6 @@ import { Injectable } from "@angular/core";
 
 @Injectable({ providedIn: "root" })
 export class CookieService {
-  deleteCookie(name: string) {
-    this.setCookie(name, "", {
-      "max-age": -1
-    });
-  }
-
   getCookie(name: string) {
     let matches = document.cookie.match(
       new RegExp(
@@ -33,5 +27,11 @@ export class CookieService {
       }
     }
     document.cookie = updatedCookie;
+  }
+
+  deleteCookie(name: string) {
+    this.setCookie(name, "", {
+      "max-age": -1
+    });
   }
 }

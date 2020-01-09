@@ -6,7 +6,6 @@ export class ViewService {
   constructor() {}
 
   public areSpellsLoaded: boolean = false;
-  public isLoggedIn: boolean = false;
   public isLoading: boolean = true;
   public isError: boolean = false;
   public isFavoritesMode: boolean = false;
@@ -17,13 +16,6 @@ export class ViewService {
     this.isError = false;
     this.isLoading = false;
     this.isFavoritesMode = false;
-  }
-
-  hideLogin() {
-    this.isLoggedIn = false;
-  }
-  showLogin() {
-    this.isLoggedIn = true;
   }
 
   showError(error: ErrorToDisplay) {

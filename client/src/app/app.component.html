@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="!view.isLoggedIn && data.isAgreedToCookies" class="auth">
+  <div *ngIf="!auth.isLoggedIn && auth.isAgreedToCookies" class="auth">
     <a
       mat-button
       (click)="handleLoginClick()"
@@ -16,8 +16,8 @@
       Sign Up
     </a>
   </div>
-  <div *ngIf="view.isLoggedIn" class="auth">
-    <span class="auth__username"> Welcome, {{ data.username }} </span>
+  <div *ngIf="auth.isLoggedIn" class="auth">
+    <span class="auth__username"> Welcome, {{ auth.username }} </span>
     <a mat-button class="auth__logout-btn" (click)="handleLogoutClick()">
       ( Logout )
     </a>
