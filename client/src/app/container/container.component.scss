@@ -1,18 +1,20 @@
 .container {
   margin: auto;
+  overflow: hidden;
+  width: 95%;
   padding: 0;
   min-height: 20rem;
   max-width: 80rem;
   position: absolute;
-  top: 0.5rem;
+  top: 3rem;
   left: 0;
   bottom: 1rem;
   right: 0;
 
   &__header {
     padding: 10px 10px 0 10px;
-    background-color: #d2d0d1;
-    color: #7a7b83;
+    color: #757575;
+    border-radius: 4px 4px 0 0;
 
     &_back-btn {
       position: absolute;
@@ -23,5 +25,24 @@
 
   &__content {
     padding: 20px;
+
+    &_select-class {
+      display: block;
+      position: absolute;
+      top: 42%;
+      left: 47%;
+    }
+
+    &_image {
+      opacity: 0.2;
+    }
+  
+    &_divider {
+      position: absolute;
+      width: 80%;
+      bottom: 5px;
+      left: 10%;
+      opacity: 0.2;
+    }
   }
 }

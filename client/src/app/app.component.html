@@ -1,1 +1,21 @@
-<app-container></app-container>
+<div>
+  <div *ngIf="!auth.isLoggedIn && auth.isAgreedToCookies" class="auth">
+    <a (click)="handleLoginClick()">
+      Login
+    </a>
+    <span>
+      |
+    </span>
+    <a (click)="handleSignupClick()">
+      Sign Up
+    </a>
+  </div>
+  <div *ngIf="auth.isLoggedIn" class="auth">
+    <span> Welcome, {{ auth.username }} (</span>
+    <a (click)="handleLogoutClick()">
+      Logout
+    </a>
+    <span>)</span>
+  </div>
+  <app-container></app-container>
+</div>

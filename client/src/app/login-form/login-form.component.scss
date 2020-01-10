@@ -1,0 +1,35 @@
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form {
+  &__login,
+  &__password {
+    display: block;
+    width: 100%;
+  }
+
+  &__login {
+    margin-bottom: 1rem;
+  }
+
+  &__password {
+    margin-bottom: 1.5rem;
+  }
+
+  &__error {
+    border-radius: 3px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ef9a9a;
+    background-color: #ffebee;
+  }
+}
+
+.actions {
+  button {
+    width: 50%;
+    margin: 0;
+  }
+}

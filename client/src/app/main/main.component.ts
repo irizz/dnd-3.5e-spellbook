@@ -1,9 +1,21 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
 import { SORTING_OPTIONS } from "../shared/constants";
-import { DataTree, TreeDataParentNode } from "../shared/data-tree.service";
-import { SortedSpells, Spell, SpellCharClass } from "../shared/interfaces";
-import { SharedService } from "../shared/shared.service";
+import { Spell } from "../shared/interfaces";
 import { sortingFunc } from "../shared/utils";
+import { AuthService } from "../shared/services/auth.service";
+import { DataService } from "../shared/services/data.service";
+import {
+  DataTree,
+  TreeDataParentNode
+} from "../shared/services/data-tree.service";
+import { ServerService } from "../shared/services/server.service";
+import { ViewService } from "../shared/services/view.service";
+import { ComponentsInfoComponent } from "../components-info/components-info.component";
+import {
+  transformResponseClassesToString,
+  transformSpellsToDataTree
+} from "./main-utils";
 
 @Component({
   selector: "app-main",
@@ -11,7 +23,14 @@ import { sortingFunc } from "../shared/utils";
   styleUrls: ["./main.component.scss"]
 })
 export class MainComponent implements OnInit {
-  constructor(private service: SharedService, private tree: DataTree) {}
+  constructor(
+    public dialog: MatDialog,
+    private auth: AuthService,
+    private data: DataService,
+    private tree: DataTree,
+    private server: ServerService,
+    private view: ViewService
+  ) {}
 
   private charClass: string = "";
   private currSpell: Spell;
@@ -27,19 +46,134 @@ export class MainComponent implements OnInit {
   private spellsTreeSortedBySchool: TreeDataParentNode[] = [];
 
   ngOnInit() {
-    this.spells = this.service.spellsList
-      .map(item => ({
-        ...item,
-        isFavorite: false
-      }))
+    this.spells = this.data.spellsList
+      .map(item => {
+        if (
+          this.data.favoriteSpells.findIndex(
+            favorite => item.id == favorite.id
+          ) !== -1
+        ) {
+          return {
+            ...item,
+            isFavorite: true
+          };
+        } else {
+          return {
+            ...item,
+            isFavorite: false
+          };
+        }
+      })
       .sort(sortingFunc);
     this.spellsCopy = [...this.spells];
-    this.charClass = this.service.charClassName;
-    this.changeSorting();
-    this.setCurrSpellToDefault();
+    this.charClass = this.data.charClassName;
+    this.setDefaultCurrSpellAndSorting();
+    this.checkIsThereFavoriteSpell();
   }
 
-  changeSorting() {
+  checkIsThereFavoriteSpell() {
+    const isThereFavoriteSpell = this.spells.some(
+      item => item.isFavorite == true
+    );
+    this.isFavoritesBtnDisabled = !isThereFavoriteSpell;
+  }
+
+  openComponentsInfoModal() {
+    const dialogRef = this.dialog.open(ComponentsInfoComponent);
+    dialogRef.afterClosed().subscribe();
+  }
+
+  handleFindSpell() {
+    if (!this.searchString) {
+      this.setDefaultCurrSpellAndSorting();
+      return;
+    }
+
+    let spellEqualsSearchString = false;
+    let spellStartsWithSearchString = false;
+    for (let i = 0; i < this.spells.length; i++) {
+      if (
+        this.spells[i].name.toLowerCase() == this.searchString.toLowerCase()
+      ) {
+        this.setCurrSpell(i);
+        spellEqualsSearchString = true;
+      } else if (
+        this.spells[i].name
+          .toLowerCase()
+          .indexOf(this.searchString.toLowerCase()) === 0 &&
+        !spellEqualsSearchString
+      ) {
+        this.setCurrSpell(i);
+        spellStartsWithSearchString = true;
+      } else if (
+        this.spells[i].name
+          .toLowerCase()
+          .indexOf(this.searchString.toLowerCase()) !== -1 &&
+        !spellEqualsSearchString &&
+        !spellStartsWithSearchString
+      ) {
+        this.setCurrSpell(i);
+      }
+    }
+  }
+
+  handleSpellNameClick(name: string) {
+    const idx = this.spells.findIndex(item => item.name == name);
+    this.setCurrSpell(idx);
+  }
+
+  setCurrSpell(idx: number) {
+    this.currSpell = this.spells[idx];
+    this.currSpellClasses = transformResponseClassesToString(
+      this.currSpell.classes
+    );
+  }
+
+  setDefaultCurrSpellAndSorting() {
+    this.setSorting();
+    this.setCurrSpell(0);
+  }
+
+  toggleIsCurrSpellFavorite() {
+    this.currSpell.isFavorite = !this.currSpell.isFavorite;
+    this.checkIsThereFavoriteSpell();
+
+    if (this.auth.isLoggedIn) {
+      const classId = this.data.charClassesList.find(
+        charClass => charClass.name == this.data.charClassName
+      )["id"];
+      if (this.currSpell.isFavorite) {
+        this.server
+          .sendAddFavoriteSpellRequest(this.currSpell.id, classId)
+          .subscribe();
+      } else {
+        this.server
+          .sendRemoveFavoriteSpellRequest(this.currSpell.id, classId)
+          .subscribe();
+      }
+    }
+  }
+
+  toggleFavoritesMode() {
+    this.isFavoritesMode = !this.isFavoritesMode;
+    this.view.isFavoritesMode = this.isFavoritesMode;
+
+    if (this.isFavoritesMode) {
+      this.spells = this.spells
+        .filter(item => item.isFavorite === true)
+        .sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.setDefaultCurrSpellAndSorting();
+    } else {
+      const restSpells = this.spellsCopy.filter(
+        item => !this.spells.includes(item)
+      );
+      const mergedSpells = this.spells.concat(restSpells);
+      this.spells = mergedSpells.sort(sortingFunc);
+      this.setDefaultCurrSpellAndSorting();
+    }
+  }
+
+  setSorting() {
     if (this.sortBy == SORTING_OPTIONS.BY_LEVEL) {
       this.sortSpellsByLevel();
       this.tree.dataSource.data = this.spellsTreeSortedByLevel.sort(
@@ -51,62 +185,6 @@ export class MainComponent implements OnInit {
         sortingFunc
       );
     }
-  }
-
-  handleChangeCurrSpell() {
-    if (!this.searchString) {
-      this.setCurrSpellToDefault();
-      return;
-    }
-    for (let i = 0; i < this.spells.length; i++) {
-      if (
-        this.spells[i].name
-          .toLowerCase()
-          .indexOf(this.searchString.toLowerCase()) !== -1
-      ) {
-        this.currSpell = this.spells[i];
-        this.currSpellClasses = this.transformResponseClassesToString(
-          this.currSpell.classes
-        );
-      }
-    }
-  }
-
-  handleFavoritesToggleClick() {
-    this.isFavoritesMode = !this.isFavoritesMode;
-    this.service.isFavoritesMode = this.isFavoritesMode;
-
-    if (this.isFavoritesMode) {
-      this.spells = this.spells
-        .filter(item => item.isFavorite === true)
-        .sort((a, b) => (a.name > b.name ? 1 : -1));
-      this.changeSorting();
-      this.setCurrSpellToDefault();
-    } else {
-      const restSpells = this.spellsCopy.filter(
-        item => !this.spells.includes(item)
-      );
-      const mergedSpells = this.spells.concat(restSpells);
-      this.spells = mergedSpells.sort(sortingFunc);
-      this.changeSorting();
-      this.setCurrSpellToDefault();
-    }
-  }
-
-  handleShowSpellCard(name: string) {
-    this.currSpell = this.spells[
-      this.spells.findIndex(item => item.name == name)
-    ];
-    this.currSpellClasses = this.transformResponseClassesToString(
-      this.currSpell.classes
-    );
-  }
-
-  setCurrSpellToDefault() {
-    this.currSpell = this.spells.sort(sortingFunc)[0];
-    this.currSpellClasses = this.transformResponseClassesToString(
-      this.currSpell.classes
-    );
   }
 
   sortSpellsByLevel() {
@@ -126,7 +204,7 @@ export class MainComponent implements OnInit {
         }
       }
     }
-    this.spellsTreeSortedByLevel = this.transformToDataTree(sortedSpells);
+    this.spellsTreeSortedByLevel = transformSpellsToDataTree(sortedSpells);
   }
 
   sortSpellsBySchool() {
@@ -141,40 +219,6 @@ export class MainComponent implements OnInit {
         sortedSpells[currSchool].push({ name: this.spells[i].name });
       }
     }
-    this.spellsTreeSortedBySchool = this.transformToDataTree(sortedSpells);
-  }
-
-  toggleIsFavorite() {
-    this.currSpell.isFavorite = !this.currSpell.isFavorite;
-    const isThereFavoriteSpell = this.spells.some(
-      item => item.isFavorite == true
-    );
-    this.isFavoritesBtnDisabled = !isThereFavoriteSpell;
-  }
-
-  transformResponseClassesToString(classesArr: SpellCharClass[]): string {
-    let resultString = "";
-    for (let i = 0; i < classesArr.length; i++) {
-      if (i == classesArr.length - 1) {
-        resultString =
-          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl`;
-      } else {
-        resultString =
-          resultString + `${classesArr[i].name} ${classesArr[i].level} lvl, `;
-      }
-    }
-    return resultString;
-  }
-
-  transformToDataTree(sortedSpells: SortedSpells): TreeDataParentNode[] {
-    let sortedSpellsKeys = Object.keys(sortedSpells);
-    let TREE_DATA = [];
-    for (let i = 0; i < sortedSpellsKeys.length; i++) {
-      TREE_DATA.push({
-        name: sortedSpellsKeys[i],
-        children: [...sortedSpells[sortedSpellsKeys[i]]]
-      });
-    }
-    return TREE_DATA;
+    this.spellsTreeSortedBySchool = transformSpellsToDataTree(sortedSpells);
   }
 }

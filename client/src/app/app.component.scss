@@ -1,0 +1,30 @@
+.auth {
+  font-size: 14px;
+  color: #bdbdbd;
+  padding: 10px;
+  margin: 0;
+  position: absolute;
+  top: 1rem;
+  @media screen and (max-width: 540px) {
+    right: 0rem;
+  }
+
+  @media screen and (min-width: 540px) and (max-width: 1920px) {
+    right: 3rem;
+  }
+
+  @media screen and (min-width: 1920px) {
+    right: 20rem;
+  }
+
+  a {
+    margin: 0 5px;
+    font-weight: 500;
+  }
+
+  a:hover {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    color: #757575;
+  }
+}
