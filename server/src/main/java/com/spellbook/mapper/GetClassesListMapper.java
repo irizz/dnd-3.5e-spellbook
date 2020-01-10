@@ -1,7 +1,7 @@
 package com.spellbook.mapper;
 
 import com.spellbook.dto.common.Class;
-import com.spellbook.dto.getSpellList.GetClassesListResponse;
+import com.spellbook.dto.GetClassesListResponse;
 import com.spellbook.jooq.tables.pojos.Classes;
 import org.springframework.stereotype.Component;
 

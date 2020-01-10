@@ -1,0 +1,62 @@
+<h1 mat-dialog-title class="title">Sign Up</h1>
+<div mat-dialog-content>
+  <form>
+    <mat-form-field class="form__login">
+      <input
+        matInput
+        placeholder="Username"
+        [formControl]="login"
+        (click)="clearError()"
+      />
+      <mat-error *ngIf="login.hasError('required')">
+        Username is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="login.hasError('minLength')">
+        Username must be <strong>more than 5 characters</strong>
+      </mat-error>
+      <mat-error *ngIf="login.hasError('maxLength')">
+        Username must be <strong>less than 20 characters</strong>
+      </mat-error>
+      <mat-error *ngIf="login.hasError('pattern')">
+        Username should consist of
+        <strong>latin letters, numbers, "." or "_" characters</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form__password">
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        [formControl]="password"
+      />
+      <mat-error *ngIf="password.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form__confirm-password">
+      <input
+        matInput
+        type="password"
+        placeholder="Confirm Password"
+        [formControl]="confirmPassword"
+      />
+    </mat-form-field>
+    <mat-error *ngIf="isPasswordNotConfirmed()" class="form__error">
+      Please, confirm your password
+    </mat-error>
+    <mat-error *ngIf="errorMessage !== ''" class="form__error">
+      {{ errorMessage }}
+    </mat-error>
+  </form>
+</div>
+<div mat-dialog-actions class="actions">
+  <button
+    mat-flat-button
+    (click)="onSignupClick()"
+    [disabled]="isSignupBtnDisabled()"
+    color="primary"
+  >
+    Sign Up
+  </button>
+  <button mat-flat-button (click)="onExitClick()">Cancel</button>
+</div>

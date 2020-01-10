@@ -1,4 +1,4 @@
-package com.spellbook.dto.getSpellList;
+package com.spellbook.dto;
 
 import com.spellbook.dto.common.Spell;
 import lombok.AllArgsConstructor;

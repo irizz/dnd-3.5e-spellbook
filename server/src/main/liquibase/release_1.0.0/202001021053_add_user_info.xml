@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="202001021053_add_user_info.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="202001021053" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            CREATE TABLE IF NOT EXISTS spellbook.users (
+            id                  UUID            NOT NULL    DEFAULT uuid_generate_v4(),
+            login               VARCHAR(60)     NOT NULL,
+            password            VARCHAR(60)     NOT NULL,
+            salt                VARCHAR(1000)     NOT NULL,
+
+            CONSTRAINT users_pk PRIMARY KEY(id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

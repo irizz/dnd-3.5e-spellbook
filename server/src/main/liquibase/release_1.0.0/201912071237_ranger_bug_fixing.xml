@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912071237_ranger_bug_fixing.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912071237" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            UPDATE spellbook.spells
+            SET school = 'Enchantment'
+            WHERE id = 'db988366-e8f2-4056-8e70-207efbbc0d85';
+
+            UPDATE spellbook.spells
+            SET school = 'Conjuration'
+            WHERE id = '61415325-6176-43ae-b870-87ff44f0e4ab';
+
+            UPDATE spellbook.spells
+            SET school = 'Conjuration'
+            WHERE id = '2ee2bf0c-9407-4f30-a1a5-1dc59d5cf58f';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

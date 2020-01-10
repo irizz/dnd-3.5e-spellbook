@@ -5,12 +5,27 @@
     &__select {
       margin-left: 1rem;
       margin-right: 20px;
-      width: 14rem;
+      @media screen and (max-width: 540px) {
+        width: 80%;
+        margin-right: 0;
+      }
+    
+      @media screen and (min-width: 540px) and (max-width: 1920px) {
+        width: 35%;
+      }
+    
+      @media screen and (min-width: 1920px) {
+        width: 14rem;
+      }
     }
 
     &__text-input {
       width: 14rem;
     }
+  }
+
+  &__save-btn {
+    float: right;
   }
 
   &__fav-btn {
@@ -22,15 +37,15 @@
   width: 100%;
 
   @media screen and (max-width: 540px) {
-    height: 50vh;
+    height: 35vh;
   }
 
   @media screen and (min-width: 540px) and (max-width: 1920px) {
-    height: 70vh;
+    height: 59vh;
   }
 
   @media screen and (min-width: 1920px) {
-    height: 80vh;
+    height: 77vh;
   }
 
   &__sidebar {
@@ -52,7 +67,7 @@
   &__spellcard {
     width: 80%;
     position: relative;
-    background-color: #e8e6e7;
+    background-color: #EEEEEE;
 
     &_card {
       width: 90%;
@@ -71,6 +86,11 @@
       & p {
         padding: 0;
         margin: 2px;
+      }
+
+      &_help-icon {
+        cursor: pointer;
+        font-size: 14px;
       }
     }
   }

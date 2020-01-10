@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912061332_add_0-2_ranger_spells.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912061332" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('15c2ceff-b6b4-4901-a844-c62af20ee06d', 'Alarm', 'Abjuration', 'V, S, F/DF', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '20-ft.-radius emanation centered on a point in space', '', '', '2 hours/level (D)', 'No', 'No', '', 'Alarm sounds a mental or audible alarm each time a creature of Tiny or larger size enters the warded area or touches it. A creature that speaks the password (determined by you at the time of casting) does not set off the alarm. You decide at the time of casting whether the alarm will be mental or audible.
+            Mental Alarm
+            A mental alarm alerts you (and only you) so long as you remain within 1 mile of the warded area. You note a single mental “ping” that awakens you from normal sleep but does not otherwise disturb concentration. A silence spell has no effect on a mental alarm.
+            Audible Alarm
+            An audible alarm produces the sound of a hand bell, and anyone within 60 feet of the warded area can hear it clearly. Reduce the distance by 10 feet for each interposing closed door and by 20 feet for each substantial interposing wall.
+            In quiet conditions, the ringing can be heard faintly as far as 180 feet away. The sound lasts for 1 round. Creatures within a silence spell cannot hear the ringing.
+            Ethereal or astral creatures do not trigger the alarm.
+            Alarm can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('15c2ceff-b6b4-4901-a844-c62af20ee06d', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('15c2ceff-b6b4-4901-a844-c62af20ee06d', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('15c2ceff-b6b4-4901-a844-c62af20ee06d', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('15c2ceff-b6b4-4901-a844-c62af20ee06d', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('42b66daf-8bff-44d0-b832-53dbdd6166f1', 'Animal Messenger', 'Enchantment', 'V, S, M', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One Tiny animal', '', 'One day/level', 'No', 'No', 'A morsel of food the animal likes.', 'You compel a Tiny animal to go to a spot you designate. The most common use for this spell is to get an animal to carry a message to your allies. The animal cannot be one tamed or trained by someone else, including such creatures as familiars and animal companions.
+            Using some type of food desirable to the animal as a lure, you call the animal to you. It advances and awaits your bidding. You can mentally impress on the animal a certain place well known to you or an obvious landmark. The directions must be simple, because the animal depends on your knowledge and can’t find a destination on its own. You can attach some small item or note to the messenger. The animal then goes to the designated location and waits there until the duration of the spell expires, whereupon it resumes its normal activities.
+            During this period of waiting, the messenger allows others to approach it and remove any scroll or token it carries. The intended recipient gains no special ability to communicate with the animal or read any attached message (if it’s written in a language he or she doesn’t know, for example).');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('42b66daf-8bff-44d0-b832-53dbdd6166f1', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('42b66daf-8bff-44d0-b832-53dbdd6166f1', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('42b66daf-8bff-44d0-b832-53dbdd6166f1', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('6a2c6a2d-722a-4ae4-acd9-716c71fb8274', 'Charm Animal', '', '', '', '', '', 'One animal', '', '', '', '', '', 'This spell functions like charm person, except that it affects a creature of the animal type.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6a2c6a2d-722a-4ae4-acd9-716c71fb8274', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6a2c6a2d-722a-4ae4-acd9-716c71fb8274', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('4d77f7d7-a844-4afe-8601-e0b0e5e0a3af', 'Delay Poison', 'Conjuration', 'V, S, DF', '1 standard action', 'Touch', '', 'Creature touched', '', '1 hour/level', 'Fortitude negates (harmless)', 'Yes (harmless)', '', 'The subject becomes temporarily immune to poison. Any poison in its system or any poison to which it is exposed during the spell’s duration does not affect the subject until the spell’s duration has expired. Delay poison does not cure any damage that poison may have already done.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('4d77f7d7-a844-4afe-8601-e0b0e5e0a3af', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('4d77f7d7-a844-4afe-8601-e0b0e5e0a3af', '1ec07635-5e45-43f5-8151-7861e8a387a6', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('4d77f7d7-a844-4afe-8601-e0b0e5e0a3af', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('4d77f7d7-a844-4afe-8601-e0b0e5e0a3af', 'b94893a6-577c-472c-b573-6c35316dd2d2', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('4d77f7d7-a844-4afe-8601-e0b0e5e0a3af', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('638815d8-fd14-4657-b596-d2f54bb84101', 'Detect Animals or Plants', 'Divination', 'V, S', '1 standard action', 'Long (400 ft. + 40 ft./level)', 'Cone-shaped emanation', '', '', 'Concentration, up to 10 min./level (D)', 'No', 'No', '', 'You can detect a particular kind of animal or plant in a cone emanating out from you in whatever direction you face. You must think of a kind of animal or plant when using the spell, but you can change the animal or plant kind each round. The amount of information revealed depends on how long you search a particular area or focus on a specific kind of animal or plant.
+            1st Round
+            Presence or absence of that kind of animal or plant in the area.
+            2nd Round
+            Number of individuals of the specified kind in the area, and the condition of the healthiest specimen.
+            3rd Round
+            The condition (see below) and location of each individual present. If an animal or plant is outside your line of sight, then you discern its direction but not its exact location.
+            Conditions
+            For purposes of this spell, the categories of condition are as follows:
+            Normal
+            Has at least 90% of full normal hit points, free of disease.
+            Fair
+            30% to 90% of full normal hit points remaining.
+            Poor
+            Less than 30% of full normal hit points remaining, afflicted with a disease, or suffering from a debilitating injury.
+            Weak
+            0 or fewer hit points remaining, afflicted with a disease in the terminal stage, or crippled.
+            If a creature falls into more than one category, the spell indicates the weaker of the two.
+            Each round you can turn to detect a kind of animal or plant in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('638815d8-fd14-4657-b596-d2f54bb84101', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('638815d8-fd14-4657-b596-d2f54bb84101', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', 'Detect Poison', 'Divination', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'One creature, one object, or a 5-ft. cube', '', 'Instantaneous', 'No', 'No', '', 'You determine whether a creature, object, or area has been poisoned or is poisonous. You can determine the exact type of poison with a DC 20 Wisdom check. A character with the Craft (alchemy) skill may try a DC 20 Craft (alchemy) check if the Wisdom check fails, or may try the Craft (alchemy) check prior to the Wisdom check.
+            The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', '4a663f67-8405-4624-99bc-f81b7895ab86', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', '1ec07635-5e45-43f5-8151-7861e8a387a6', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('57d012ac-2ec3-4407-8856-b964e448986e', 'b94893a6-577c-472c-b573-6c35316dd2d2', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('abf2c5db-ee7d-4dfe-b049-87034ead58d8', 'Detect Snares and Pits', 'Divination', 'V, S', '1 standard action', '60 ft.', 'Cone-shaped emanation', '', '', 'Concentration, up to 10 min./level (D)', 'No', 'No', '', 'You can detect simple pits, deadfalls, and snares as well as mechanical traps constructed of natural materials. The spell does not detect complex traps, including trapdoor traps.
+            Detect snares and pits does detect certain natural hazards—quicksand (a snare), a sinkhole (a pit), or unsafe walls of natural rock (a deadfall). However, it does not reveal other potentially dangerous conditions. The spell does not detect magic traps (except those that operate by pit, deadfall, or snaring; see the spell snare), nor mechanically complex ones, nor those that have been rendered safe or inactive.
+            The amount of information revealed depends on how long you study a particular area.
+            1st Round
+            Presence or absence of hazards.
+            2nd Round
+            Number of hazards and the location of each. If a hazard is outside your line of sight, then you discern its direction but not its exact location.
+            Each Additional Round
+            The general type and trigger for one particular hazard closely examined by you.
+            Each round, you can turn to detect snares and pits in a new area. The spell can penetrate barriers, but 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt blocks it.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('abf2c5db-ee7d-4dfe-b049-87034ead58d8', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('abf2c5db-ee7d-4dfe-b049-87034ead58d8', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', 'Endure Elements', 'Abjuration', 'V, S', '1 standard action', 'Touch', '', 'Creature touched', '', '24 hours', 'Will negates (harmless)', 'Yes (harmless)', '', 'A creature protected by endure elements suffers no harm from being in a hot or cold environment. It can exist comfortably in conditions between -50 and 140 degrees Fahrenheit without having to make Fortitude saves). The creature’s equipment is likewise protected.
+            Endure elements doesn’t provide any protection from fire or cold damage, nor does it protect against other environmental hazards such as smoke, lack of air, and so forth.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', '1ec07635-5e45-43f5-8151-7861e8a387a6', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2b997ff7-406c-45e9-9356-feb358841d34', 'b94893a6-577c-472c-b573-6c35316dd2d2', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('6f5f85ce-af79-4255-a488-2e7f1812be67', 'Entangle', 'Transmutation', 'V, S, DF', '1 standard action', 'Long (400 ft. + 40 ft./level)', 'Plants in a 40-ft.-radius spread', '', '', '1 min./level (D)', 'Reflex partial', 'No', '', 'Grasses, weeds, bushes, and even trees wrap, twist, and entwine about creatures in the area or those that enter the area, holding them fast and causing them to become entangled. The creature can break free and move half its normal speed by using a full-round action to make a DC 20 Strength check or a DC 20 Escape Artist check. A creature that succeeds on a Reflex save is not entangled but can still move at only half speed through the area. Each round on your turn, the plants once again attempt to entangle all creatures that have avoided or escaped entanglement.
+            Note: The effects of the spell may be altered somewhat, based on the nature of the entangling plants.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6f5f85ce-af79-4255-a488-2e7f1812be67', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('6f5f85ce-af79-4255-a488-2e7f1812be67', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('1acbb94c-5016-4049-9bd4-8453b42f0b9f', 'Hide from Animals', 'Abjuration', 'S, DF', '1 standard action', 'Touch', '', 'One creature touched/level', '', '10 min./level (D)', 'Will negates (harmless)', 'Yes', '', 'Animals cannot see, hear, or smell the warded creatures. Even extraordinary or supernatural sensory capabilities, such as blindsense, blindsight, scent, and tremorsense, cannot detect or locate warded creatures. Animals simply act as though the warded creatures are not there. If a warded character touches an animal or attacks any creature, even with a spell, the spell ends for all recipients. ');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1acbb94c-5016-4049-9bd4-8453b42f0b9f', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1acbb94c-5016-4049-9bd4-8453b42f0b9f', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('138c4f74-0656-4885-add8-f3b51c408c13', 'Jump', 'Transmutation', 'V, S, M', '1 standard action', 'Touch', '', 'Creature touched', '', '1 min./level (D)', 'Will negates (harmless)', 'Yes', 'A grasshopper’s hind leg, which you break when the spell is cast.', 'The subject gets a +10 enhancement bonus on Jump checks. The enhancement bonus increases to +20 at caster level 5th, and to +30 (the maximum) at caster level 9th.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('138c4f74-0656-4885-add8-f3b51c408c13', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('138c4f74-0656-4885-add8-f3b51c408c13', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('138c4f74-0656-4885-add8-f3b51c408c13', '1743cb02-abb8-42d9-b651-860ff06e627a', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('138c4f74-0656-4885-add8-f3b51c408c13', '348effa3-bb33-4f9b-9726-c9e44beda456', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e23bc31b-4c96-4efc-8afa-f07c2d405697', 'Longstrider', 'Transmutation', 'V, S, M', '1 standard action', 'Personal', '', 'You', '', '1 hour/level (D)', '', '', 'A pinch of dirt.', 'This spell increases your base land speed by 10 feet. (This adjustment counts as an enhancement bonus.) It has no effect on other modes of movement, such as burrow, climb, fly, or swim.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e23bc31b-4c96-4efc-8afa-f07c2d405697', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e23bc31b-4c96-4efc-8afa-f07c2d405697', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('cdee12b1-0b5b-4fcf-a883-3f5f8e7ada90', 'Magic Fang', 'Transmutation', 'V, S, DF', '1 standard action', 'Touch', '', 'Creature touched', '', '1 min./level', 'Will negates (harmless)', 'Yes(harmless)', '', 'Magic fang gives one natural weapon of the subject a +1 enhancement bonus on attack and damage rolls. The spell can affect a slam attack, fist, bite, or other natural weapon. (The spell does not change an unarmed strike’s damage from nonlethal damage to lethal damage.)
+            Magic fang can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('cdee12b1-0b5b-4fcf-a883-3f5f8e7ada90', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('cdee12b1-0b5b-4fcf-a883-3f5f8e7ada90', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('a2708e2e-1bb4-41a0-99fa-8cf5973c1a25', 'Pass without Trace', 'Transmutation', 'V, S, DF', '1 standard action', 'Touch', '', 'Creature touched', '', '1 hour/level (D)', 'Will negates (harmless)', 'Yes(harmless)', '', 'The subject or subjects can move through any type of terrain and leave neither footprints nor scent. Tracking the subjects is impossible by nonmagical means.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a2708e2e-1bb4-41a0-99fa-8cf5973c1a25', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('a2708e2e-1bb4-41a0-99fa-8cf5973c1a25', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', 'Read Magic', 'Divination', 'V, S, F', '1 standard action', 'Personal', '', 'You', '', '10 min./level', '', '', '', 'By means of read magic, you can decipher magical inscriptions on objects—books, scrolls, weapons, and the like—that would otherwise be unintelligible. This deciphering does not normally invoke the magic contained in the writing, although it may do so in the case of a cursed scroll. Furthermore, once the spell is cast and you have read the magical inscription, you are thereafter able to read that particular writing without recourse to the use of read magic. You can read at the rate of one page (250 words) per minute. The spell allows you to identify a glyph of warding with a DC 13 Spellcraft check, a greater glyph of warding with a DC 16 Spellcraft check, or any symbol spell with a Spellcraft check (DC 10 + spell level).
+            Read magic can be made permanent with a permanency spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', '4a663f67-8405-4624-99bc-f81b7895ab86', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', '1743cb02-abb8-42d9-b651-860ff06e627a', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', '348effa3-bb33-4f9b-9726-c9e44beda456', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', '1ec07635-5e45-43f5-8151-7861e8a387a6', 0);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', 'b94893a6-577c-472c-b573-6c35316dd2d2', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('1273365a-2e70-4083-a2f2-5b1b3de6c037', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 0);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', 'Resist Energy', 'Abjuration', 'V, S, DF', '1 standard action', 'Touch', '', 'Creature touched', '', '10 min./level', 'Fortitude negates (harmless)', 'Yes(harmless)', '', 'This abjuration grants a creature limited protection from damage of whichever one of five energy types you select: acid, cold, electricity, fire, or sonic. The subject gains energy resistance 10 against the energy type chosen, meaning that each time the creature is subjected to such damage (whether from a natural or magical source), that damage is reduced by 10 points before being applied to the creature’s hit points. The value of the energy resistance granted increases to 20 points at 7th level and to a maximum of 30 points at 11th level. The spell protects the recipient’s equipment as well.
+            Resist energy absorbs only damage. The subject could still suffer unfortunate side effects.
+            Note: Resist energy overlaps (and does not stack with) protection from energy. If a character is warded by protection from energy and resist energy, the protection spell absorbs damage until its power is exhausted.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', '1ec07635-5e45-43f5-8151-7861e8a387a6', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dab35e3-8979-4cb9-a5b5-d63270b02f20', 'b94893a6-577c-472c-b573-6c35316dd2d2', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('8dfbe243-4b8f-4d8b-b7e4-da46bc942206', 'Speak with Animals', 'Divination', 'V, S', '1 standard action', 'Personal', '', 'You', '', '1 min./level', '', '', '', 'You can comprehend and communicate with animals. You are able to ask questions of and receive answers from animals, although the spell doesn’t make them any more friendly or cooperative than normal. Furthermore, wary and cunning animals are likely to be terse and evasive, while the more stupid ones make inane comments. If an animal is friendly toward you, it may do some favor or service for you. ');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dfbe243-4b8f-4d8b-b7e4-da46bc942206', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dfbe243-4b8f-4d8b-b7e4-da46bc942206', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('8dfbe243-4b8f-4d8b-b7e4-da46bc942206', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('49f0b2d8-bb42-4f6d-ba0c-33319b6f1352', 'Summon Nature’s Ally I', 'Conjuration', 'V, S, DF', '1 round', 'Close (25 ft. + 5 ft./2 levels)', '', '', 'One summoned creature', '1 round/level (D)', 'No', 'No', '', 'This spell summons a natural creature. It appears where you designate and acts immediately, on your turn. It attacks your opponents to the best of its ability. If you can communicate with the creature, you can direct it not to attack, to attack particular enemies, or to perform other actions.
+            A summoned monster cannot summon or otherwise conjure another creature, nor can it use any teleportation or planar travel abilities. Creatures cannot be summoned into an environment that cannot support them.
+            The spell conjures one of the creatures from the 1st-level list on the accompanying Summon Nature’s Ally table. You choose which kind of creature to summon, and you can change that choice each time you cast the spell. All the creatures on the table are neutral unless otherwise noted.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('49f0b2d8-bb42-4f6d-ba0c-33319b6f1352', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('49f0b2d8-bb42-4f6d-ba0c-33319b6f1352', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('d730ec67-1465-4196-88c9-0c8f385c2e80', 'Barkskin', 'Transmutation', 'V, S, DF', '1 standard action', 'Touch', '', 'Living creature touched', '', '10 min./level', 'No', 'Yes(harmless)', '', 'Barkskin toughens a creature’s skin. The effect grants a +2 enhancement bonus to the creature’s existing natural armor bonus. This enhancement bonus increases by 1 for every three caster levels above 3rd, to a maximum of +5 at caster level 12th.
+            The enhancement bonus provided by barkskin stacks with the target’s natural armor bonus, but not with other enhancement bonuses to natural armor. A creature without natural armor has an effective natural armor bonus of +0.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d730ec67-1465-4196-88c9-0c8f385c2e80', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('d730ec67-1465-4196-88c9-0c8f385c2e80', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('02a805e4-a518-4437-8f4b-1d36b3bc0253', 'Bear’s Endurance', 'Transmutation', 'V, S, DF', '1 standard action', 'Touch', '', 'Creature touched', '', '1 min./level', 'Will negates (harmless)', 'Yes', '', 'The affected creature gains greater vitality and stamina. The spell grants the subject a +4 enhancement bonus to Constitution, which adds the usual benefits to hit points, Fortitude saves, Constitution checks, and so forth.
+            Hit points gained by a temporary increase in Constitution score are not temporary hit points. They go away when the subject’s Constitution drops back to normal. They are not lost first as temporary hit points are.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('02a805e4-a518-4437-8f4b-1d36b3bc0253', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('02a805e4-a518-4437-8f4b-1d36b3bc0253', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('02a805e4-a518-4437-8f4b-1d36b3bc0253', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('02a805e4-a518-4437-8f4b-1d36b3bc0253', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('02a805e4-a518-4437-8f4b-1d36b3bc0253', '1ec07635-5e45-43f5-8151-7861e8a387a6', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('b97c9121-321b-4d93-8378-c127e40a931f', 'Cat’s Grace', 'Transmutation', 'V, S, M', '1 standard action', 'Touch', '', 'Creature touched', '', '1 min./level', 'Will negates (harmless)', 'Yes', 'A pinch of cat fur.', 'The transmuted creature becomes more graceful, agile, and coordinated. The spell grants a +4 enhancement bonus to Dexterity, adding the usual benefits to AC, Reflex saves, and other uses of the Dexterity modifier.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b97c9121-321b-4d93-8378-c127e40a931f', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b97c9121-321b-4d93-8378-c127e40a931f', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b97c9121-321b-4d93-8378-c127e40a931f', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b97c9121-321b-4d93-8378-c127e40a931f', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('b97c9121-321b-4d93-8378-c127e40a931f', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('61415325-6176-43ae-b870-87ff44f0e4ab', 'Cure Light Wounds', 'Conjuration ', 'V, S', '1 standard action', 'Touch', '', 'Creature touched', '', 'Instantaneous', 'Will half (harmless)', 'Yes (harmless)', '', 'When laying your hand upon a living creature, you channel positive energy that cures 1d8 points of damage +1 point per caster level (maximum +5).
+            Since undead are powered by negative energy, this spell deals damage to them instead of curing their wounds. An undead creature can apply spell resistance, and can attempt a Will save to take half damage.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('61415325-6176-43ae-b870-87ff44f0e4ab', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('61415325-6176-43ae-b870-87ff44f0e4ab', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('61415325-6176-43ae-b870-87ff44f0e4ab', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('61415325-6176-43ae-b870-87ff44f0e4ab', '1ec07635-5e45-43f5-8151-7861e8a387a6', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('61415325-6176-43ae-b870-87ff44f0e4ab', 'b94893a6-577c-472c-b573-6c35316dd2d2', 1);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('db988366-e8f2-4056-8e70-207efbbc0d85', 'Hold Animal', 'Enchantment ', 'V, S', '', '', '', 'One animal', '', '', '', '', '', 'This spell functions like hold person, except that it affects an animal instead of a humanoid.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('db988366-e8f2-4056-8e70-207efbbc0d85', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('db988366-e8f2-4056-8e70-207efbbc0d85', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', 'Owl’s Wisdom', 'Transmutation', 'V, S, M/DF', '1 standard action', 'Touch', '', 'Creature touched', '', '1 min./level', 'Will negates (harmless)', 'Yes', '', 'The transmuted creature becomes wiser. The spell grants a +4 enhancement bonus to Wisdom, adding the usual benefit to Wisdom-related skills. Clerics, druids, paladins, and rangers (and other Wisdom-based spellcasters) who receive owl’s wisdom do not gain any additional bonus spells for the increased Wisdom, but the save DCs for their spells increase.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', '1743cb02-abb8-42d9-b651-860ff06e627a', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', '348effa3-bb33-4f9b-9726-c9e44beda456', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', '1ec07635-5e45-43f5-8151-7861e8a387a6', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('414a060c-71d5-488b-83d8-14760ffdaee4', 'b94893a6-577c-472c-b573-6c35316dd2d2', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('3b7d47f1-25e4-4c6e-bf39-0d839bdab454', 'Protection from Energy', 'Abjuration', 'V, S, DF', '1 standard action', 'Touch', '', 'Creature touched', '', '10 min./level or until discharged', 'Fortitude negates (harmless)', 'Yes (harmless)', '', 'Protection from energy grants temporary immunity to the type of energy you specify when you cast it (acid, cold, electricity, fire, or sonic). When the spell absorbs 12 points per caster level of energy damage (to a maximum of 120 points at 10th level), it is discharged.
+            Note: Protection from energy overlaps (and does not stack with) resist energy. If a character is warded by protection from energy and resist energy, the protection spell absorbs damage until its power is exhausted.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b7d47f1-25e4-4c6e-bf39-0d839bdab454', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b7d47f1-25e4-4c6e-bf39-0d839bdab454', '4a663f67-8405-4624-99bc-f81b7895ab86', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b7d47f1-25e4-4c6e-bf39-0d839bdab454', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b7d47f1-25e4-4c6e-bf39-0d839bdab454', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('3b7d47f1-25e4-4c6e-bf39-0d839bdab454', '1ec07635-5e45-43f5-8151-7861e8a387a6', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('e9bddb52-4573-4bf2-bcf0-5de8456ad9d8', 'Snare', 'Transmutation', 'V, S, DF', '3 rounds', 'Touch', '', 'Touched nonmagical circle of vine, rope, or thong with a 2 ft. diameter + 2 ft./level', '', 'Until triggered or broken', 'No', 'No', '', 'This spell enables you to make a snare that functions as a magic trap. The snare can be made from any supple vine, a thong, or a rope. When you cast snare upon it, the cordlike object blends with its surroundings (Search DC 23 for a character with the trapfinding ability to locate). One end of the snare is tied in a loop that contracts around one or more of the limbs of any creature stepping inside the circle.
+            If a strong and supple tree is nearby, the snare can be fastened to it. The spell causes the tree to bend and then straighten when the loop is triggered, dealing 1d6 points of damage to the creature trapped and lifting it off the ground by the trapped limb or limbs. If no such tree is available, the cordlike object tightens around the creature, dealing no damage but causing it to be entangled.
+            The snare is magical. To escape, a trapped creature must make a DC 23 Escape Artist check or a DC 23 Strength check that is a full-round action. The snare has AC 7 and 5 hit points. A successful escape from the snare breaks the loop and ends the spell.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e9bddb52-4573-4bf2-bcf0-5de8456ad9d8', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('e9bddb52-4573-4bf2-bcf0-5de8456ad9d8', '4a663f67-8405-4624-99bc-f81b7895ab86', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('fad9dc1d-ed6b-46f4-b22b-072c8c7d10df', 'Speak with Plants', 'Divination', 'V, S', '1 standard action', 'Personal', '', 'You', '', '1 min./level', '', '', '', 'You can comprehend and communicate with plants, including both normal plants and plant creatures. You are able to ask questions of and receive answers from plants. A regular plant’s sense of its surroundings is limited, so it won’t be able to give (or recognize) detailed descriptions of creatures or answer questions about events outside its immediate vicinity.
+            The spell doesn’t make plant creatures any more friendly or cooperative than normal. Furthermore, wary and cunning plant creatures are likely to be terse and evasive, while the more stupid ones may make inane comments. If a plant creature is friendly toward you, it may do some favor or service for you.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('fad9dc1d-ed6b-46f4-b22b-072c8c7d10df', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('fad9dc1d-ed6b-46f4-b22b-072c8c7d10df', '4a663f67-8405-4624-99bc-f81b7895ab86', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('fad9dc1d-ed6b-46f4-b22b-072c8c7d10df', '008426fe-3ff7-4609-b097-1b4f5d7f606c', 4);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('467dc96f-b94f-42b4-a11f-bc2040cd5d7a', 'Spike Growth', 'Transmutation', 'V, S, DF', '1 standard action', 'Medium (100 ft. + 10 ft./level)', 'One 20-ft. square/level', '', '', '1 hour/level (D)', 'Reflex partial', 'Yes', '', 'Any ground-covering vegetation in the spell’s area becomes very hard and sharply pointed without changing its appearance.
+            In areas of bare earth, roots and rootlets act in the same way. Typically, spike growth can be cast in any outdoor setting except open water, ice, heavy snow, sandy desert, or bare stone. Any creature moving on foot into or through the spell’s area takes 1d4 points of piercing damage for each 5 feet of movement through the spiked area.
+            Any creature that takes damage from this spell must also succeed on a Reflex save or suffer injuries to its feet and legs that slow its land speed by one-half. This speed penalty lasts for 24 hours or until the injured creature receives a cure spell (which also restores lost hit points). Another character can remove the penalty by taking 10 minutes to dress the injuries and succeeding on a Heal check against the spell’s save DC.
+            Spike growth can’t be disabled with the Disable Device skill.
+            Note: Magic traps such as spike growth are hard to detect. A rogue (only) can use the Search skill to find a spike growth. The DC is 25 + spell level, or DC 28 for spike growth (or DC 27 for spike growth cast by a ranger).
+            Any ground-covering vegetation in the spell’s area becomes very hard and sharply pointed without changing its appearance.
+            In areas of bare earth, roots and rootlets act in the same way. Typically, spike growth can be cast in any outdoor setting except open water, ice, heavy snow, sandy desert, or bare stone. Any creature moving on foot into or through the spell’s area takes 1d4 points of piercing damage for each 5 feet of movement through the spiked area.
+            Any creature that takes damage from this spell must also succeed on a Reflex save or suffer injuries to its feet and legs that slow its land speed by one-half. This speed penalty lasts for 24 hours or until the injured creature receives a cure spell (which also restores lost hit points). Another character can remove the penalty by taking 10 minutes to dress the injuries and succeeding on a Heal check against the spell’s save DC.
+            Spike growth can’t be disabled with the Disable Device skill.
+            Note: Magic traps such as spike growth are hard to detect. A rogue (only) can use the Search skill to find a spike growth. The DC is 25 + spell level, or DC 28 for spike growth (or DC 27 for spike growth cast by a ranger).
+            Any ground-covering vegetation in the spell’s area becomes very hard and sharply pointed without changing its appearance.
+            In areas of bare earth, roots and rootlets act in the same way. Typically, spike growth can be cast in any outdoor setting except open water, ice, heavy snow, sandy desert, or bare stone. Any creature moving on foot into or through the spell’s area takes 1d4 points of piercing damage for each 5 feet of movement through the spiked area.
+            Any creature that takes damage from this spell must also succeed on a Reflex save or suffer injuries to its feet and legs that slow its land speed by one-half. This speed penalty lasts for 24 hours or until the injured creature receives a cure spell (which also restores lost hit points). Another character can remove the penalty by taking 10 minutes to dress the injuries and succeeding on a Heal check against the spell’s save DC.
+            Spike growth can’t be disabled with the Disable Device skill.
+            Note: Magic traps such as spike growth are hard to detect. A rogue (only) can use the Search skill to find a spike growth. The DC is 25 + spell level, or DC 28 for spike growth (or DC 27 for spike growth cast by a ranger).');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('467dc96f-b94f-42b4-a11f-bc2040cd5d7a', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('467dc96f-b94f-42b4-a11f-bc2040cd5d7a', '4a663f67-8405-4624-99bc-f81b7895ab86', 3);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('2ee2bf0c-9407-4f30-a1a5-1dc59d5cf58f', 'Summon Nature’s Ally II', 'Conjuration ', '', '', '', '', '', 'One or more creatures, no two of which can be more than 30 ft. apart', '', '', '', '', 'This spell functions like summon nature’s ally I, except that you can summon one 2nd-level creature or 1d3 1st-level creatures of the same kind.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2ee2bf0c-9407-4f30-a1a5-1dc59d5cf58f', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('2ee2bf0c-9407-4f30-a1a5-1dc59d5cf58f', '4a663f67-8405-4624-99bc-f81b7895ab86', 2);
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('35e66d17-d454-4190-ab34-ea998b1ef0f4', 'Wind Wall', 'Evocation', 'V, S, M/DF', '1 standard action', 'Medium (100 ft. + 10 ft./level)', '', '', 'Wall up to 10 ft./level long and 5 ft./level high', '1 round/level', 'No', 'Yes', '', 'An invisible vertical curtain of wind appears. It is 2 feet thick and of considerable strength. It is a roaring blast sufficient to blow away any bird smaller than an eagle, or tear papers and similar materials from unsuspecting hands. (A Reflex save allows a creature to maintain its grasp on an object.) Tiny and Small flying creatures cannot pass through the barrier. Loose materials and cloth garments fly upward when caught in a wind wall. Arrows and bolts are deflected upward and miss, while any other normal ranged weapon passing through the wall has a 30% miss chance. (A giant-thrown boulder, a siege engine projectile, and other massive ranged weapons are not affected.) Gases, most gaseous breath weapons, and creatures in gaseous form cannot pass through the wall (although it is no barrier to incorporeal creatures).
+            While the wall must be vertical, you can shape it in any continuous path along the ground that you like. It is possible to create cylindrical or square wind walls to enclose specific points.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('35e66d17-d454-4190-ab34-ea998b1ef0f4', 'a4b91e77-742d-42d3-809d-22417495d11d', 2);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('35e66d17-d454-4190-ab34-ea998b1ef0f4', '4a663f67-8405-4624-99bc-f81b7895ab86', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('35e66d17-d454-4190-ab34-ea998b1ef0f4', '1743cb02-abb8-42d9-b651-860ff06e627a', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('35e66d17-d454-4190-ab34-ea998b1ef0f4', '348effa3-bb33-4f9b-9726-c9e44beda456', 3);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('35e66d17-d454-4190-ab34-ea998b1ef0f4', '1ec07635-5e45-43f5-8151-7861e8a387a6', 3);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

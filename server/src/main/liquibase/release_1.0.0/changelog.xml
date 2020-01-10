@@ -9,4 +9,9 @@
     <include file="201912041653_add_spells_2_level.xml" relativeToChangelogFile="true"/>
     <include file="201912051244_add_spells_3_level.xml" relativeToChangelogFile="true"/>
     <include file="201912051559_add_spells_4_level.xml" relativeToChangelogFile="true"/>
+    <include file="201912061332_add_0-2_ranger_spells.xml" relativeToChangelogFile="true"/>
+    <include file="201912071221_ranger_bug_fixing.xml" relativeToChangelogFile="true"/>
+    <include file="201912071237_ranger_bug_fixing.xml" relativeToChangelogFile="true"/>
+    <include file="202001021053_add_user_info.xml" relativeToChangelogFile="true"/>
+    <include file="202001091213_add_user_favorite_spells.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
