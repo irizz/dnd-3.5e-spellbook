@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="201912071221_ranger_bug_fixing.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="201912071221" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            DELETE FROM spellbook.class_spell_availability WHERE spell_id = '1273365a-2e70-4083-a2f2-5b1b3de6c037';
+
+            DELETE FROM spellbook.spells WHERE id = '1273365a-2e70-4083-a2f2-5b1b3de6c037';
+
+            UPDATE spellbook.spells
+            SET school = 'Enchantment'
+            WHERE id = '6a2c6a2d-722a-4ae4-acd9-716c71fb8274';
+
+            INSERT INTO spellbook.spells (id, name, school, components, casting_time, range, area, target, effect, duration, saving_throw, spell_resistance, material_components, description)
+            VALUES ('94e8991e-cfdf-44e9-98a5-cb92b3690db7', 'Calm Animals', 'Enchantment', 'V, S', '1 standard action', 'Close (25 ft. + 5 ft./2 levels)', '', 'Animals within 30 ft. of each other', '', '1 minute./level', 'Will negates', 'Yes', '', 'This spell soothes and quiets animals, rendering them docile and harmless. Only ordinary animals (those with Intelligence scores of 1 or 2) can be affected by this spell. All the subjects must be of the same kind, and no two may be more than 30 feet apart. The maximum number of Hit Dice of animals you can affect is equal to 2d4 + caster level. A dire animal or an animal trained to attack or guard is allowed a saving throw; other animals are not.
+            The affected creatures remain where they are and do not attack or flee. They are not helpless and defend themselves normally if attacked. Any threat breaks the spell on the threatened creatures.');
+
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('94e8991e-cfdf-44e9-98a5-cb92b3690db7', 'a4b91e77-742d-42d3-809d-22417495d11d', 1);
+            INSERT INTO spellbook.class_spell_availability (spell_id, class_id, level)
+            VALUES ('94e8991e-cfdf-44e9-98a5-cb92b3690db7', '4a663f67-8405-4624-99bc-f81b7895ab86', 1);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

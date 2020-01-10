@@ -2,7 +2,6 @@ package com.spellbook.repository;
 
 import com.spellbook.jooq.tables.pojos.Classes;
 import com.spellbook.jooq.tables.records.ClassesRecord;
-import lombok.RequiredArgsConstructor;
 import org.jooq.Field;
 import org.jooq.Record;
 import org.jooq.Table;
@@ -18,8 +17,7 @@ import static com.spellbook.jooq.Tables.SPELLS;
 
 @Repository
 @Transactional
-@RequiredArgsConstructor
-public class ClassesRepository extends DefaultRepository {
+public class ClassesRepository extends DefaultRepository<Classes, ClassesRecord> {
 
     @Override
     protected Table<ClassesRecord> getDaoTable() {
@@ -37,7 +35,7 @@ public class ClassesRepository extends DefaultRepository {
     }
 
     public List<Record> getClassesBySpellId(UUID id) {
-        return dslContext.select()
+        return getContext().select()
                 .from(CLASSES)
                 .join(CLASS_SPELL_AVAILABILITY).on(CLASSES.ID.eq(CLASS_SPELL_AVAILABILITY.CLASS_ID))
                 .join(SPELLS).on(SPELLS.ID.eq(CLASS_SPELL_AVAILABILITY.SPELL_ID))

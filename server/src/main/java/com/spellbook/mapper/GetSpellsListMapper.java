@@ -2,7 +2,7 @@ package com.spellbook.mapper;
 
 import com.spellbook.dto.common.Class;
 import com.spellbook.dto.common.Spell;
-import com.spellbook.dto.getSpellList.GetSpellsListResponse;
+import com.spellbook.dto.GetSpellsListResponse;
 import com.spellbook.jooq.tables.pojos.Spells;
 import com.spellbook.repository.ClassesRepository;
 import lombok.AllArgsConstructor;
