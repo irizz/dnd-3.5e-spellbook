@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { AuthService } from '../shared/services/auth.service';
-import { CookieService } from "../shared/services/cookie.service";
 import {
   MIN_LOGIN_LENGTH,
   MIN_PASSWORD_LENGTH,
@@ -21,7 +20,6 @@ export class SignupFormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<SignupFormComponent>,
     private auth: AuthService,
-    private cookies: CookieService,
   ) {}
 
   ngOnInit() {}
@@ -80,7 +78,7 @@ export class SignupFormComponent implements OnInit {
         // [NOTE] Autologin after successfull signup request
         this.auth.sendLoginRequest(login, password).subscribe(
           () => {
-            this.cookies.setCookie("username", login);
+            localStorage.setItem("username", login);
             this.auth.setUsername(login);
             this.auth.showLogin();
             this.closeModal();

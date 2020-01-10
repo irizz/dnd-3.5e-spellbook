@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AuthService } from '../shared/services/auth.service';
-import { CookieService } from "../shared/services/cookie.service";
 import { ServerService } from "../shared/services/server.service";
 import { ViewService } from "../shared/services/view.service";
 import { CharClassesResponse } from "../shared/interfaces";
@@ -22,7 +21,6 @@ export class ContainerComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
     private auth: AuthService,
-    private cookies: CookieService,
     private data: DataService,
     private server: ServerService,
     private view: ViewService
@@ -31,7 +29,7 @@ export class ContainerComponent implements OnInit {
   ngOnInit() {
     this.auth.checkSession().subscribe(
       () => {
-        const username = this.cookies.getCookie("username");
+        const username = localStorage.getItem("username");
         this.auth.setUsername(username);
         this.auth.setIsAgreedToCookiesConsent();
         this.auth.showLogin();

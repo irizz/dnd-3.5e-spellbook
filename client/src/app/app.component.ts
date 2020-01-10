@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { AuthService } from './shared/services/auth.service';
-import { CookieService } from "./shared/services/cookie.service";
 import { LoginFormComponent } from "./login-form/login-form.component";
 import { SignupFormComponent } from "./signup-form/signup-form.component";
 
@@ -14,7 +13,6 @@ export class AppComponent {
   constructor(
     public dialog: MatDialog,
     private auth: AuthService,
-    private cookies: CookieService,
   ) {}
 
   appTitle = "D&D 3.5e Spellbook";
@@ -34,7 +32,7 @@ export class AppComponent {
       () => {
         this.auth.hideLogin();
         this.auth.clearUsername();
-        this.cookies.deleteCookie("username");
+        localStorage.setItem("username", "");
       },
       error => {
         alert(`There was some error during logout: ${error.message}`);
