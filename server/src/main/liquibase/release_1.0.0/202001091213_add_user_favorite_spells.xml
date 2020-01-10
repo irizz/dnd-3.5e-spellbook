@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        logicalFilePath="202001091213_add_user_favorite_spells.xml"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="202001091213" author="Anton Khramtsov" context="schema" runAlways="false">
+        <sql>
+            CREATE TABLE IF NOT EXISTS spellbook.user_favorite_spells (
+            id                  UUID            NOT NULL    DEFAULT uuid_generate_v4(),
+            user_id             UUID            NOT NULL,
+            spell_id            UUID            NOT NULL,
+            class_id            UUID            NOT NULL,
+
+            CONSTRAINT user_favorite_spells_pk PRIMARY KEY(id),
+            FOREIGN KEY (user_id) REFERENCES spellbook.users (id),
+            FOREIGN KEY (spell_id) REFERENCES spellbook.spells (id),
+            FOREIGN KEY (class_id) REFERENCES spellbook.classes (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

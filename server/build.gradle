@@ -27,7 +27,7 @@ apply plugin: 'nu.studer.jooq'
 
 bootJar {
     baseName = rootProject.name
-    version =  '0.9.1'
+    version =  '0.10.0'
 }
 
 repositories {

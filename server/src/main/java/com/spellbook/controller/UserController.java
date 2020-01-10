@@ -34,7 +34,7 @@ public class UserController {
 
     @PostMapping(value = DEFAULT_URL + REGISTRATION)
     public ResponseEntity<HttpStatus> registration(@RequestBody User user) {
-        return process(() -> userService.save(user));
+        return process(() -> userService.createUser(user));
     }
 
     @GetMapping(value = DEFAULT_URL + LOGIN)
@@ -53,9 +53,9 @@ public class UserController {
         return process(userService::checkSession);
     }
 
-    private ResponseEntity<HttpStatus> process(Callable<ResponseEntity<HttpStatus>> method) {
+    private ResponseEntity<HttpStatus> process(Callable<HttpStatus> method) {
         try {
-            return method.call();
+            return new ResponseEntity<>(method.call());
         } catch (Exception exception) {
             log.error(exception.getMessage());
             log.error(Arrays.toString(exception.getStackTrace()));

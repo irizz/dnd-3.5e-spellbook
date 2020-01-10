@@ -13,4 +13,5 @@
     <include file="201912071221_ranger_bug_fixing.xml" relativeToChangelogFile="true"/>
     <include file="201912071237_ranger_bug_fixing.xml" relativeToChangelogFile="true"/>
     <include file="202001021053_add_user_info.xml" relativeToChangelogFile="true"/>
+    <include file="202001091213_add_user_favorite_spells.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
