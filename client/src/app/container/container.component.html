@@ -29,5 +29,15 @@
     <app-loading *ngIf="view.isLoading"></app-loading>
     <app-error *ngIf="view.isError"></app-error>
     <app-main *ngIf="view.areSpellsLoaded"></app-main>
+    <img
+      *ngIf="!view.isLoading && !view.isError && !view.areSpellsLoaded"
+      src="../../assets/dragon.svg"
+      class="container__content_image"
+    />
+    <img
+      *ngIf="view.areSpellsLoaded"
+      src="../../assets/divider.svg"
+      class="container__content_divider"
+    />
   </mat-card-content>
 </mat-card>

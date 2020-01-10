@@ -1,5 +1,6 @@
 .container {
   margin: auto;
+  overflow: hidden;
   width: 95%;
   padding: 0;
   min-height: 20rem;
@@ -28,8 +29,20 @@
     &_select-class {
       display: block;
       position: absolute;
-      top: 35%;
-      left: 30%;
+      top: 42%;
+      left: 47%;
+    }
+
+    &_image {
+      opacity: 0.2;
+    }
+  
+    &_divider {
+      position: absolute;
+      width: 80%;
+      bottom: 5px;
+      left: 10%;
+      opacity: 0.2;
     }
   }
 }
